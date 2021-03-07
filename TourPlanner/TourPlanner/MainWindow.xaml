@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:TourPlanner"
         mc:Ignorable="d"
         Title="TourPlanner - UI" Height="600" Width="800">
+    <Window.DataContext>
+        <local:ViewModel />
+    </Window.DataContext>
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -32,11 +35,13 @@
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="600" />
+                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Margin="10" VerticalAlignment="Center" Height="30"></TextBox>
-            <Button Grid.Column="1" Margin="10" VerticalAlignment="Center" Height="30">Search!</Button>
+            <TextBox Grid.Column="0" Margin="10" VerticalAlignment="Center" Height="30" Text="{Binding Input, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Grid.Column="1" Margin="10" VerticalAlignment="Center" Height="30" Command="{Binding ExecuteSearch}">Search!</Button>
+            <Label Grid.Column="2" Margin="10" VerticalAlignment="Center" Height="30" Content="{Binding Output}"></Label>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
