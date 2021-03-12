@@ -8,45 +8,69 @@ namespace TourPlanner
     class ViewModel : INotifyPropertyChanged
     {
         private string _output = "";
-        private string _input;
+        private string _filter;
+        private string _start;
+        private string _end;
 
-        public string Input
+        public string FilterInput
         {
             get
             {
-                Debug.Print("reading input");
-                return _input;
+                return _filter;
             }
             set
             {
-                Debug.Print("writing input");
-                if (Input != value)
+                if (FilterInput != value)
                 {
-                    Debug.Print("setting input value");
-                    _input = value;
-
-                    Debug.Print("firing propertyChanged: input");
-                    OnPropertyChanged(nameof(Input));
+                    _filter = value;
+                    OnPropertyChanged(nameof(FilterInput));
                 }
             }
         }
 
-        public string Output
+        public string StartInput
         {
             get
             {
-                Debug.Print("reading output");
+                return _start;
+            }
+            set
+            {
+                if (StartInput != value)
+                {
+                    _start = value;
+                    OnPropertyChanged(nameof(StartInput));
+                }
+            }
+        }
+
+        public string EndInput
+        {
+            get
+            {
+                return _end;
+            }
+            set
+            {
+                if (EndInput != value)
+                {
+                    _end = value;
+                    OnPropertyChanged(nameof(EndInput));
+                }
+            }
+        }
+
+        public string FilterOutput
+        {
+            get
+            {
                 return _output;
             }
             set
             {
-                Debug.Print("writing output");
                 if(_output != value)
                 {
-                    Debug.Print("setting output value");
                     _output = value;
-
-                    Debug.Print("firing propertyChanged: output");
                     OnPropertyChanged();
                 }
             }
@@ -54,16 +78,18 @@ namespace TourPlanner
 
         public ICommand ExecuteSearch { get; }
 
+        public ICommand ExecuteAdd { get; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ViewModel()
         {
             this.ExecuteSearch = new ExecuteSearch(this);
+            this.ExecuteAdd = new ExecuteAdd(this);
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            Debug.Print("prop changed: " + propertyName);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

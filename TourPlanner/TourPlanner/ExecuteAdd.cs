@@ -4,37 +4,34 @@ using System.Windows.Input;
 
 namespace TourPlanner
 {
-    class ExecuteSearch : ICommand
+    class ExecuteAdd : ICommand
     {
         private readonly ViewModel _viewModel;
 
-        public ExecuteSearch(ViewModel viewModel)
+        public ExecuteAdd(ViewModel viewModel)
         {
             _viewModel = viewModel;
             _viewModel.PropertyChanged += (sender, args) =>
             {
-                if (args.PropertyName == "FilterInput")
+                if (args.PropertyName == "StartInput" || args.PropertyName == "EndInput")
                 {
                     CanExecuteChanged?.Invoke(this, EventArgs.Empty);
                 }
             };
-        }
 
+        }
         public bool CanExecute(object? parameter)
         {
-            return !string.IsNullOrWhiteSpace(_viewModel.FilterInput);
+            return (!string.IsNullOrWhiteSpace(_viewModel.StartInput) && !string.IsNullOrWhiteSpace(_viewModel.EndInput));
         }
 
         public void Execute(object? paramter)
         {
-            _viewModel.FilterOutput = "filter: " + _viewModel.FilterInput;
-            TmpFilter(_viewModel.FilterInput);
-            _viewModel.FilterInput = string.Empty;
-        }
-
-        public void TmpFilter(string filter)
-        {
-            Debug.Print("fitler for " + filter);
+            Debug.Print(_viewModel.StartInput);
+            Debug.Print(_viewModel.EndInput);
+            //Add a tour
+            _viewModel.StartInput = string.Empty;
+            _viewModel.EndInput = string.Empty;
         }
 
         public event EventHandler? CanExecuteChanged;
