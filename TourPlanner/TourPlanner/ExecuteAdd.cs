@@ -25,11 +25,13 @@ namespace TourPlanner
             return (!string.IsNullOrWhiteSpace(_viewModel.StartInput) && !string.IsNullOrWhiteSpace(_viewModel.EndInput));
         }
 
-        public void Execute(object? paramter)
+        public void Execute(object? parameter)
         {
             Debug.Print(_viewModel.StartInput);
             Debug.Print(_viewModel.EndInput);
+            
             //Add a tour
+
             _viewModel.StartInput = string.Empty;
             _viewModel.EndInput = string.Empty;
         }

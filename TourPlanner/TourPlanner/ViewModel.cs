@@ -80,6 +80,10 @@ namespace TourPlanner
 
         public ICommand ExecuteAdd { get; }
 
+        public ICommand ExecuteDel { get; }
+
+        public ICommand ExecuteEdit { get; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ViewModel()
