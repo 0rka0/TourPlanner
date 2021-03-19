@@ -84,12 +84,17 @@ namespace TourPlanner
 
         public ICommand ExecuteEdit { get; }
 
+        public ICommand ExecuteImport { get; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ViewModel()
         {
             this.ExecuteSearch = new ExecuteSearch(this);
             this.ExecuteAdd = new ExecuteAdd(this);
+            this.ExecuteDel = new ExecuteDel(this);
+            this.ExecuteEdit = new ExecuteEdit(this);
+            this.ExecuteImport = new ExecuteImport(this);
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
