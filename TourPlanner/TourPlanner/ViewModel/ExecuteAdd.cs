@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System;
 using System.Windows.Input;
+using TourPlannerBL;
 
 namespace TourPlanner
 {
@@ -29,8 +30,12 @@ namespace TourPlanner
         {
             Debug.Print(_viewModel.StartInput);
             Debug.Print(_viewModel.EndInput);
-            
+
             //Add a tour
+            Tour tmp = TourHandler.AddTour(_viewModel.StartInput, _viewModel.EndInput);
+            //Business layer returns a tour that can be added to the TourList
+            
+            _viewModel.TourList.Add(tmp);
 
             _viewModel.StartInput = string.Empty;
             _viewModel.EndInput = string.Empty;

@@ -58,40 +58,92 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="110" />
-                    <RowDefinition Height="13*" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">Tours</Label>
-                    <Button Grid.Column="1" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteDel}">Del</Button>
-                    <Button Grid.Column="21" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteEdit}">Edit</Button>
+                    <Label Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">Tours</Label>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="1*" />
-                            <RowDefinition Height="1*" />
-                        </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Padding="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Start of Route:</Label>
-                        <TextBox Grid.Row="1" Margin="5,0,5,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding StartInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                        <Label Grid.Row="2" Padding="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">End of Route:</Label>
-                        <TextBox Grid.Row="3" Margin="5,0,5,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding EndInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                            <!--<Label Grid.Row="0" Padding="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Start of Route:</Label>
+                            <TextBox Grid.Row="1" Margin="5,0,5,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding StartInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                            <Label Grid.Row="2" Padding="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">End of Route:</Label>
+                            <TextBox Grid.Row="3" Margin="5,0,5,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding EndInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>-->
+                        <!--<Button Grid.Column="1" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteAdd}">Add</Button>-->
+                        <ToggleButton Name="AddButton" Grid.Column="0" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Button_Click">Add</ToggleButton>
+                        <Popup Placement="Mouse" Width="400" Height="250" IsOpen="{Binding IsChecked, ElementName=AddButton}" StaysOpen="False">
+                            <Border BorderBrush="DarkGray" BorderThickness="2" Background="LightGray">
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="1*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0">
+                                        <Label FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Add a Tour</Label>
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="3*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0">Start of Route:</Label>
+                                        <TextBox Margin="1" Grid.Column="1" Text="{Binding StartInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                                    </Grid>
+                                    <Grid Grid.Row="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="3*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0">End of Route:</Label>
+                                        <TextBox Margin="1" Grid.Column="1" Text="{Binding EndInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                                    </Grid>
+                                    <Grid Grid.Row="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="3*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0">Description</Label>
+                                        <TextBox Margin="1" Grid.Column="1" Text=""></TextBox>
+                                    </Grid>
+                                    <Grid Grid.Row="4">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="3*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0">Information</Label>
+                                        <TextBox Margin="1" Grid.Column="1" Text=""></TextBox>
+                                    </Grid>
+                                    <Button Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding ExecuteAdd}">Add</Button>
+                                </Grid>
+                            </Border>
+                        </Popup>
                     </Grid>
-                    <Button Grid.Column="1" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteAdd}">Add</Button>
+                    <Button Grid.Column="1" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteDel}">Del</Button>
+                    <Button Grid.Column="2" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteEdit}">Edit</Button>
                 </Grid>
                 <Grid Grid.Row="2">
-                    <Label>Tours will be shown here</Label>
+                    <ListView ItemsSource="{Binding TourList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </Grid>
             </Grid>
             <Grid Grid.Column="1">

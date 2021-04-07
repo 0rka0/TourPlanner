@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
+using TourPlannerBL;
 
 namespace TourPlanner
 {
@@ -11,6 +13,24 @@ namespace TourPlanner
         private string _filter;
         private string _start;
         private string _end;
+
+        private ObservableCollection<Tour> _tourList = new ObservableCollection<Tour>();
+
+        public ObservableCollection<Tour> TourList
+        {
+            get 
+            {
+                return _tourList;
+            }
+            set
+            {
+                if (_tourList != value)
+                {
+                    _tourList = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public string FilterInput
         {
