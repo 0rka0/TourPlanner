@@ -32,7 +32,7 @@ namespace TourPlanner
             Debug.Print(_viewModel.EndInput);
 
             //Add a tour
-            Tour tmp = TourHandler.AddTour(_viewModel.StartInput, _viewModel.EndInput);
+            Tour tmp = TourHandler.CreateTour(_viewModel.StartInput, _viewModel.EndInput);
             //Business layer returns a tour that can be added to the TourList
             
             _viewModel.TourList.Add(tmp);
