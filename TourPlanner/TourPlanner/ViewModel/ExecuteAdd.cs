@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System;
 using System.Windows.Input;
+using TourPlannerDAL;
 using TourPlannerBL;
 
 namespace TourPlanner

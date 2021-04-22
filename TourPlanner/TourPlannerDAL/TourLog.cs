@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TourPlannerBL
+namespace TourPlannerDAL
 {
     public class TourLog
     {

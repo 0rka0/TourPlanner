@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TourPlannerDAL;
 
 namespace TourPlannerBL
 {
@@ -10,7 +11,8 @@ namespace TourPlannerBL
         static public Tour AddTour(string start, string goal)
         {
             Tour tour = CreateTour(start, goal);
-            //Save Tour
+            DatabaseHandler db = DatabaseHandler.GetInstance();
+            db.InsertTour(tour);
 
             return tour;
         }

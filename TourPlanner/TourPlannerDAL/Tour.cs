@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TourPlannerBL
+namespace TourPlannerDAL
 {
     public class Tour
     {
-        public int id { get; private set; }
+        public int Id { get; set; }
         public string Name { get; private set; }
         public string TourDescription { get; private set; }
         public string RouteInformation { get; private set; }

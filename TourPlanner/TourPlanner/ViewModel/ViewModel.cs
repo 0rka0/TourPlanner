@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using TourPlannerBL;
+using TourPlannerDAL;
 
 namespace TourPlanner
 {

@@ -55,8 +55,8 @@ namespace TourPlannerBL
 
         static async Task<string> DownloadAndSaveImage(string request)
         {
-            string filename = StringPreparer.GetInt64HashCode(request).ToString();
-            string path = "../../../../Images/" + filename + ".png";
+            string filename = StringPreparer.GetInt64HashCode(request).ToString() + ".png";
+            string path = "../../../../Images/" + filename;
             Debug.WriteLine(request);
             HttpResponseMessage response = await client.GetAsync(request);
             response.EnsureSuccessStatusCode();
@@ -65,7 +65,7 @@ namespace TourPlannerBL
             ms.Seek(0, SeekOrigin.Begin);
             ms.CopyTo(fs);
 
-            return path;
+            return filename;
         }
     }
 }
