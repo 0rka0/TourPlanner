@@ -7,11 +7,22 @@ namespace TourPlannerBL
     //used to add new tours to the system
     static public class TourHandler
     {
-        static public Tour CreateTour(string start, string goal)
+        static public Tour AddTour(string start, string goal)
         {
-            MapQuestHandler.GetTourInformation(start, goal);
+            Tour tour = CreateTour(start, goal);
+            //Save Tour
 
-            return new Tour(start, "first tour", "this is a tour", "20 km");
+            return tour;
+        }
+
+        static Tour CreateTour(string start, string goal)
+        {
+            TourInformationResponse information = MapQuestHandler.GetTourInformation(start, goal);
+            string path = MapQuestHandler.GetImage(information);
+
+            Tour tour = new Tour(StringPreparer.NameBuilder(start, goal), "first tour", "this is a tour", information.route.distance.ToString(), path);
+
+            return tour;
         }
     }
 }

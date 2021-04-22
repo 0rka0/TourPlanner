@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -10,31 +11,38 @@ namespace TourPlannerBL
     static public class MapQuestHandler
     {
         static readonly HttpClient client = new HttpClient();
-        static readonly string _urlDirections = "http://www.mapquestapi.com/directions/v2/route";
-        static readonly string _urlStaticMap = "http://www.mapquestapi.com/staticmap/v5/map";
-        static readonly string _key = "A1H6TsijwzAZ3cp7vu5cGAmVqEysE6gy"; //to be transfered into config file
 
-        static public void GetTourInformation(string start, string goal)
+        static public TourInformationResponse GetTourInformation(string start, string goal)
         {
-            string request = BuildDirectionsRequest(start, goal);
-            string directionsString;
-            Task<string> task = Task.Run<string>(async () => await GetRoute(request));
-            directionsString = task.Result; //response from MapQuest API
-
-            Debug.WriteLine(directionsString);
+            TourInformationResponse response = GetTour(start, goal);
+            return response;
         }
 
-        static string BuildDirectionsRequest(string start, string goal)
+        static TourInformationResponse GetTour(string start, string goal)
         {
-            return String.Format("{0}?key={1}&from={2}&to={3}", _urlDirections, _key, start, goal);
+            string request = StringPreparer.BuildRequest(start, goal);
+            Task<string> task = Task.Run<string>(async () => await RequestTourInformation(request));
+            string directionsString = task.Result; //response from MapQuest API
+
+            return ConvertResponse(directionsString);
         }
 
-        static string BuildStaticMapRequest(string session, string boundingBox)
+        static public string GetImage(TourInformationResponse response)
         {
-            return "";
+            string request = StringPreparer.BuildRequest(response.ReturnString());
+            Task<string> task = Task.Run<string>(async () => await DownloadAndSaveImage(request));
+            string path = task.Result;
+
+            return path; //return location
         }
 
-        static async Task<string> GetRoute(string request)
+        static TourInformationResponse ConvertResponse(string directionsString)
+        {
+            TourInformationResponse response = JsonConvert.DeserializeObject<TourInformationResponse>(directionsString);
+            return response;
+        }
+
+        static async Task<string> RequestTourInformation(string request)
         {
             HttpResponseMessage response = await client.GetAsync(request);
             response.EnsureSuccessStatusCode();
@@ -43,6 +51,21 @@ namespace TourPlannerBL
             Debug.WriteLine(responseBody);
 
             return responseBody;
+        }
+
+        static async Task<string> DownloadAndSaveImage(string request)
+        {
+            string filename = StringPreparer.GetInt64HashCode(request).ToString();
+            string path = "../../../../Images/" + filename + ".png";
+            Debug.WriteLine(request);
+            HttpResponseMessage response = await client.GetAsync(request);
+            response.EnsureSuccessStatusCode();
+            await using var ms = await response.Content.ReadAsStreamAsync();
+            await using var fs = File.Create(path);
+            ms.Seek(0, SeekOrigin.Begin);
+            ms.CopyTo(fs);
+
+            return path;
         }
     }
 }
