@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -48,16 +46,12 @@ namespace TourPlannerBL
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
 
-            Debug.WriteLine(responseBody);
-
             return responseBody;
         }
 
         static async Task<string> DownloadAndSaveImage(string request, string filename)
         {
-            //string filename = StringPreparer.GetInt64HashCode(request) + ".png";
             string path = "../../../../Images/" + filename;
-            Debug.WriteLine(request);
             HttpResponseMessage response = await client.GetAsync(request);
             response.EnsureSuccessStatusCode();
             await using var ms = await response.Content.ReadAsStreamAsync();

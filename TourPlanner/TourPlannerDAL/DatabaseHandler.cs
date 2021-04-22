@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using System;
+using TourPlannerModels;
 
 namespace TourPlannerDAL
 {

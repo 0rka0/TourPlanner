@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace TourPlannerDAL
+namespace TourPlannerModels
 {
     public class Tour
     {
@@ -16,9 +15,11 @@ namespace TourPlannerDAL
 
         public Tour(string name, string desc, string inf, string dist)
         {
+            TourDescription = "";
+            RouteInformation = "";
             Name = name;
-            TourDescription = desc;
-            RouteInformation = inf;
+            TourDescription += desc;
+            RouteInformation += inf;
             Distance = dist;
         }
 

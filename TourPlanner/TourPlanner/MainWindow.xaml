@@ -76,7 +76,7 @@
                             <Label Grid.Row="2" Padding="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">End of Route:</Label>
                             <TextBox Grid.Row="3" Margin="5,0,5,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding EndInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>-->
                         <!--<Button Grid.Column="1" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteAdd}">Add</Button>-->
-                        <ToggleButton Name="AddButton" Grid.Column="0" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Button_Click">Add</ToggleButton>
+                        <ToggleButton Name="AddButton" Grid.Column="0" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Button_Click">Add</ToggleButton>
                         <Popup Placement="Mouse" Width="400" Height="250" IsOpen="{Binding IsChecked, ElementName=AddButton}" StaysOpen="False">
                             <Border BorderBrush="DarkGray" BorderThickness="2" Background="LightGray">
                                 <Grid Margin="5">
@@ -117,7 +117,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Label Grid.Column="0">Description</Label>
-                                        <TextBox Margin="1" Grid.Column="1" Text=""></TextBox>
+                                        <TextBox Margin="1" Grid.Column="1" Text="{Binding DescriptionInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                     </Grid>
                                     <Grid Grid.Row="4">
                                         <Grid.ColumnDefinitions>
@@ -126,24 +126,18 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Label Grid.Column="0">Information</Label>
-                                        <TextBox Margin="1" Grid.Column="1" Text=""></TextBox>
+                                        <TextBox Margin="1" Grid.Column="1" Text="{Binding InformationInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                                     </Grid>
                                     <Button Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding ExecuteAdd}">Add</Button>
                                 </Grid>
                             </Border>
                         </Popup>
                     </Grid>
-                    <Button Grid.Column="1" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteDel}">Del</Button>
-                    <Button Grid.Column="2" Margin="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteEdit}">Edit</Button>
+                    <Button Grid.Column="1" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteDel}">Del</Button>
+                    <Button Grid.Column="2" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteEdit}">Edit</Button>
                 </Grid>
                 <Grid Grid.Row="2">
-                    <ListView ItemsSource="{Binding TourList}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}"/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <ListBox x:Name="listTours" ItemsSource="{Binding TourList}" SelectedItem="{Binding CurTour}" DisplayMemberPath="Name" />
                 </Grid>
             </Grid>
             <Grid Grid.Column="1">
@@ -162,7 +156,7 @@
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" />
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Margin="5" FontSize="14" VerticalAlignment="Center">Title:</Label>

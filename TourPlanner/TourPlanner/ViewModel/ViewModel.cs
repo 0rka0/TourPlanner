@@ -3,8 +3,9 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
-using TourPlannerBL;
-using TourPlannerDAL;
+using TourPlannerModels;
+
+//To be implemented: search function, reading from db
 
 namespace TourPlanner
 {
@@ -14,6 +15,9 @@ namespace TourPlanner
         private string _filter;
         private string _start;
         private string _end;
+        private string _description;
+        private string _information;
+        private Tour _curTour;
 
         private ObservableCollection<Tour> _tourList = new ObservableCollection<Tour>();
 
@@ -29,6 +33,22 @@ namespace TourPlanner
                 {
                     _tourList = value;
                     OnPropertyChanged();
+                }
+            }
+        }
+
+        public Tour CurTour
+        {
+            get
+            {
+                return _curTour;
+            }
+            set
+            {
+                if (CurTour != value && value == null)
+                {
+                    _curTour = value;
+                    OnPropertyChanged(nameof(CurTour));
                 }
             }
         }
@@ -77,6 +97,38 @@ namespace TourPlanner
                 {
                     _end = value;
                     OnPropertyChanged(nameof(EndInput));
+                }
+            }
+        }
+
+        public string DescriptionInput
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                if (DescriptionInput != value)
+                {
+                    _description = value;
+                    OnPropertyChanged(nameof(DescriptionInput));
+                }
+            }
+        }
+
+        public string InformationInput
+        {
+            get
+            {
+                return _information;
+            }
+            set
+            {
+                if (InformationInput != value)
+                {
+                    _information = value;
+                    OnPropertyChanged(nameof(InformationInput));
                 }
             }
         }
