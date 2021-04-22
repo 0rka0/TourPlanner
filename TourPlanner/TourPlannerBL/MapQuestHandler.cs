@@ -27,10 +27,10 @@ namespace TourPlannerBL
             return ConvertResponse(directionsString);
         }
 
-        static public string GetImage(TourInformationResponse response)
+        static public string GetImage(TourInformationResponse response, string filename)
         {
             string request = StringPreparer.BuildRequest(response.ReturnString());
-            Task<string> task = Task.Run<string>(async () => await DownloadAndSaveImage(request));
+            Task<string> task = Task.Run<string>(async () => await DownloadAndSaveImage(request, filename));
             string path = task.Result;
 
             return path; //return location
@@ -53,9 +53,9 @@ namespace TourPlannerBL
             return responseBody;
         }
 
-        static async Task<string> DownloadAndSaveImage(string request)
+        static async Task<string> DownloadAndSaveImage(string request, string filename)
         {
-            string filename = StringPreparer.GetInt64HashCode(request).ToString() + ".png";
+            //string filename = StringPreparer.GetInt64HashCode(request) + ".png";
             string path = "../../../../Images/" + filename;
             Debug.WriteLine(request);
             HttpResponseMessage response = await client.GetAsync(request);
@@ -65,7 +65,7 @@ namespace TourPlannerBL
             ms.Seek(0, SeekOrigin.Begin);
             ms.CopyTo(fs);
 
-            return filename;
+            return path;
         }
     }
 }

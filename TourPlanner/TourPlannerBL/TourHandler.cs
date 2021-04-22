@@ -10,21 +10,28 @@ namespace TourPlannerBL
     {
         static public Tour AddTour(string start, string goal)
         {
-            Tour tour = CreateTour(start, goal);
+            TourInformationResponse information = MapQuestHandler.GetTourInformation(start, goal);
+            Tour tour = CreateTour(information, StringPreparer.BuildName(start, goal));
+
             DatabaseHandler db = DatabaseHandler.GetInstance();
             db.InsertTour(tour);
+
+            tour.Location = GetImage(information, StringPreparer.BuildFilename(tour.Id, tour.Name));
+            db.InsertImage(tour.Location, tour.Id);
 
             return tour;
         }
 
-        static Tour CreateTour(string start, string goal)
+        static Tour CreateTour(TourInformationResponse information, string name)
         {
-            TourInformationResponse information = MapQuestHandler.GetTourInformation(start, goal);
-            string path = MapQuestHandler.GetImage(information);
-
-            Tour tour = new Tour(StringPreparer.NameBuilder(start, goal), "first tour", "this is a tour", information.route.distance.ToString(), path);
-
+            Tour tour = new Tour(name, "first tour", "this is a tour", information.route.distance.ToString());
             return tour;
+        }
+
+        static string GetImage(TourInformationResponse information, string filename)
+        {
+            string path = MapQuestHandler.GetImage(information, filename);
+            return path;
         }
     }
 }

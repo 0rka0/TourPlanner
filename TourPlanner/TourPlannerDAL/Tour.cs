@@ -10,17 +10,16 @@ namespace TourPlannerDAL
         public string TourDescription { get; private set; }
         public string RouteInformation { get; private set; }
         public string Distance { get; set; }
-        public string Location { get; private set; }
+        public string Location { get; set; }
 
         List<TourLog> LogList = new List<TourLog>();
 
-        public Tour(string name, string desc, string inf, string dist, string loc)
+        public Tour(string name, string desc, string inf, string dist)
         {
             Name = name;
             TourDescription = desc;
             RouteInformation = inf;
             Distance = dist;
-            Location = loc;
         }
 
         public void AddLog(TourLog log)

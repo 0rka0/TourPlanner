@@ -22,12 +22,17 @@ namespace TourPlannerBL
             return String.Format("{0}?key={1}&{2}", _urlStaticMap, _key, requestString);
         }
 
-        static public string NameBuilder(string start, string goal)
+        static public string BuildName(string start, string goal)
         {
             return String.Format("{0}-{1}", start, goal);
         }
 
-        static public Int64 GetInt64HashCode(string strText)
+        static public string BuildFilename(int id, string name)
+        {
+            return String.Format("{0}_{1}.png", name, id);
+        }
+
+        static public string GetInt64HashCode(string strText)
         {
             Int64 hashCode = 0;
             if (!string.IsNullOrEmpty(strText))
@@ -46,8 +51,10 @@ namespace TourPlannerBL
                 Int64 hashCodeMedium = BitConverter.ToInt64(hashText, 8);
                 Int64 hashCodeEnd = BitConverter.ToInt64(hashText, 24);
                 hashCode = hashCodeStart ^ hashCodeMedium ^ hashCodeEnd;
+                if (hashCode < 0)
+                    hashCode *= -1;
             }
-            return (hashCode);
+            return hashCode.ToString();
         }
     }
 }
