@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using System;
+using System.Collections.Generic;
 using TourPlannerModels;
 
 namespace TourPlannerDAL
@@ -23,6 +24,21 @@ namespace TourPlannerDAL
                 _db = new DatabaseHandler();
             }
             return _db;
+        }
+
+        public IEnumerable<Tour> SelectAllTours()
+        {
+            conn.Open();
+            List<Tour> tourList = new List<Tour>();
+
+            using(var cmd = new NpgsqlCommand("SELECT * FROM tours", conn))
+            using (var reader = cmd.ExecuteReader())
+                while(reader.Read())
+                {
+                    tourList.Add(new Tour((int)reader[0], reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString()));
+                }
+            conn.Close();
+            return tourList;
         }
 
         public void InsertTour(Tour tour)

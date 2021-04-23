@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using TourPlannerDAL;
 using TourPlannerModels;
 
@@ -32,6 +33,12 @@ namespace TourPlannerBL
         {
             string path = MapQuestHandler.GetImage(information, filename);
             return path;
+        }
+
+        static public IEnumerable<Tour> GetTours()
+        {
+            DatabaseHandler db = DatabaseHandler.GetInstance();
+            return db.SelectAllTours();
         }
     }
 }

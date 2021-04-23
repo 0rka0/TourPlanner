@@ -23,6 +23,16 @@ namespace TourPlannerModels
             Distance = dist;
         }
 
+        public Tour(int id, string name, string desc, string inf, string dist, string loc)
+        {
+            Id = id;
+            Name = name;
+            TourDescription = desc;
+            RouteInformation = inf;
+            Distance = dist;
+            Location = loc;
+        }
+
         public void AddLog(TourLog log)
         {
             LogList.Add(log);

@@ -1,6 +1,7 @@
-﻿using System.Diagnostics;
-using System;
+﻿using System;
 using System.Windows.Input;
+using System.Collections.Generic;
+using TourPlannerModels;
 
 namespace TourPlanner
 {
@@ -28,13 +29,19 @@ namespace TourPlanner
         public void Execute(object? paramter)
         {
             _viewModel.FilterOutput = "filter: " + _viewModel.FilterInput;
-            TmpFilter(_viewModel.FilterInput);
+            Search(_viewModel.FilterInput);
             _viewModel.FilterInput = string.Empty;
         }
 
-        public void TmpFilter(string filter)
+        public void Search(string filter)
         {
-            Debug.Print("fitler for " + filter);
+            IEnumerable<Tour> foundTours = _viewModel.tourFactory.Search(filter); 
+            _viewModel.TourList.Clear();
+            
+            foreach(Tour tour in foundTours)
+            {
+                _viewModel.TourList.Add(tour);   //to be reworked, will be transferred to viewmodel so that methods can remain private
+            }
         }
 
         public event EventHandler? CanExecuteChanged;

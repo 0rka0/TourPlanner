@@ -41,11 +41,13 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*" />
                 <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding FilterInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Button Grid.Column="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteSearch}">Search!</Button>
-            <Label Grid.Column="2" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding FilterOutput}"></Label>
+            <Button Grid.Column="2" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteClear}">Clear!</Button>
+            <Label Grid.Column="3" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding FilterOutput}"></Label>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>

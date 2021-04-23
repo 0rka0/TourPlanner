@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using TourPlannerModels;
+using TourPlannerBL;
 
 //To be implemented: search function, reading from db
 
@@ -11,6 +12,7 @@ namespace TourPlanner
 {
     class ViewModel : INotifyPropertyChanged
     {
+        public ITourFactory tourFactory;
         private string _output = "";
         private string _filter;
         private string _start;
@@ -151,6 +153,8 @@ namespace TourPlanner
 
         public ICommand ExecuteSearch { get; }
 
+        public ICommand ExecuteClear { get; }
+
         public ICommand ExecuteAdd { get; }
 
         public ICommand ExecuteDel { get; }
@@ -164,10 +168,29 @@ namespace TourPlanner
         public ViewModel()
         {
             this.ExecuteSearch = new ExecuteSearch(this);
+            this.ExecuteClear = new ExecuteClear(this);
             this.ExecuteAdd = new ExecuteAdd(this);
             this.ExecuteDel = new ExecuteDel(this);
             this.ExecuteEdit = new ExecuteEdit(this);
             this.ExecuteImport = new ExecuteImport(this);
+
+            InitTourList();
+        }
+
+        private void InitTourList()
+        {
+            tourFactory = TourFactory.GetInstance();
+
+            TourList = new ObservableCollection<Tour>();
+            FillTourList();
+        }
+
+        public void FillTourList()
+        {
+            foreach (Tour tour in tourFactory.GetTours())
+            {
+                TourList.Add(tour);
+            }
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
