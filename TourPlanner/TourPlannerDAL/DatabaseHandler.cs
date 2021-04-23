@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TourPlannerModels;
 
 namespace TourPlannerDAL
@@ -41,7 +42,7 @@ namespace TourPlannerDAL
             return tourList;
         }
 
-        public void InsertTour(Tour tour)
+        public Tour InsertTour(Tour tour)
         {
             conn.Open();
             tour.Id = GetMaxId();
@@ -58,6 +59,7 @@ namespace TourPlannerDAL
             }
 
             conn.Close();
+            return tour;
         }
 
         public void InsertImage(string filename, int id)
@@ -67,7 +69,8 @@ namespace TourPlannerDAL
             using (var cmd = new NpgsqlCommand("UPDATE tours SET image = @img WHERE id = @id", conn))
             {      //adding parameters
                 cmd.Parameters.AddWithValue("@img", filename);
-                cmd.Parameters.AddWithValue("@uid", id);
+                cmd.Parameters.Add(new NpgsqlParameter("id", NpgsqlTypes.NpgsqlDbType.Integer));
+                cmd.Parameters[1].Value = id;
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
             }
@@ -80,13 +83,10 @@ namespace TourPlannerDAL
             int maxId = 0;
             try
             {
-                using (var cmd = new NpgsqlCommand("Select max(id) FROM tours", conn))
-                {
-                    cmd.Prepare();
-                    using (var reader = cmd.ExecuteReader())
-                        while (reader.Read())
-                            maxId = (int)reader[0];
-                }
+                using (var cmd = new NpgsqlCommand("SELECT max(id) FROM tours", conn))
+                using (var reader = cmd.ExecuteReader())
+                    while (reader.Read())
+                        maxId = (int)reader[0];
             }
             catch (Exception e)
             {

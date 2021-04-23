@@ -150,7 +150,6 @@
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40" />
-                        <RowDefinition Height="40" />
                         <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" />
@@ -162,20 +161,23 @@
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Margin="5" FontSize="14" VerticalAlignment="Center">Title:</Label>
-                        <Label Grid.Column="1" Margin="5" FontSize="14" VerticalAlignment="Center">(Insert title)</Label>
+                        <Label Grid.Column="1" Margin="5" FontSize="14" VerticalAlignment="Center" Content="{Binding CurTour.Name}"/>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
+                        <TabControl>
+                            <TabItem Header="Route">
+                                <Image VerticalAlignment="Top" HorizontalAlignment="Left" Source="{Binding CurTour.Location}"></Image>
+                            </TabItem>
+                            <TabItem Header="Details">Information about the Tour</TabItem>
+                        </TabControl>
+                        <!--<Grid.ColumnDefinitions>
                             <ColumnDefinition Width="75" />
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Margin="5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightGray">Route</Label>
                         <Label Grid.Column="1" Margin="5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightGray">Description</Label>
-                        <Label Grid.Column="2" Margin="5"  Background="LightGray" />
-                    </Grid>
-                    <Grid Grid.Row="2">
-                        <Label Grid.Column="0" Margin="5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center">Map/Description will be found here</Label>
+                        <Label Grid.Column="2" Margin="5"  Background="LightGray" />-->
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1">

@@ -29,7 +29,7 @@ namespace TourPlannerBL
 
         static public string BuildFilename(int id, string name)
         {
-            return String.Format("{0}_{1}.png", name, id);
+            return String.Format("{0}{1}.png", id, name);
         }
     }
 }

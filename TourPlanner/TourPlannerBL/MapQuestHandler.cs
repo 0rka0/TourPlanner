@@ -29,9 +29,9 @@ namespace TourPlannerBL
         {
             string request = StringPreparer.BuildRequest(response.ReturnString());
             Task<string> task = Task.Run<string>(async () => await DownloadAndSaveImage(request, filename));
-            string path = task.Result;
+            string fname = task.Result;
 
-            return path; //return location
+            return fname; //return location
         }
 
         static TourInformationResponse ConvertResponse(string directionsString)

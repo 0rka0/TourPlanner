@@ -47,7 +47,7 @@ namespace TourPlanner
             }
             set
             {
-                if (CurTour != value && value == null)
+                if (CurTour != value && value != null)
                 {
                     _curTour = value;
                     OnPropertyChanged(nameof(CurTour));
