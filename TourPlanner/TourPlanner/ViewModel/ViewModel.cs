@@ -5,6 +5,10 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using TourPlannerModels;
 using TourPlannerBL;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System;
+using System.IO;
 
 //To be implemented: search function, reading from db
 
@@ -52,6 +56,42 @@ namespace TourPlanner
                     _curTour = value;
                     OnPropertyChanged(nameof(CurTour));
                 }
+            }
+        }
+
+        // set itemsource of image
+
+        public string CurTourImage
+        {
+            get
+            {
+                if (CurTour?.Id != null)
+                {
+                    try
+                    {
+                        string location = $@"{Configuration.ImagePath}{CurTour.Image}";
+                        if (File.Exists(location))
+                        {
+                            var bitmap = new BitmapImage();
+                            bitmap.BeginInit();
+                            bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                            bitmap.UriSource = new Uri(location);
+                            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                            bitmap.EndInit();
+
+                            //this.logger.LogDebug($"Image source has changed!");
+
+                            return location;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        //this.logger.LogError(e, $"Exception was thrown when setting Tour Map Image: {e}");
+                    }
+                }
+
+                //this.logger.LogDebug($"Image source has not been found!");
+                return null;
             }
         }
 

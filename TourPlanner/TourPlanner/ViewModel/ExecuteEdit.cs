@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using TourPlannerBL;
 
 namespace TourPlanner
 {
@@ -10,13 +11,19 @@ namespace TourPlanner
         {
             _viewModel = viewModel;
 
-            //get selected tour
+            _viewModel.PropertyChanged += (sender, args) =>
+            {
+                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+            };
         }
 
         public bool CanExecute(object? parameter)
         {
-            //if a tour is selected
-            return true;
+            if (_viewModel.CurTour != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void Execute(object? parameter)

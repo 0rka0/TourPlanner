@@ -4,10 +4,10 @@ using TourPlannerBL;
 
 namespace TourPlanner
 {
-    class ExecuteDel : ICommand 
+    class ExecuteCopy : ICommand
     {
         private readonly ViewModel _viewModel;
-        public ExecuteDel(ViewModel viewModel)
+        public ExecuteCopy(ViewModel viewModel)
         {
             _viewModel = viewModel;
 
@@ -19,7 +19,7 @@ namespace TourPlanner
 
         public bool CanExecute(object? parameter)
         {
-            if(_viewModel.CurTour != null)
+            if (_viewModel.CurTour != null)
             {
                 return true;
             }
@@ -28,7 +28,7 @@ namespace TourPlanner
 
         public void Execute(object? parameter)
         {
-            TourHandler.DeleteTour(_viewModel.CurTour.Id);
+            TourHandler.CopyTour(_viewModel.CurTour.Id);
         }
 
         public event EventHandler? CanExecuteChanged;

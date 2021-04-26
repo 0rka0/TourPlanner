@@ -9,7 +9,7 @@ namespace TourPlannerModels
         public string TourDescription { get; private set; }
         public string RouteInformation { get; private set; }
         public string Distance { get; set; }
-        public string Location { get; set; }
+        public string Image { get; set; }
 
         List<TourLog> LogList = new List<TourLog>();
 
@@ -23,14 +23,14 @@ namespace TourPlannerModels
             Distance = dist;
         }
 
-        public Tour(int id, string name, string desc, string inf, string dist, string loc)
+        public Tour(int id, string name, string desc, string inf, string dist, string img)
         {
             Id = id;
             Name = name;
             TourDescription = desc;
             RouteInformation = inf;
             Distance = dist;
-            Location = loc;
+            Image = img;
         }
 
         public void AddLog(TourLog log)

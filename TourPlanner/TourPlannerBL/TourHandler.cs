@@ -9,21 +9,30 @@ namespace TourPlannerBL
     //overlap with TourFactory - to be reconsidered
     static public class TourHandler
     {
-        static public Tour AddTour(string start, string goal, string desc, string inf)
+        static public void AddTour(string start, string goal, string desc, string inf)
         {
             TourInformationResponse information = MapQuestHandler.GetTourInformation(start, goal);
-            Tour tour = CreateTour(information, StringPreparer.BuildName(start, goal), desc, inf);
+            Tour tour = CreateTourObject(information, StringPreparer.BuildName(start, goal), desc, inf);
 
             DatabaseHandler db = DatabaseHandler.GetInstance();
-            tour = db.InsertTour(tour);
+            tour = db.InsertTourEntry(tour);
 
-            tour.Location = GetImage(information, StringPreparer.BuildFilename(tour.Id, tour.Name));
-            db.InsertImage(tour.Location, tour.Id);
-
-            return tour;
+            tour.Image = GetImage(information, StringPreparer.BuildFilename(tour.Id, tour.Name));
+            db.InsertImage(tour.Image, tour.Id);
         }
 
-        static Tour CreateTour(TourInformationResponse information, string name, string desc, string inf)
+        static public void DeleteTour(int id)
+        {
+            DatabaseHandler db = DatabaseHandler.GetInstance();
+            db.DeleteTourEntry(id);
+        }
+
+        static public void CopyTour(int id)
+        {
+            DatabaseHandler db = DatabaseHandler.GetInstance();
+        }
+
+        static Tour CreateTourObject(TourInformationResponse information, string name, string desc, string inf)
         {
             return new Tour(name, desc, inf, information.route.distance.ToString());
         }
@@ -36,7 +45,7 @@ namespace TourPlannerBL
         static public IEnumerable<Tour> GetTours()
         {
             DatabaseHandler db = DatabaseHandler.GetInstance();
-            return db.SelectAllTours();
+            return db.SelectAllTourEntries();
         }
     }
 }

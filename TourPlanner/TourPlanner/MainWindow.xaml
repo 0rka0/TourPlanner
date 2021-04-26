@@ -71,9 +71,10 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                            <!--<Label Grid.Row="0" Padding="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Start of Route:</Label>
+                        <!--<Label Grid.Row="0" Padding="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Start of Route:</Label>
                             <TextBox Grid.Row="1" Margin="5,0,5,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding StartInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                             <Label Grid.Row="2" Padding="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">End of Route:</Label>
                             <TextBox Grid.Row="3" Margin="5,0,5,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding EndInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>-->
@@ -135,8 +136,9 @@
                             </Border>
                         </Popup>
                     </Grid>
-                    <Button Grid.Column="1" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteDel}">Del</Button>
-                    <Button Grid.Column="2" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteEdit}">Edit</Button>
+                    <Button Grid.Column="1" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteEdit}">Edit</Button>
+                    <Button Grid.Column="2" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteCopy}">Copy</Button>
+                    <Button Grid.Column="3" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteDel}">Del</Button>
                 </Grid>
                 <Grid Grid.Row="2">
                     <ListBox x:Name="listTours" ItemsSource="{Binding TourList}" SelectedItem="{Binding CurTour}" DisplayMemberPath="Name" />
@@ -166,18 +168,11 @@
                     <Grid Grid.Row="1">
                         <TabControl>
                             <TabItem Header="Route">
-                                <Image VerticalAlignment="Top" HorizontalAlignment="Left" Source="{Binding CurTour.Location}"></Image>
+                                <!--<Label VerticalAlignment="Top" HorizontalAlignment="Left" Content="{Binding CurTour.Image}" />-->
+                                <Image VerticalAlignment="Stretch" Source="{Binding CurTourImage}"></Image>
                             </TabItem>
                             <TabItem Header="Details">Information about the Tour</TabItem>
                         </TabControl>
-                        <!--<Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightGray">Route</Label>
-                        <Label Grid.Column="1" Margin="5" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightGray">Description</Label>
-                        <Label Grid.Column="2" Margin="5"  Background="LightGray" />-->
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1">

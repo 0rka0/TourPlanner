@@ -1,7 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Data;
 using TourPlannerModels;
 
 namespace TourPlannerDAL
@@ -14,8 +14,9 @@ namespace TourPlannerDAL
 
         DatabaseHandler()
         {
-            connString = "Host=localhost;Username=postgres;Password=postgres;Database=TourPlanner";
+            connString = Configuration.ConnectionString;
             conn = new NpgsqlConnection(connString);
+            conn.Open();
         }
 
         public static DatabaseHandler GetInstance()
@@ -27,9 +28,9 @@ namespace TourPlannerDAL
             return _db;
         }
 
-        public IEnumerable<Tour> SelectAllTours()
+        public IEnumerable<Tour> SelectAllTourEntries()
         {
-            conn.Open();
+            CheckConn();
             List<Tour> tourList = new List<Tour>();
 
             using(var cmd = new NpgsqlCommand("SELECT * FROM tours", conn))
@@ -38,13 +39,13 @@ namespace TourPlannerDAL
                 {
                     tourList.Add(new Tour((int)reader[0], reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString()));
                 }
-            conn.Close();
+
             return tourList;
         }
 
-        public Tour InsertTour(Tour tour)
+        public Tour InsertTourEntry(Tour tour)
         {
-            conn.Open();
+            CheckConn();
             tour.Id = GetMaxId();
 
             using (var cmd = new NpgsqlCommand("INSERT INTO tours VALUES (@id, @tn, @desc, @inf, @dis)", conn))
@@ -58,13 +59,12 @@ namespace TourPlannerDAL
                 cmd.ExecuteNonQuery();
             }
 
-            conn.Close();
             return tour;
         }
 
         public void InsertImage(string filename, int id)
         {
-            conn.Open();
+            CheckConn();
 
             using (var cmd = new NpgsqlCommand("UPDATE tours SET image = @img WHERE id = @id", conn))
             {      //adding parameters
@@ -74,8 +74,11 @@ namespace TourPlannerDAL
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
             }
+        }
 
-            conn.Close();
+        public void DeleteTourEntry(int id)
+        {
+            CheckConn();
         }
 
         int GetMaxId()
@@ -92,6 +95,15 @@ namespace TourPlannerDAL
             {
             }
             return maxId+1;
+        }
+
+        void CheckConn()
+        {
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Close();
+                conn.Open();
+            }
         }
     }
 }

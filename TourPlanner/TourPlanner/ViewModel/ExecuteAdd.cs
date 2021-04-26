@@ -2,7 +2,6 @@
 using System;
 using System.Windows.Input;
 using TourPlannerBL;
-using TourPlannerModels;
 
 namespace TourPlanner
 {
@@ -33,10 +32,10 @@ namespace TourPlanner
             Debug.Print(_viewModel.EndInput);
 
             //Add a tour
-            Tour tmp = TourHandler.AddTour(_viewModel.StartInput, _viewModel.EndInput, _viewModel.DescriptionInput, _viewModel.InformationInput);
-            //Business layer returns a tour that can be added to the TourList
-            
-            _viewModel.TourList.Add(tmp);   //will be removed and list will be updated from database
+            TourHandler.AddTour(_viewModel.StartInput, _viewModel.EndInput, _viewModel.DescriptionInput, _viewModel.InformationInput);
+
+            _viewModel.TourList.Clear();
+            _viewModel.FillTourList();
 
             _viewModel.StartInput = string.Empty;
             _viewModel.EndInput = string.Empty;

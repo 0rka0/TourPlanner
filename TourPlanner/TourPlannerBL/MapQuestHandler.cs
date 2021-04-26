@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using TourPlannerModels;
 
 namespace TourPlannerBL
 {
@@ -51,7 +52,7 @@ namespace TourPlannerBL
 
         static async Task<string> DownloadAndSaveImage(string request, string filename)
         {
-            string path = "../../../../Images/" + filename;
+            string path = Configuration.ImagePath + filename;
             HttpResponseMessage response = await client.GetAsync(request);
             response.EnsureSuccessStatusCode();
             await using var ms = await response.Content.ReadAsStreamAsync();
@@ -59,7 +60,7 @@ namespace TourPlannerBL
             ms.Seek(0, SeekOrigin.Begin);
             ms.CopyTo(fs);
 
-            return path;
+            return filename;
         }
     }
 }
