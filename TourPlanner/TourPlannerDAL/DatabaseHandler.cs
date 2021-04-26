@@ -43,34 +43,34 @@ namespace TourPlannerDAL
             return tourList;
         }
 
-        public Tour InsertTourEntry(Tour tour)
+        public void UpdateTourEntry(Tour tour)
         {
             CheckConn();
-            tour.Id = GetMaxId();
 
-            using (var cmd = new NpgsqlCommand("INSERT INTO tours VALUES (@id, @tn, @desc, @inf, @dis)", conn))
+            using (var cmd = new NpgsqlCommand("UPDATE tours SET tourname = @name, description = @desc, information = @inf WHERE id = @id", conn))
+            {      //adding parameters
+                cmd.Parameters.AddWithValue("@name", tour.Name);
+                cmd.Parameters.AddWithValue("@desc", tour.TourDescription);
+                cmd.Parameters.AddWithValue("@inf", tour.RouteInformation);
+                cmd.Parameters.Add("@id", NpgsqlTypes.NpgsqlDbType.Integer);
+                cmd.Parameters[3].Value = tour.Id;
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void InsertTourEntry(Tour tour)
+        {
+            CheckConn();
+
+            using (var cmd = new NpgsqlCommand("INSERT INTO tours VALUES (@id, @tn, @desc, @inf, @dis, @img)", conn))
             {      //adding parameters
                 cmd.Parameters.AddWithValue("@id", tour.Id);
                 cmd.Parameters.AddWithValue("@tn", tour.Name);
                 cmd.Parameters.AddWithValue("@desc", tour.TourDescription);
                 cmd.Parameters.AddWithValue("@inf", tour.RouteInformation);
                 cmd.Parameters.AddWithValue("@dis", tour.Distance);
-                cmd.Prepare();
-                cmd.ExecuteNonQuery();
-            }
-
-            return tour;
-        }
-
-        public void InsertImage(string filename, int id)
-        {
-            CheckConn();
-
-            using (var cmd = new NpgsqlCommand("UPDATE tours SET image = @img WHERE id = @id", conn))
-            {      //adding parameters
-                cmd.Parameters.AddWithValue("@img", filename);
-                cmd.Parameters.Add(new NpgsqlParameter("id", NpgsqlTypes.NpgsqlDbType.Integer));
-                cmd.Parameters[1].Value = id;
+                cmd.Parameters.AddWithValue("@img", tour.Image);
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
             }
@@ -79,9 +79,16 @@ namespace TourPlannerDAL
         public void DeleteTourEntry(int id)
         {
             CheckConn();
+
+            using (var cmd = new NpgsqlCommand("DELETE FROM tours WHERE (id = @id)", conn))
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+            }
         }
 
-        int GetMaxId()
+        public int GetMaxId()
         {
             int maxId = 0;
             try

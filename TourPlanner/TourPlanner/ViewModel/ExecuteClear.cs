@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Input;
-using System.Collections.Generic;
-using TourPlannerModels;
 
 namespace TourPlanner
 {
@@ -27,8 +25,7 @@ namespace TourPlanner
 
         public void Clear()
         {
-            _viewModel.TourList.Clear();
-            _viewModel.FillTourList();          //to be reworked, will be transferred to viewmodel so that methods can remain private
+            _viewModel.RefreshTourList();
         }
 
         public event EventHandler? CanExecuteChanged;

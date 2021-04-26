@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TourPlannerModels;
+using TourPlannerDAL;
 
 namespace TourPlannerBL
 {
@@ -26,13 +27,10 @@ namespace TourPlannerBL
             return ConvertResponse(directionsString);
         }
 
-        static public string GetImage(TourInformationResponse response, string filename)
+        static public void GetImage(TourInformationResponse response, string filename)
         {
             string request = StringPreparer.BuildRequest(response.ReturnString());
-            Task<string> task = Task.Run<string>(async () => await DownloadAndSaveImage(request, filename));
-            string fname = task.Result;
-
-            return fname; //return location
+            Task task = Task.Run(async () => await DownloadAndSaveImage(request, filename));
         }
 
         static TourInformationResponse ConvertResponse(string directionsString)
@@ -50,17 +48,13 @@ namespace TourPlannerBL
             return responseBody;
         }
 
-        static async Task<string> DownloadAndSaveImage(string request, string filename)
+        static async Task DownloadAndSaveImage(string request, string filename)
         {
             string path = Configuration.ImagePath + filename;
             HttpResponseMessage response = await client.GetAsync(request);
             response.EnsureSuccessStatusCode();
-            await using var ms = await response.Content.ReadAsStreamAsync();
-            await using var fs = File.Create(path);
-            ms.Seek(0, SeekOrigin.Begin);
-            ms.CopyTo(fs);
-
-            return filename;
+            await using Stream ms = await response.Content.ReadAsStreamAsync();
+            await FileHandler.SaveImage(ms, path);
         }
     }
 }

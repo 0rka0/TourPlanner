@@ -1,36 +1,21 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using TourPlannerBL;
 
 namespace TourPlanner
 {
-    class ExecuteDel : ICommand 
+    class ExecuteDel : ExecuteSelectedItemsBase 
     {
-        private readonly ViewModel _viewModel;
-        public ExecuteDel(ViewModel viewModel)
+        public ExecuteDel(ViewModel viewModel) : base(viewModel)
         {
-            _viewModel = viewModel;
-
-            _viewModel.PropertyChanged += (sender, args) =>
-            {
-                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-            };
         }
 
-        public bool CanExecute(object? parameter)
+        public override void Execute(object? parameter)
         {
-            if(_viewModel.CurTour != null)
-            {
-                return true;
-            }
-            return false;
+            TourHandler.DeleteTour(_viewModel.CurTour);
+            _viewModel.RefreshTourList();
+            _viewModel.CurTour = null;
         }
-
-        public void Execute(object? parameter)
-        {
-            TourHandler.DeleteTour(_viewModel.CurTour.Id);
-        }
-
-        public event EventHandler? CanExecuteChanged;
     }
 }

@@ -4,33 +4,16 @@ using TourPlannerBL;
 
 namespace TourPlanner
 {
-    class ExecuteCopy : ICommand
+    class ExecuteCopy : ExecuteSelectedItemsBase
     {
-        private readonly ViewModel _viewModel;
-        public ExecuteCopy(ViewModel viewModel)
+        public ExecuteCopy(ViewModel viewModel) : base(viewModel)
         {
-            _viewModel = viewModel;
-
-            _viewModel.PropertyChanged += (sender, args) =>
-            {
-                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-            };
         }
 
-        public bool CanExecute(object? parameter)
+        public override void Execute(object? parameter)
         {
-            if (_viewModel.CurTour != null)
-            {
-                return true;
-            }
-            return false;
+            TourHandler.CopyTour(_viewModel.CurTour);
+            _viewModel.RefreshTourList();
         }
-
-        public void Execute(object? parameter)
-        {
-            TourHandler.CopyTour(_viewModel.CurTour.Id);
-        }
-
-        public event EventHandler? CanExecuteChanged;
     }
 }

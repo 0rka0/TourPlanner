@@ -5,7 +5,7 @@ namespace TourPlannerBL
 {
     public interface ITourFactory
     {
-        IEnumerable<Tour> GetTours();
+        IEnumerable<Tour> GetAllTours();
         IEnumerable<Tour> Search(string filter);
     }
 }

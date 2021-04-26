@@ -51,7 +51,7 @@ namespace TourPlanner
             }
             set
             {
-                if (CurTour != value && value != null)
+                if (CurTour != value)
                 {
                     _curTour = value;
                     OnPropertyChanged(nameof(CurTour));
@@ -199,7 +199,11 @@ namespace TourPlanner
 
         public ICommand ExecuteDel { get; }
 
+        public ICommand EnableExecuteEdit { get; }
+
         public ICommand ExecuteEdit { get; }
+
+        public ICommand ExecuteCopy { get; }
 
         public ICommand ExecuteImport { get; }
 
@@ -212,6 +216,8 @@ namespace TourPlanner
             this.ExecuteAdd = new ExecuteAdd(this);
             this.ExecuteDel = new ExecuteDel(this);
             this.ExecuteEdit = new ExecuteEdit(this);
+            this.EnableExecuteEdit = new EnableExecuteEdit(this);
+            this.ExecuteCopy = new ExecuteCopy(this);
             this.ExecuteImport = new ExecuteImport(this);
 
             InitTourList();
@@ -227,10 +233,16 @@ namespace TourPlanner
 
         public void FillTourList()
         {
-            foreach (Tour tour in tourFactory.GetTours())
+            foreach (Tour tour in tourFactory.GetAllTours())
             {
                 TourList.Add(tour);
             }
+        }
+
+        public void RefreshTourList()
+        {
+            TourList.Clear();
+            FillTourList();
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -14,22 +14,33 @@ namespace TourPlannerBL
             TourInformationResponse information = MapQuestHandler.GetTourInformation(start, goal);
             Tour tour = CreateTourObject(information, StringPreparer.BuildName(start, goal), desc, inf);
 
-            DatabaseHandler db = DatabaseHandler.GetInstance();
-            tour = db.InsertTourEntry(tour);
+            InsertTour(tour);
 
-            tour.Image = GetImage(information, StringPreparer.BuildFilename(tour.Id, tour.Name));
-            db.InsertImage(tour.Image, tour.Id);
+            MapQuestHandler.GetImage(information, tour.Image);
         }
 
-        static public void DeleteTour(int id)
+        static public void DeleteTour(Tour tour)
         {
             DatabaseHandler db = DatabaseHandler.GetInstance();
-            db.DeleteTourEntry(id);
+            db.DeleteTourEntry(tour.Id);
+            FileHandler.DeleteImage(Configuration.ImagePath + tour.Image);
         }
 
-        static public void CopyTour(int id)
+        static public void EditTour(string name, string description, string information, Tour tour)
         {
+            tour.SetEditData(name, description, information);
+
             DatabaseHandler db = DatabaseHandler.GetInstance();
+            db.UpdateTourEntry(tour);
+        }
+
+        static public void CopyTour(Tour tour)
+        {
+            Tour copy = tour.Clone();
+
+            InsertTour(copy);
+
+            FileHandler.CopyImage(tour.Image, copy.Image);
         }
 
         static Tour CreateTourObject(TourInformationResponse information, string name, string desc, string inf)
@@ -37,15 +48,18 @@ namespace TourPlannerBL
             return new Tour(name, desc, inf, information.route.distance.ToString());
         }
 
-        static string GetImage(TourInformationResponse information, string filename)
-        {
-            return MapQuestHandler.GetImage(information, filename);
-        }
-
         static public IEnumerable<Tour> GetTours()
         {
             DatabaseHandler db = DatabaseHandler.GetInstance();
             return db.SelectAllTourEntries();
+        }
+
+        static void InsertTour(Tour tour)
+        {
+            DatabaseHandler db = DatabaseHandler.GetInstance();
+            tour.Id = db.GetMaxId();
+            tour.Image = StringPreparer.BuildFilename(tour.Id, tour.Name);
+            db.InsertTourEntry(tour);
         }
     }
 }

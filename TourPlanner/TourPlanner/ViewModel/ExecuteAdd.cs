@@ -19,8 +19,8 @@ namespace TourPlanner
                     CanExecuteChanged?.Invoke(this, EventArgs.Empty);
                 }
             };
-
         }
+
         public bool CanExecute(object? parameter)
         {
             return (!string.IsNullOrWhiteSpace(_viewModel.StartInput) && !string.IsNullOrWhiteSpace(_viewModel.EndInput));
@@ -28,14 +28,10 @@ namespace TourPlanner
 
         public void Execute(object? parameter)
         {
-            Debug.Print(_viewModel.StartInput);
-            Debug.Print(_viewModel.EndInput);
-
             //Add a tour
             TourHandler.AddTour(_viewModel.StartInput, _viewModel.EndInput, _viewModel.DescriptionInput, _viewModel.InformationInput);
 
-            _viewModel.TourList.Clear();
-            _viewModel.FillTourList();
+            _viewModel.RefreshTourList();
 
             _viewModel.StartInput = string.Empty;
             _viewModel.EndInput = string.Empty;

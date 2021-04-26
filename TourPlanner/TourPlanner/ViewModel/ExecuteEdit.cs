@@ -13,22 +13,27 @@ namespace TourPlanner
 
             _viewModel.PropertyChanged += (sender, args) =>
             {
-                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+                if (args.PropertyName == "StartInput" || args.PropertyName == "DescriptionInput" || args.PropertyName == "InformationInput")
+                {
+                    CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+                }
             };
         }
 
         public bool CanExecute(object? parameter)
         {
-            if (_viewModel.CurTour != null)
-            {
-                return true;
-            }
-            return false;
+            return (!string.IsNullOrWhiteSpace(_viewModel.StartInput) || !string.IsNullOrWhiteSpace(_viewModel.DescriptionInput) || !string.IsNullOrWhiteSpace(_viewModel.InformationInput));
         }
 
         public void Execute(object? parameter)
         {
-            //Edit selected tour
+            TourHandler.EditTour(_viewModel.StartInput, _viewModel.DescriptionInput, _viewModel.InformationInput, _viewModel.CurTour);
+
+            _viewModel.RefreshTourList();
+
+            _viewModel.StartInput = string.Empty;
+            _viewModel.DescriptionInput = string.Empty;
+            _viewModel.InformationInput = string.Empty;
         }
 
         public event EventHandler? CanExecuteChanged;
