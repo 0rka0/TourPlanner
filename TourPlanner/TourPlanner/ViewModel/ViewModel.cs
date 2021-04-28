@@ -57,6 +57,7 @@ namespace TourPlanner
                 {
                     _curTour = value;
                     OnPropertyChanged(nameof(CurTour));
+                    OnPropertyChanged(nameof(CurTourImage));
                 }
             }
         }
@@ -71,7 +72,6 @@ namespace TourPlanner
                 {
                     try
                     {
-                        _logger.Info("Doing something");
                         string location = $@"{Configuration.ImagePath}{CurTour.Image}";
                         if (File.Exists(location))
                         {
@@ -208,6 +208,8 @@ namespace TourPlanner
 
         public ICommand ExecuteImport { get; }
 
+        public ICommand ExecuteCreateReport { get; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ViewModel()
@@ -220,6 +222,7 @@ namespace TourPlanner
             this.EnableExecuteEdit = new EnableExecuteEdit(this);
             this.ExecuteCopy = new ExecuteCopy(this);
             this.ExecuteImport = new ExecuteImport(this);
+            this.ExecuteCreateReport = new ExecuteCreateReport(this);
 
             _logger.Info("Application initialized");
 

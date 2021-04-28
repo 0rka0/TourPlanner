@@ -12,7 +12,7 @@ namespace TourPlannerModels
         public string Distance { get; set; }
         public string Image { get; set; }
 
-        List<TourLog> LogList = new List<TourLog>();
+        public List<TourLog> LogList = new List<TourLog>();
 
         public Tour(string name, string desc, string inf, string dist)
         {

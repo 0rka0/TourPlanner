@@ -6,7 +6,6 @@ using TourPlannerModels;
 using TourPlannerDAL;
 using log4net;
 using System.Reflection;
-using System;
 
 namespace TourPlannerBL
 {

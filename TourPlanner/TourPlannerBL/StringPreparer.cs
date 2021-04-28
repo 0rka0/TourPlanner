@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TourPlannerBL
 {
@@ -30,6 +26,11 @@ namespace TourPlannerBL
         static public string BuildFilename(int id, string name)
         {
             return String.Format("{0}{1}.png", id, name);
+        }
+
+        static public string BuildPdfName(DateTime name)
+        {
+            return $"Report_{name.ToString("yyyy_MM_dd_HH_mm_ss")}";
         }
     }
 }

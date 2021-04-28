@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Windows.Input;
 using TourPlannerBL;
-using log4net;
-using System.Reflection;
 
 namespace TourPlanner
 {
     class ExecuteAdd : ICommand
     {
-        private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private readonly ViewModel _viewModel;
 
         public ExecuteAdd(ViewModel viewModel)
