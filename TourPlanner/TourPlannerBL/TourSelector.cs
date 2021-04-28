@@ -1,17 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TourPlannerDAL;
 using TourPlannerModels;
 
 namespace TourPlannerBL
 {
-    class TourFactoryImpl : ITourFactory
+    static public class TourSelector
     {
-        public IEnumerable<Tour> GetAllTours()
+        static public IEnumerable<Tour> GetAllTours()
         {
-            return TourHandler.GetTours();
+            DatabaseHandler db = DatabaseHandler.GetInstance();
+            return db.SelectAllTourEntries();
         }
 
-        public IEnumerable<Tour> Search(string filter)
+        static public IEnumerable<Tour> Search(string filter)
         {
             IEnumerable<Tour> tours = GetAllTours();
 

@@ -16,7 +16,6 @@ namespace TourPlanner
 {
     class ViewModel : INotifyPropertyChanged
     {
-        public ITourFactory tourFactory;
         private string _output = "";
         private string _filter;
         private string _start;
@@ -225,15 +224,13 @@ namespace TourPlanner
 
         private void InitTourList()
         {
-            tourFactory = TourFactory.GetInstance();
-
             TourList = new ObservableCollection<Tour>();
             FillTourList();
         }
 
         public void FillTourList()
         {
-            foreach (Tour tour in tourFactory.GetAllTours())
+            foreach (Tour tour in TourSelector.GetAllTours())
             {
                 TourList.Add(tour);
             }

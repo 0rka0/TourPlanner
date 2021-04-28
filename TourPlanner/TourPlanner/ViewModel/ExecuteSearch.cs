@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using System.Collections.Generic;
+using TourPlannerBL;
 using TourPlannerModels;
 
 namespace TourPlanner
@@ -35,7 +36,7 @@ namespace TourPlanner
 
         public void Search(string filter)
         {
-            IEnumerable<Tour> foundTours = _viewModel.tourFactory.Search(filter); 
+            IEnumerable<Tour> foundTours = TourSelector.Search(filter); 
             _viewModel.TourList.Clear();
             
             foreach(Tour tour in foundTours)

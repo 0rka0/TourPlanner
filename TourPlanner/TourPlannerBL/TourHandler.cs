@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using TourPlannerDAL;
 using TourPlannerModels;
 
@@ -46,12 +45,6 @@ namespace TourPlannerBL
         static Tour CreateTourObject(TourInformationResponse information, string name, string desc, string inf)
         {
             return new Tour(name, desc, inf, information.route.distance.ToString());
-        }
-
-        static public IEnumerable<Tour> GetTours()
-        {
-            DatabaseHandler db = DatabaseHandler.GetInstance();
-            return db.SelectAllTourEntries();
         }
 
         static void InsertTour(Tour tour)
