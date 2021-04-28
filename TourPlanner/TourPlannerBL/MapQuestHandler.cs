@@ -4,16 +4,22 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TourPlannerModels;
 using TourPlannerDAL;
+using log4net;
+using System.Reflection;
+using System;
 
 namespace TourPlannerBL
 {
     //used to interact with the MapQuest API
     static public class MapQuestHandler
     {
+        private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         static readonly HttpClient client = new HttpClient();
 
         static public TourInformationResponse GetTourInformation(string start, string goal)
         {
+            _logger.Info("Requesting Tour Information from MapQuest");
+
             TourInformationResponse response = GetTour(start, goal);
             return response;
         }
@@ -29,6 +35,8 @@ namespace TourPlannerBL
 
         static public void GetImage(TourInformationResponse response, string filename)
         {
+            _logger.Info("Requesting Image from MapQuest");
+
             string request = StringPreparer.BuildRequest(response.ReturnString());
             Task task = Task.Run(async () => await DownloadAndSaveImage(request, filename));
         }
@@ -50,11 +58,11 @@ namespace TourPlannerBL
 
         static async Task DownloadAndSaveImage(string request, string filename)
         {
-            string path = Configuration.ImagePath + filename;
-            HttpResponseMessage response = await client.GetAsync(request);
-            response.EnsureSuccessStatusCode();
-            await using Stream ms = await response.Content.ReadAsStreamAsync();
-            await FileHandler.SaveImage(ms, path);
+                string path = Configuration.ImagePath + filename;
+                HttpResponseMessage response = await client.GetAsync(request);
+                response.EnsureSuccessStatusCode();
+                await using Stream ms = await response.Content.ReadAsStreamAsync();
+                await FileHandler.SaveImage(ms, path);
         }
     }
 }

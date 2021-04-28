@@ -2,20 +2,35 @@
 using System.Linq;
 using TourPlannerDAL;
 using TourPlannerModels;
+using log4net;
+using System.Reflection;
+using System;
 
 namespace TourPlannerBL
 {
     static public class TourSelector
     {
-        static public IEnumerable<Tour> GetAllTours()
+        private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+        static public IEnumerable<Tour> GetTours()
         {
-            DatabaseHandler db = DatabaseHandler.GetInstance();
-            return db.SelectAllTourEntries();
+            _logger.Info("Attempting to get Tour entries from database");
+
+            try
+            {
+                DatabaseHandler db = DatabaseHandler.GetInstance();
+                return db.SelectTourEntries();
+            }
+            catch (Exception e)
+            {
+                _logger.Error("Selecting process led to following error: " + e.Message);
+                return new List<Tour>();
+            }
         }
 
         static public IEnumerable<Tour> Search(string filter)
         {
-            IEnumerable<Tour> tours = GetAllTours();
+            IEnumerable<Tour> tours = GetTours();
 
             return tours.Where(x => x.Name.ToLower().Contains(filter.ToLower()));
         }

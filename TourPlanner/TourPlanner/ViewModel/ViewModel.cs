@@ -1,14 +1,15 @@
-﻿using System.Diagnostics;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using TourPlannerModels;
 using TourPlannerBL;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System;
 using System.IO;
+using log4net;
+using System.Reflection;
+using System.Windows.Media;
 
 //To be implemented: search function, reading from db
 
@@ -16,6 +17,8 @@ namespace TourPlanner
 {
     class ViewModel : INotifyPropertyChanged
     {
+        private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         private string _output = "";
         private string _filter;
         private string _start;
@@ -60,7 +63,7 @@ namespace TourPlanner
 
         // set itemsource of image
 
-        public string CurTourImage
+        public ImageSource CurTourImage
         {
             get
             {
@@ -68,6 +71,7 @@ namespace TourPlanner
                 {
                     try
                     {
+                        _logger.Info("Doing something");
                         string location = $@"{Configuration.ImagePath}{CurTour.Image}";
                         if (File.Exists(location))
                         {
@@ -78,18 +82,16 @@ namespace TourPlanner
                             bitmap.CacheOption = BitmapCacheOption.OnLoad;
                             bitmap.EndInit();
 
-                            //this.logger.LogDebug($"Image source has changed!");
-
-                            return location;
+                            return bitmap;
                         }
                     }
                     catch (Exception e)
                     {
-                        //this.logger.LogError(e, $"Exception was thrown when setting Tour Map Image: {e}");
+                        _logger.Error("Accessing file led to following error: " + e.Message);
                     }
                 }
 
-                //this.logger.LogDebug($"Image source has not been found!");
+                _logger.Warn("Image source has not been found!");
                 return null;
             }
         }
@@ -219,18 +221,24 @@ namespace TourPlanner
             this.ExecuteCopy = new ExecuteCopy(this);
             this.ExecuteImport = new ExecuteImport(this);
 
+            _logger.Info("Application initialized");
+
             InitTourList();
         }
 
         private void InitTourList()
         {
+            _logger.Info("TourList initialized");
+
             TourList = new ObservableCollection<Tour>();
             FillTourList();
         }
 
         public void FillTourList()
         {
-            foreach (Tour tour in TourSelector.GetAllTours())
+            _logger.Info("TourList updated");
+
+            foreach (Tour tour in TourSelector.GetTours())
             {
                 TourList.Add(tour);
             }

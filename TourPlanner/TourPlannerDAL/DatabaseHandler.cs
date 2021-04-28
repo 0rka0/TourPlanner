@@ -3,17 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using TourPlannerModels;
+using log4net;
+using System.Reflection;
 
 namespace TourPlannerDAL
 {
     public class DatabaseHandler
     {
+        private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private static DatabaseHandler _db;
         string connString = string.Empty;
         NpgsqlConnection conn;
 
         DatabaseHandler()
         {
+            _logger.Info("Database initialized");
+
             connString = Configuration.ConnectionString;
             conn = new NpgsqlConnection(connString);
             conn.Open();
@@ -21,6 +26,8 @@ namespace TourPlannerDAL
 
         public static DatabaseHandler GetInstance()
         {
+            _logger.Info("Database accessed");
+
             if (_db == null)
             {
                 _db = new DatabaseHandler();
@@ -28,7 +35,7 @@ namespace TourPlannerDAL
             return _db;
         }
 
-        public IEnumerable<Tour> SelectAllTourEntries()
+        public IEnumerable<Tour> SelectTourEntries()
         {
             CheckConn();
             List<Tour> tourList = new List<Tour>();
@@ -108,6 +115,7 @@ namespace TourPlannerDAL
         {
             if (conn.State != ConnectionState.Open)
             {
+                _logger.Warn("Connection restarted");
                 conn.Close();
                 conn.Open();
             }

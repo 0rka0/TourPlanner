@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using log4net;
 
 namespace TourPlanner
 {
@@ -9,6 +10,7 @@ namespace TourPlanner
     {
         public MainWindow()
         {
+            log4net.Config.XmlConfigurator.Configure();
             InitializeComponent();
         }
 

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
-using TourPlannerDAL;
+﻿using TourPlannerDAL;
 using TourPlannerModels;
+using log4net;
+using System.Reflection;
+using System;
 
 namespace TourPlannerBL
 {
@@ -8,38 +10,76 @@ namespace TourPlannerBL
     //overlap with TourFactory - to be reconsidered
     static public class TourHandler
     {
+        private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         static public void AddTour(string start, string goal, string desc, string inf)
         {
-            TourInformationResponse information = MapQuestHandler.GetTourInformation(start, goal);
-            Tour tour = CreateTourObject(information, StringPreparer.BuildName(start, goal), desc, inf);
+            _logger.Info("Attempting to add Tour");
 
-            InsertTour(tour);
+            try
+            {
+                TourInformationResponse information = MapQuestHandler.GetTourInformation(start, goal);
+                Tour tour = CreateTourObject(information, StringPreparer.BuildName(start, goal), desc, inf);
 
-            MapQuestHandler.GetImage(information, tour.Image);
+                InsertTour(tour);
+
+                MapQuestHandler.GetImage(information, tour.Image);
+            }
+            catch (Exception e)
+            {
+                _logger.Error("Adding process led to following error: " + e.Message);
+            }
         }
 
         static public void DeleteTour(Tour tour)
         {
-            DatabaseHandler db = DatabaseHandler.GetInstance();
-            db.DeleteTourEntry(tour.Id);
-            FileHandler.DeleteImage(Configuration.ImagePath + tour.Image);
+            _logger.Info("Attempting to delete Tour");
+
+            try
+            {
+                DatabaseHandler db = DatabaseHandler.GetInstance();
+                db.DeleteTourEntry(tour.Id);
+                FileHandler.DeleteImage(Configuration.ImagePath + tour.Image);
+            }
+            catch (Exception e)
+            {
+                _logger.Error("Deletion process led to following error: " + e.Message);
+            }
         }
 
         static public void EditTour(string name, string description, string information, Tour tour)
         {
-            tour.SetEditData(name, description, information);
+            _logger.Info("Attempting to edit Tour");
 
-            DatabaseHandler db = DatabaseHandler.GetInstance();
-            db.UpdateTourEntry(tour);
+            try
+            {
+                tour.SetEditData(name, description, information);
+
+                DatabaseHandler db = DatabaseHandler.GetInstance();
+                db.UpdateTourEntry(tour);
+            }
+            catch (Exception e)
+            {
+                _logger.Error("Editing process led to following error: " + e.Message);
+            }
         }
 
         static public void CopyTour(Tour tour)
         {
-            Tour copy = tour.Clone();
+            _logger.Info("Attempting to copy Tour");
 
-            InsertTour(copy);
+            try
+            {
+                Tour copy = tour.Clone();
 
-            FileHandler.CopyImage(tour.Image, copy.Image);
+                InsertTour(copy);
+
+                FileHandler.CopyImage(tour.Image, copy.Image);
+            }
+            catch (Exception e)
+            {
+                _logger.Error("Editing process led to following error: " + e.Message);
+            }
         }
 
         static Tour CreateTourObject(TourInformationResponse information, string name, string desc, string inf)
