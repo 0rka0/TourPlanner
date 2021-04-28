@@ -30,7 +30,7 @@ namespace TourPlannerBL
 
         static public string BuildPdfName(DateTime name)
         {
-            return $"Report_{name.ToString("yyyy_MM_dd_HH_mm_ss")}";
+            return $"Report_{name.ToString("yyyy_MM_dd_HH_mm_ss")}.pdf";
         }
     }
 }

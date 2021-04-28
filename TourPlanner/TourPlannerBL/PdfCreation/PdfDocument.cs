@@ -58,22 +58,31 @@ namespace TourPlannerBL
                 {
                     foreach (Tour tour in Model.Tours)
                     {
-                        stack.Element().BorderBottom(1).BorderColor("CCC").Padding(5).Row(row =>
+                        stack.Element().BorderBottom(1).BorderColor("000").Padding(5).Row(row =>
                         {
                             row.RelativeColumn().Text($"ID: {tour.Id}");
                             row.RelativeColumn().Text($"Tourname: {tour.Name}");
                             row.RelativeColumn().Text($"Distance: {tour.Distance} km");
                         });
 
-                        foreach (TourLog log in tour.LogList)
+                        if (tour.LogList.Count > 0)
                         {
-                            stack.Element().BorderBottom(1).BorderColor("CCC").Padding(5).Row(row =>
+                            stack.Element().BorderBottom(1).BorderColor("000").Padding(5).Row(row =>
                             {
-                                row.RelativeColumn().Text(log.Date);
+                                row.RelativeColumn().Text($"Date");
                             });
-                        }
+                            stack.Element().BorderBottom(1).BorderColor("CCC").Padding(5);
 
-                        stack.Element().BorderBottom(1).BorderColor("000").Padding(5);
+                            foreach (TourLog log in tour.LogList)
+                            {
+                                stack.Element().BorderBottom(1).BorderColor("CCC").Padding(5).Row(row =>
+                                {
+                                    row.RelativeColumn().Text(log.Date);
+                                });
+                            }
+
+                            stack.Element().BorderBottom(1).BorderColor("000").Padding(5);
+                        }
                     }
                 });
             });

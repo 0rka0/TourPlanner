@@ -6,8 +6,6 @@ using System;
 
 namespace TourPlannerBL
 {
-    //used to add new tours to the system
-    //overlap with TourFactory - to be reconsidered
     static public class TourHandler
     {
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -29,6 +27,8 @@ namespace TourPlannerBL
             {
                 _logger.Error("Adding process led to following error: " + e.Message);
             }
+
+            _logger.Info("Add success");
         }
 
         static public void DeleteTour(Tour tour)
@@ -45,6 +45,8 @@ namespace TourPlannerBL
             {
                 _logger.Error("Deletion process led to following error: " + e.Message);
             }
+
+            _logger.Info("Deletion success");
         }
 
         static public void EditTour(string name, string description, string information, Tour tour)
@@ -62,6 +64,8 @@ namespace TourPlannerBL
             {
                 _logger.Error("Editing process led to following error: " + e.Message);
             }
+
+            _logger.Info("Editing success");
         }
 
         static public void CopyTour(Tour tour)
@@ -78,8 +82,10 @@ namespace TourPlannerBL
             }
             catch (Exception e)
             {
-                _logger.Error("Editing process led to following error: " + e.Message);
+                _logger.Error("Copying process led to following error: " + e.Message);
             }
+
+            _logger.Info("Copying success");
         }
 
         static Tour CreateTourObject(TourInformationResponse information, string name, string desc, string inf)

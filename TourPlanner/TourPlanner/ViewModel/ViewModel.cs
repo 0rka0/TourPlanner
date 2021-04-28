@@ -70,12 +70,14 @@ namespace TourPlanner
             {
                 if (CurTour?.Id != null)
                 {
+                    _logger.Info("Attempting to load image");
+
                     try
                     {
-                        string location = $@"{Configuration.ImagePath}{CurTour.Image}";
+                        string location = Path.GetFullPath(Configuration.ImagePath + CurTour.Image);
                         if (File.Exists(location))
                         {
-                            var bitmap = new BitmapImage();
+                            BitmapImage bitmap = new BitmapImage();
                             bitmap.BeginInit();
                             bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
                             bitmap.UriSource = new Uri(location);
@@ -92,6 +94,7 @@ namespace TourPlanner
                 }
 
                 _logger.Warn("Image source has not been found!");
+                OnPropertyChanged(nameof(CurTour));
                 return null;
             }
         }

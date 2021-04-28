@@ -211,8 +211,7 @@
                     <Grid Grid.Row="1">
                         <TabControl>
                             <TabItem Header="Route">
-                                <!--<Label VerticalAlignment="Top" HorizontalAlignment="Left" Content="{Binding CurTour.Image}" />-->
-                                <Image VerticalAlignment="Stretch" Source="{Binding CurTourImage}"></Image>
+                                <Image VerticalAlignment="Stretch" HorizontalAlignment="Left" Source="{Binding CurTourImage}"></Image>
                             </TabItem>
                             <TabItem Header="Details">
                                 <Grid>
