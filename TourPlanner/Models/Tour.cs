@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TourPlannerModels
 {
-    public class Tour : ITourPrototype
+    public class Tour : ITourContent, ITourPrototype
     {
         public int Id { get; set; }
         public string Name { get; private set; }

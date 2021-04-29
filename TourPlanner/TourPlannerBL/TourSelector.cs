@@ -18,8 +18,8 @@ namespace TourPlannerBL
 
             try
             {
-                TourDatabaseHandler db = TourDatabaseHandler.GetInstance();
-                return db.SelectTourEntries();
+                IDatabase db = TourDatabaseHandler.GetInstance();
+                return (IEnumerable<Tour>)db.SelectEntries();
             }
             catch (Exception e)
             {

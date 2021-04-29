@@ -1,30 +1,18 @@
 ﻿using Npgsql;
-using System;
 using System.Collections.Generic;
-using System.Data;
 using TourPlannerModels;
-using log4net;
-using System.Reflection;
 
 namespace TourPlannerDAL
 {
-    public class TourDatabaseHandler
+    public class TourDatabaseHandler : BaseDatabaseHandler
     {
-        private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private static TourDatabaseHandler _db;
-        string connString = string.Empty;
-        NpgsqlConnection conn;
 
-        TourDatabaseHandler()
+        TourDatabaseHandler() : base(Configuration.TourTable)
         {
-            _logger.Info("Database initialized");
-
-            connString = Configuration.ConnectionString;
-            conn = new NpgsqlConnection(connString);
-            conn.Open();
         }
 
-        public static TourDatabaseHandler GetInstance()
+        public static IDatabase GetInstance()
         {
             _logger.Info("Database accessed");
 
@@ -35,7 +23,7 @@ namespace TourPlannerDAL
             return _db;
         }
 
-        public IEnumerable<Tour> SelectTourEntries()
+        public override IEnumerable<ITourContent> SelectEntries(int id = 0)
         {
             CheckConn();
             List<Tour> tourList = new List<Tour>();
@@ -50,9 +38,10 @@ namespace TourPlannerDAL
             return tourList;
         }
 
-        public void UpdateTourEntry(Tour tour)
+        public override void UpdateEntry(ITourContent tourObj)
         {
             CheckConn();
+            Tour tour = (Tour)tourObj;
 
             using (var cmd = new NpgsqlCommand("UPDATE tours SET tourname = @name, description = @desc, information = @inf WHERE id = @id", conn))
             {      //adding parameters
@@ -66,9 +55,10 @@ namespace TourPlannerDAL
             }
         }
 
-        public void InsertTourEntry(Tour tour)
+        public override void InsertEntry(ITourContent tourObj)
         {
             CheckConn();
+            Tour tour = (Tour)tourObj;
 
             using (var cmd = new NpgsqlCommand("INSERT INTO tours VALUES (@id, @tn, @desc, @inf, @dis, @img)", conn))
             {      //adding parameters
@@ -80,44 +70,6 @@ namespace TourPlannerDAL
                 cmd.Parameters.AddWithValue("@img", tour.Image);
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
-            }
-        }
-
-        public void DeleteTourEntry(int id)
-        {
-            CheckConn();
-
-            using (var cmd = new NpgsqlCommand("DELETE FROM tours WHERE (id = @id)", conn))
-            {
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.Prepare();
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        public int GetMaxId()
-        {
-            int maxId = 0;
-            try
-            {
-                using (var cmd = new NpgsqlCommand("SELECT max(id) FROM tours", conn))
-                using (var reader = cmd.ExecuteReader())
-                    while (reader.Read())
-                        maxId = (int)reader[0];
-            }
-            catch (Exception e)
-            {
-            }
-            return maxId+1;
-        }
-
-        void CheckConn()
-        {
-            if (conn.State != ConnectionState.Open)
-            {
-                _logger.Warn("Connection restarted");
-                conn.Close();
-                conn.Open();
             }
         }
     }

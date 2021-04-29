@@ -37,8 +37,8 @@ namespace TourPlannerBL
 
             try
             {
-                TourDatabaseHandler db = TourDatabaseHandler.GetInstance();
-                db.DeleteTourEntry(tour.Id);
+                IDatabase db = TourDatabaseHandler.GetInstance();
+                db.DeleteEntry(tour.Id);
                 FileHandler.DeleteImage(Configuration.ImagePath + tour.Image);
             }
             catch (Exception e)
@@ -57,8 +57,8 @@ namespace TourPlannerBL
             {
                 tour.SetEditData(name, description, information);
 
-                TourDatabaseHandler db = TourDatabaseHandler.GetInstance();
-                db.UpdateTourEntry(tour);
+                IDatabase db = TourDatabaseHandler.GetInstance();
+                db.UpdateEntry(tour);
             }
             catch (Exception e)
             {
@@ -95,10 +95,10 @@ namespace TourPlannerBL
 
         static void InsertTour(Tour tour)
         {
-            TourDatabaseHandler db = TourDatabaseHandler.GetInstance();
+            IDatabase db = TourDatabaseHandler.GetInstance();
             tour.Id = db.GetMaxId();
             tour.Image = StringPreparer.BuildFilename(tour.Id, tour.Name);
-            db.InsertTourEntry(tour);
+            db.InsertEntry(tour);
         }
     }
 }
