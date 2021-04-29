@@ -3,9 +3,9 @@ using System.Windows.Input;
 
 namespace TourPlanner
 {
-    class EnableExecuteEdit : ExecuteSelectedItemsBase
+    class EnableExecuteTourEdit : ExecuteSelectedItemsBase
     {
-        public EnableExecuteEdit(TourVM viewModel) : base(viewModel)
+        public EnableExecuteTourEdit(TourVM viewModel) : base(viewModel)
         {
         }
 

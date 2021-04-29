@@ -22,13 +22,12 @@ namespace TourPlannerBL
                 InsertTour(tour);
 
                 MapQuestHandler.GetImage(information, tour.Image);
+                _logger.Info("Add success");
             }
             catch (Exception e)
             {
                 _logger.Error("Adding process led to following error: " + e.Message);
             }
-
-            _logger.Info("Add success");
         }
 
         static public void DeleteTour(Tour tour)
@@ -40,13 +39,13 @@ namespace TourPlannerBL
                 IDatabase db = TourDatabaseHandler.GetInstance();
                 db.DeleteEntry(tour.Id);
                 FileHandler.DeleteImage(Configuration.ImagePath + tour.Image);
+
+                _logger.Info("Deletion success");
             }
             catch (Exception e)
             {
                 _logger.Error("Deletion process led to following error: " + e.Message);
             }
-
-            _logger.Info("Deletion success");
         }
 
         static public void EditTour(string name, string description, string information, Tour tour)
@@ -59,13 +58,13 @@ namespace TourPlannerBL
 
                 IDatabase db = TourDatabaseHandler.GetInstance();
                 db.UpdateEntry(tour);
+
+                _logger.Info("Editing success");
             }
             catch (Exception e)
             {
                 _logger.Error("Editing process led to following error: " + e.Message);
             }
-
-            _logger.Info("Editing success");
         }
 
         static public void CopyTour(Tour tour)
@@ -79,13 +78,13 @@ namespace TourPlannerBL
                 InsertTour(copy);
 
                 FileHandler.CopyImage(tour.Image, copy.Image);
+
+                _logger.Info("Copying success");
             }
             catch (Exception e)
             {
                 _logger.Error("Copying process led to following error: " + e.Message);
             }
-
-            _logger.Info("Copying success");
         }
 
         static Tour CreateTourObject(TourInformationResponse information, string name, string desc, string inf)

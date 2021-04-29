@@ -4,9 +4,9 @@ using TourPlannerBL;
 
 namespace TourPlanner
 {
-    class ExecuteCopy : ExecuteSelectedItemsBase
+    class ExecuteTourCopy : ExecuteSelectedItemsBase
     {
-        public ExecuteCopy(TourVM viewModel) : base(viewModel)
+        public ExecuteTourCopy(TourVM viewModel) : base(viewModel)
         {
         }
 

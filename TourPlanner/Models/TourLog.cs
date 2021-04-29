@@ -7,14 +7,14 @@ namespace TourPlannerModels
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public string Report { get; set; }
-        public int Distance { get; set; }
-        public int TotalTime { get; set; }
+        public string Distance { get; set; }
+        public string TotalTime { get; set; }
         public int Rating { get; set; }
         public string Comment { get; set; }
-        public int AvgSpeed { get; set; }
+        public string AvgSpeed { get; set; }
         public int TourId { get; set; }
 
-        public TourLog(int id, DateTime date, string report, int dis, int totalTime, int rating, string comment, int avgSpeed, int tourId)
+        public TourLog(int id, DateTime date, string report, string dis, string totalTime, int rating, string comment, string avgSpeed, int tourId)
         {
             Id = id;
             Date = date;

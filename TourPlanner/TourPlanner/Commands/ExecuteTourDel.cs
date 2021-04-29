@@ -5,9 +5,9 @@ using TourPlannerBL;
 
 namespace TourPlanner
 {
-    class ExecuteDel : ExecuteSelectedItemsBase 
+    class ExecuteTourDel : ExecuteSelectedItemsBase 
     {
-        public ExecuteDel(TourVM viewModel) : base(viewModel)
+        public ExecuteTourDel(TourVM viewModel) : base(viewModel)
         {
         }
 

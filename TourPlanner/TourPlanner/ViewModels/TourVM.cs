@@ -213,17 +213,20 @@ namespace TourPlanner
 
         public ICommand ExecuteCreateReport { get; }
 
+        public ICommand ExecuteTourLogAdd { get; }
+
         public TourVM()
         {
             this.ExecuteSearch = new ExecuteSearch(this);
             this.ExecuteClear = new ExecuteClear(this);
-            this.ExecuteAdd = new ExecuteAdd(this);
-            this.ExecuteDel = new ExecuteDel(this);
-            this.ExecuteEdit = new ExecuteEdit(this);
-            this.EnableExecuteEdit = new EnableExecuteEdit(this);
-            this.ExecuteCopy = new ExecuteCopy(this);
+            this.ExecuteAdd = new ExecuteTourAdd(this);
+            this.ExecuteDel = new ExecuteTourDel(this);
+            this.ExecuteEdit = new ExecuteTourEdit(this);
+            this.EnableExecuteEdit = new EnableExecuteTourEdit(this);
+            this.ExecuteCopy = new ExecuteTourCopy(this);
             this.ExecuteImport = new ExecuteImport(this);
             this.ExecuteCreateReport = new ExecuteCreateReport(this);
+            this.ExecuteTourLogAdd = new ExecuteTourLogAdd(this);
 
             _logger.Info("Application initialized");
 

@@ -4,16 +4,16 @@ using TourPlannerBL;
 
 namespace TourPlanner
 {
-    class ExecuteAdd : ICommand
+    class ExecuteTourEdit : ICommand
     {
         private readonly TourVM _viewModel;
-
-        public ExecuteAdd(TourVM viewModel)
+        public ExecuteTourEdit(TourVM viewModel)
         {
             _viewModel = viewModel;
+
             _viewModel.PropertyChanged += (sender, args) =>
             {
-                if (args.PropertyName == "StartInput" || args.PropertyName == "EndInput")
+                if (args.PropertyName == "StartInput" || args.PropertyName == "DescriptionInput" || args.PropertyName == "InformationInput")
                 {
                     CanExecuteChanged?.Invoke(this, EventArgs.Empty);
                 }
@@ -22,18 +22,16 @@ namespace TourPlanner
 
         public bool CanExecute(object? parameter)
         {
-            return (!string.IsNullOrWhiteSpace(_viewModel.StartInput) && !string.IsNullOrWhiteSpace(_viewModel.EndInput));
+            return (!string.IsNullOrWhiteSpace(_viewModel.StartInput) || !string.IsNullOrWhiteSpace(_viewModel.DescriptionInput) || !string.IsNullOrWhiteSpace(_viewModel.InformationInput));
         }
 
         public void Execute(object? parameter)
         {
-            //Add a tour
-            TourHandler.AddTour(_viewModel.StartInput, _viewModel.EndInput, _viewModel.DescriptionInput, _viewModel.InformationInput);
+            TourHandler.EditTour(_viewModel.StartInput, _viewModel.DescriptionInput, _viewModel.InformationInput, _viewModel.CurTour);
 
             _viewModel.RefreshTourList();
 
             _viewModel.StartInput = string.Empty;
-            _viewModel.EndInput = string.Empty;
             _viewModel.DescriptionInput = string.Empty;
             _viewModel.InformationInput = string.Empty;
         }
