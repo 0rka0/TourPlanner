@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="TourPlanner - UI" Height="600" Width="800">
     <Window.DataContext>
-        <local:ViewModel />
+        <local:TourVM />
     </Window.DataContext>
     <Grid Margin="5">
         <Grid.RowDefinitions>
@@ -58,7 +58,6 @@
             <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" />
             <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" />
             <Grid Grid.Column="0">
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
@@ -211,6 +210,7 @@
                     <Grid Grid.Row="1">
                         <TabControl>
                             <TabItem Header="Route">
+
                                 <Image VerticalAlignment="Stretch" HorizontalAlignment="Left" Source="{Binding CurTourImage}"></Image>
                             </TabItem>
                             <TabItem Header="Details">

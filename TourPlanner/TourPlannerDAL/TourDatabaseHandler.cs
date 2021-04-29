@@ -8,14 +8,14 @@ using System.Reflection;
 
 namespace TourPlannerDAL
 {
-    public class DatabaseHandler
+    public class TourDatabaseHandler
     {
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        private static DatabaseHandler _db;
+        private static TourDatabaseHandler _db;
         string connString = string.Empty;
         NpgsqlConnection conn;
 
-        DatabaseHandler()
+        TourDatabaseHandler()
         {
             _logger.Info("Database initialized");
 
@@ -24,13 +24,13 @@ namespace TourPlannerDAL
             conn.Open();
         }
 
-        public static DatabaseHandler GetInstance()
+        public static TourDatabaseHandler GetInstance()
         {
             _logger.Info("Database accessed");
 
             if (_db == null)
             {
-                _db = new DatabaseHandler();
+                _db = new TourDatabaseHandler();
             }
             return _db;
         }

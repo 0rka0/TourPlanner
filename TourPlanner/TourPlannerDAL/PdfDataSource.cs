@@ -6,7 +6,7 @@ namespace TourPlannerDAL
     {
         public static PdfModel GetDetails()
         {
-            DatabaseHandler db = DatabaseHandler.GetInstance();
+            TourDatabaseHandler db = TourDatabaseHandler.GetInstance();
             PdfModel pdfModel = new PdfModel();
             foreach (Tour tour in db.SelectTourEntries())
             {

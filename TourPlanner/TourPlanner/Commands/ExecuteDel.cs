@@ -1,19 +1,21 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using TourPlannerBL;
 
 namespace TourPlanner
 {
-    class ExecuteCopy : ExecuteSelectedItemsBase
+    class ExecuteDel : ExecuteSelectedItemsBase 
     {
-        public ExecuteCopy(ViewModel viewModel) : base(viewModel)
+        public ExecuteDel(TourVM viewModel) : base(viewModel)
         {
         }
 
         public override void Execute(object? parameter)
         {
-            TourHandler.CopyTour(_viewModel.CurTour);
+            TourHandler.DeleteTour(_viewModel.CurTour);
             _viewModel.RefreshTourList();
+            _viewModel.CurTour = null;
         }
     }
 }

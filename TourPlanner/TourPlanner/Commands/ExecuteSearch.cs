@@ -8,9 +8,9 @@ namespace TourPlanner
 {
     class ExecuteSearch : ICommand
     {
-        private readonly ViewModel _viewModel;
+        private readonly TourVM _viewModel;
 
-        public ExecuteSearch(ViewModel viewModel)
+        public ExecuteSearch(TourVM viewModel)
         {
             _viewModel = viewModel;
             _viewModel.PropertyChanged += (sender, args) =>

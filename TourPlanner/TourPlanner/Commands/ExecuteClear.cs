@@ -5,9 +5,9 @@ namespace TourPlanner
 {
     class ExecuteClear : ICommand
     {
-        private readonly ViewModel _viewModel;
+        private readonly TourVM _viewModel;
 
-        public ExecuteClear(ViewModel viewModel)
+        public ExecuteClear(TourVM viewModel)
         {
             _viewModel = viewModel;
         }

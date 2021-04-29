@@ -6,8 +6,8 @@ namespace TourPlanner
 {
     class ExecuteEdit : ICommand
     {
-        private readonly ViewModel _viewModel;
-        public ExecuteEdit(ViewModel viewModel)
+        private readonly TourVM _viewModel;
+        public ExecuteEdit(TourVM viewModel)
         {
             _viewModel = viewModel;
 

@@ -18,7 +18,7 @@ namespace TourPlannerBL
 
             try
             {
-                DatabaseHandler db = DatabaseHandler.GetInstance();
+                TourDatabaseHandler db = TourDatabaseHandler.GetInstance();
                 return db.SelectTourEntries();
             }
             catch (Exception e)

@@ -7,8 +7,8 @@ namespace TourPlanner
 {
     class ExecuteImport : ICommand
     {
-        private readonly ViewModel _viewModel;
-        public ExecuteImport(ViewModel viewModel)
+        private readonly TourVM _viewModel;
+        public ExecuteImport(TourVM viewModel)
         {
             _viewModel = viewModel;
         }

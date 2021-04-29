@@ -6,9 +6,9 @@ namespace TourPlanner
 {
     class ExecuteAdd : ICommand
     {
-        private readonly ViewModel _viewModel;
+        private readonly TourVM _viewModel;
 
-        public ExecuteAdd(ViewModel viewModel)
+        public ExecuteAdd(TourVM viewModel)
         {
             _viewModel = viewModel;
             _viewModel.PropertyChanged += (sender, args) =>

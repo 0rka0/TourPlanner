@@ -15,7 +15,7 @@ using System.Windows.Media;
 
 namespace TourPlanner
 {
-    class ViewModel : INotifyPropertyChanged
+    class TourVM : ViewModelBase
     {
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -37,7 +37,7 @@ namespace TourPlanner
             }
             set
             {
-                if (_tourList != value)
+                if (TourList != value)
                 {
                     _tourList = value;
                     OnPropertyChanged();
@@ -213,9 +213,7 @@ namespace TourPlanner
 
         public ICommand ExecuteCreateReport { get; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public ViewModel()
+        public TourVM()
         {
             this.ExecuteSearch = new ExecuteSearch(this);
             this.ExecuteClear = new ExecuteClear(this);
@@ -254,11 +252,6 @@ namespace TourPlanner
         {
             TourList.Clear();
             FillTourList();
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

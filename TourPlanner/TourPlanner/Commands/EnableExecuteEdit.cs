@@ -5,7 +5,7 @@ namespace TourPlanner
 {
     class EnableExecuteEdit : ExecuteSelectedItemsBase
     {
-        public EnableExecuteEdit(ViewModel viewModel) : base(viewModel)
+        public EnableExecuteEdit(TourVM viewModel) : base(viewModel)
         {
         }
 

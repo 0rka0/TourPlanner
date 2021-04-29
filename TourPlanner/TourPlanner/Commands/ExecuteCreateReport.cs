@@ -6,9 +6,9 @@ namespace TourPlanner
 {
     class ExecuteCreateReport : ICommand
     {
-        private readonly ViewModel _viewModel;
+        private readonly TourVM _viewModel;
 
-        public ExecuteCreateReport(ViewModel viewModel)
+        public ExecuteCreateReport(TourVM viewModel)
         {
             _viewModel = viewModel;
         }

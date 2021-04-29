@@ -5,9 +5,9 @@ namespace TourPlanner
 {
     abstract class ExecuteSelectedItemsBase : ICommand
     {
-        protected readonly ViewModel _viewModel;
+        protected readonly TourVM _viewModel;
 
-        public ExecuteSelectedItemsBase(ViewModel viewModel)
+        public ExecuteSelectedItemsBase(TourVM viewModel)
         {
             _viewModel = viewModel;
 
