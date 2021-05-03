@@ -22,8 +22,16 @@ namespace TourPlannerBL.Mapquest
         public Ul ul { get; set; }
     }
 
+    public class RouteError
+    {
+        public int errorCode { get; set; }
+        public string message { get; set; }
+    }
+
+
     public class Route
     {
+        public RouteError routeError { get; set; }
         public BoundingBox boundingBox { get; set; }
         public double distance { get; set; }
         public string formattedTime { get; set; }

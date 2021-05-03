@@ -23,9 +23,15 @@ namespace TourPlannerBL.TourObjectHandling
                 TourInformationResponseObject information = MapQuestHandler.GetTourInformation(start, goal);
                 Tour tour = CreateTourObject(information, StringPreparer.BuildName(start, goal), desc, inf);
 
+                if (information.route.routeError.errorCode >= 0)
+                {
+                    throw new Exception("Request returned invalid error code");
+                }
+
                 InsertTour(tour);
 
                 MapQuestHandler.GetImage(information, tour.Image);
+
                 _logger.Info("Add success");
             }
             catch (Exception e)
