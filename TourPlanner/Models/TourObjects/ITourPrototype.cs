@@ -1,4 +1,4 @@
-﻿namespace TourPlannerModels
+﻿namespace TourPlannerModels.TourObject
 {
     public interface ITourPrototype
     {

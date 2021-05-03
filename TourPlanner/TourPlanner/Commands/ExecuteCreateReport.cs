@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
-using TourPlannerBL;
+using TourPlannerBL.PDF;
 using TourPlanner.Viewmodels;
 
 namespace TourPlanner.Commands

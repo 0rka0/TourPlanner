@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TourPlannerModels
+namespace TourPlannerModels.TourObject
 {
-    public class Tour : ITourContent, ITourPrototype
+    public class Tour : ITourObject, ITourPrototype
     {
         public int Id { get; set; }
         public string Name { get; private set; }

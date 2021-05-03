@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using TourPlanner.Viewmodels;
-using TourPlannerBL;
+using TourPlannerBL.TourObjectHandling;
 
 namespace TourPlanner.Commands
 {

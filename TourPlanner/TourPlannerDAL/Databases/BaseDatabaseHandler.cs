@@ -1,12 +1,13 @@
 ﻿using Npgsql;
 using System;
 using System.Data;
+using TourPlannerModels.TourObject;
 using TourPlannerModels;
 using log4net;
 using System.Reflection;
 using System.Collections.Generic;
 
-namespace TourPlannerDAL
+namespace TourPlannerDAL.Databases
 {
     public abstract class BaseDatabaseHandler : IDatabase
     {
@@ -64,9 +65,9 @@ namespace TourPlannerDAL
             }
         }
 
-        public abstract IEnumerable<ITourContent> SelectEntries(int id);
+        public abstract IEnumerable<ITourObject> SelectEntries(int id);
 
-        public abstract void UpdateEntry(ITourContent tourObject);
-        public abstract void InsertEntry(ITourContent tourObject);
+        public abstract void UpdateEntry(ITourObject tourObject);
+        public abstract void InsertEntry(ITourObject tourObject);
     }
 }

@@ -2,10 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using TourPlannerDAL;
-using TourPlannerModels;
+using TourPlannerDAL.Databases;
+using TourPlannerModels.TourObject;
 
-namespace TourPlannerBL
+namespace TourPlannerBL.TourObjectHandling
 {
     static public class TourLogHandler
     {
@@ -18,7 +18,7 @@ namespace TourPlannerBL
             { 
                 IDatabase db = TourLogDatabaseHandler.GetInstance();
                 int id = db.GetMaxId();
-                ITourContent tourLog = new TourLog(id, tourId);
+                ITourObject tourLog = new TourLog(id, tourId);
                 db.InsertEntry(tourLog);
 
                 _logger.Info("Add success");

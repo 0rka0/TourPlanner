@@ -4,7 +4,7 @@ using TourPlannerModels;
 using log4net;
 using System.Reflection;
 
-namespace TourPlannerDAL
+namespace TourPlannerDAL.Files
 {
     public static class FileHandler
     {

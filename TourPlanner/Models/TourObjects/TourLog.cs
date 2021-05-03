@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace TourPlannerModels
+namespace TourPlannerModels.TourObject
 {
-    public class TourLog : ITourContent
+    public class TourLog : ITourObject
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }

@@ -1,9 +1,10 @@
 ﻿using QuestPDF.Drawing;
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
+using TourPlannerModels.TourObject;
 using TourPlannerModels;
 
-namespace TourPlannerBL
+namespace TourPlannerBL.PDF
 {
     class PdfDocument : IDocument
     {
@@ -67,17 +68,26 @@ namespace TourPlannerBL
 
                         if (tour.LogList.Count > 0)
                         {
-                            stack.Element().BorderBottom(1).BorderColor("000").Padding(5).Row(row =>
+                            stack.Element().BorderBottom(1).BorderColor("CCC").Padding(10).Row(row =>
                             {
                                 row.RelativeColumn().Text($"Date");
+                                row.RelativeColumn().Text($"Duration");
+                                row.RelativeColumn().Text($"Distance");
+                                row.RelativeColumn().Text($"Total Time");
+                                row.RelativeColumn().Text($"Rating");
+                                row.RelativeColumn().Text($"Average speed");
                             });
-                            stack.Element().BorderBottom(1).BorderColor("CCC").Padding(5);
 
                             foreach (TourLog log in tour.LogList)
                             {
-                                stack.Element().BorderBottom(1).BorderColor("CCC").Padding(5).Row(row =>
+                                stack.Element().BorderBottom(1).BorderColor("CCC").Padding(10).Row(row =>
                                 {
                                     row.RelativeColumn().Text(log.Date);
+                                    row.RelativeColumn().Text(log.Duration);
+                                    row.RelativeColumn().Text(log.Distance);
+                                    row.RelativeColumn().Text(log.TotalTime);
+                                    row.RelativeColumn().Text(log.Rating);
+                                    row.RelativeColumn().Text(log.AvgSpeed);
                                 });
                             }
 

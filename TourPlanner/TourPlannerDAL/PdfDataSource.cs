@@ -1,6 +1,9 @@
-﻿using TourPlannerModels;
+﻿using System.Collections.Generic;
+using TourPlannerModels.TourObject;
+using TourPlannerModels;
+using TourPlannerDAL.Databases;
 
-namespace TourPlannerDAL
+namespace TourPlannerDAL.PDF
 {
     public static class PdfDataSource
     {
@@ -8,8 +11,12 @@ namespace TourPlannerDAL
         {
             IDatabase db = TourDatabaseHandler.GetInstance();
             PdfModel pdfModel = new PdfModel();
-            foreach (Tour tour in db.SelectEntries())
+            IEnumerable<ITourObject> tourList = db.SelectEntries();
+            db = TourLogDatabaseHandler.GetInstance();
+            foreach (Tour tour in tourList)
             {
+                db = TourLogDatabaseHandler.GetInstance();
+                tour.LogList.AddRange((IEnumerable<TourLog>)db.SelectEntries(tour.Id));
                 pdfModel.Tours.Add(tour);
             }
 

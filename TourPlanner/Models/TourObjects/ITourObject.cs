@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TourPlannerModels
+namespace TourPlannerModels.TourObject
 {
-    public interface ITourContent
+    public interface ITourObject
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TourPlannerBL
+namespace TourPlannerBL.StringPrep
 {
     static public class StringPreparer
     {

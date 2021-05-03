@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace TourPlannerBL
+namespace TourPlannerBL.Mapquest
 {
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
     public class Lr
@@ -31,7 +31,7 @@ namespace TourPlannerBL
         public int time { get; set; }
     }
 
-    public class TourInformationResponse
+    public class TourInformationResponseObject
     {
         readonly string _size = "size=640,480";
         readonly string _defaultMarker = "defaultMarker=none";

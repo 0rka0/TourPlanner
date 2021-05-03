@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TourPlannerDAL;
-using TourPlannerModels;
+using TourPlannerDAL.Databases;
+using TourPlannerModels.TourObject;
 using log4net;
 using System.Reflection;
 using System;
 
-namespace TourPlannerBL
+namespace TourPlannerBL.TourObjectHandling
 {
     static public class TourSelector
     {
@@ -48,7 +48,7 @@ namespace TourPlannerBL
             return tourList;
         }
 
-        public static IEnumerable<ITourContent> SelectTourLogsById(int id)
+        public static IEnumerable<ITourObject> SelectTourLogsById(int id)
         {
             IDatabase db = TourLogDatabaseHandler.GetInstance();
 

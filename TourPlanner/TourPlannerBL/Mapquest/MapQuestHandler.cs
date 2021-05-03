@@ -3,11 +3,12 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TourPlannerModels;
-using TourPlannerDAL;
+using TourPlannerDAL.Files;
 using log4net;
 using System.Reflection;
+using TourPlannerBL.StringPrep;
 
-namespace TourPlannerBL
+namespace TourPlannerBL.Mapquest
 {
     //used to interact with the MapQuest API
     static public class MapQuestHandler
@@ -15,15 +16,15 @@ namespace TourPlannerBL
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         static readonly HttpClient client = new HttpClient();
 
-        static public TourInformationResponse GetTourInformation(string start, string goal)
+        static public TourInformationResponseObject GetTourInformation(string start, string goal)
         {
             _logger.Info("Requesting Tour Information from MapQuest");
 
-            TourInformationResponse response = GetTour(start, goal);
+            TourInformationResponseObject response = GetTour(start, goal);
             return response;
         }
 
-        static TourInformationResponse GetTour(string start, string goal)
+        static TourInformationResponseObject GetTour(string start, string goal)
         {
             string request = StringPreparer.BuildRequest(start, goal);
             Task<string> task = Task.Run<string>(async () => await RequestTourInformation(request));
@@ -32,7 +33,7 @@ namespace TourPlannerBL
             return ConvertResponse(directionsString);
         }
 
-        static public void GetImage(TourInformationResponse response, string filename)
+        static public void GetImage(TourInformationResponseObject response, string filename)
         {
             _logger.Info("Requesting Image from MapQuest");
 
@@ -40,9 +41,9 @@ namespace TourPlannerBL
             Task task = Task.Run(async () => await DownloadAndSaveImage(request, filename));
         }
 
-        static TourInformationResponse ConvertResponse(string directionsString)
+        static TourInformationResponseObject ConvertResponse(string directionsString)
         {
-            TourInformationResponse response = JsonConvert.DeserializeObject<TourInformationResponse>(directionsString);
+            TourInformationResponseObject response = JsonConvert.DeserializeObject<TourInformationResponseObject>(directionsString);
             return response;
         }
 

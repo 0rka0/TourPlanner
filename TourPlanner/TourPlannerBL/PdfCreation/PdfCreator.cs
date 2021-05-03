@@ -1,12 +1,13 @@
 ﻿using TourPlannerModels;
-using TourPlannerDAL;
+using TourPlannerDAL.PDF;
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 using log4net;
 using System.Reflection;
 using System;
+using TourPlannerBL.StringPrep;
 
-namespace TourPlannerBL
+namespace TourPlannerBL.PDF
 {
     public static class PdfCreator
     {

@@ -1,8 +1,9 @@
 ﻿using Npgsql;
 using System.Collections.Generic;
 using TourPlannerModels;
+using TourPlannerModels.TourObject;
 
-namespace TourPlannerDAL
+namespace TourPlannerDAL.Databases
 {
     public class TourDatabaseHandler : BaseDatabaseHandler
     {
@@ -23,7 +24,7 @@ namespace TourPlannerDAL
             return _db;
         }
 
-        public override IEnumerable<ITourContent> SelectEntries(int id = 0)
+        public override IEnumerable<ITourObject> SelectEntries(int id = 0)
         {
             CheckConn();
             List<Tour> tourList = new List<Tour>();
@@ -38,7 +39,7 @@ namespace TourPlannerDAL
             return tourList;
         }
 
-        public override void UpdateEntry(ITourContent tourObj)
+        public override void UpdateEntry(ITourObject tourObj)
         {
             CheckConn();
             Tour tour = (Tour)tourObj;
@@ -55,7 +56,7 @@ namespace TourPlannerDAL
             }
         }
 
-        public override void InsertEntry(ITourContent tourObj)
+        public override void InsertEntry(ITourObject tourObj)
         {
             CheckConn();
             Tour tour = (Tour)tourObj;

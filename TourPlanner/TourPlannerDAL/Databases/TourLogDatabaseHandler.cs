@@ -2,9 +2,10 @@
 using System;
 using System.Collections.Generic;
 using TourPlannerModels;
+using TourPlannerModels.TourObject;
 
 
-namespace TourPlannerDAL
+namespace TourPlannerDAL.Databases
 {
     public class TourLogDatabaseHandler : BaseDatabaseHandler
     {
@@ -25,7 +26,7 @@ namespace TourPlannerDAL
             return _db;
         }
 
-        public override IEnumerable<ITourContent> SelectEntries(int id = 0)
+        public override IEnumerable<ITourObject> SelectEntries(int id = 0)
         {
             CheckConn();
             List<TourLog> tourLogList = new List<TourLog>();
@@ -40,7 +41,7 @@ namespace TourPlannerDAL
             return tourLogList;
         }
 
-        public override void UpdateEntry(ITourContent tourObj)
+        public override void UpdateEntry(ITourObject tourObj)
         {
             CheckConn();
             TourLog tourLog = (TourLog)tourObj;
@@ -64,7 +65,7 @@ namespace TourPlannerDAL
             }
         }
 
-        public override void InsertEntry(ITourContent tourObj)
+        public override void InsertEntry(ITourObject tourObj)
         {
             CheckConn();
             TourLog tourLog = (TourLog)tourObj;

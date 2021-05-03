@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using System;
-using TourPlannerBL;
+using TourPlannerBL.StringPrep;
 
 namespace TourPlannerTest
 {

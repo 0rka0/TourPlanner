@@ -1,4 +1,4 @@
-﻿using TourPlannerBL;
+﻿using TourPlannerBL.TourObjectHandling;
 using TourPlanner.Viewmodels;
 
 namespace TourPlanner.Commands

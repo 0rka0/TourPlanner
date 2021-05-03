@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
 using System.Collections.Generic;
-using TourPlannerBL;
-using TourPlannerModels;
+using TourPlannerBL.TourObjectHandling;
+using TourPlannerModels.TourObject;
 using TourPlanner.Viewmodels;
 
 namespace TourPlanner.Commands

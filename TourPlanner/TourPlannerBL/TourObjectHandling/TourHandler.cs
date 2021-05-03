@@ -1,10 +1,14 @@
-﻿using TourPlannerDAL;
+﻿using TourPlannerBL.Mapquest;
+using TourPlannerDAL.Files;
+using TourPlannerDAL.Databases;
 using TourPlannerModels;
 using log4net;
 using System.Reflection;
 using System;
+using TourPlannerBL.StringPrep;
+using TourPlannerModels.TourObject;
 
-namespace TourPlannerBL
+namespace TourPlannerBL.TourObjectHandling
 {
     static public class TourHandler
     {
@@ -16,7 +20,7 @@ namespace TourPlannerBL
 
             try
             {
-                TourInformationResponse information = MapQuestHandler.GetTourInformation(start, goal);
+                TourInformationResponseObject information = MapQuestHandler.GetTourInformation(start, goal);
                 Tour tour = CreateTourObject(information, StringPreparer.BuildName(start, goal), desc, inf);
 
                 InsertTour(tour);
@@ -87,7 +91,7 @@ namespace TourPlannerBL
             }
         }
 
-        static Tour CreateTourObject(TourInformationResponse information, string name, string desc, string inf)
+        static Tour CreateTourObject(TourInformationResponseObject information, string name, string desc, string inf)
         {
             return new Tour(name, desc, inf, information.route.distance.ToString());
         }

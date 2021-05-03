@@ -1,7 +1,8 @@
 ﻿using System.Windows.Input;
 using System.Collections.ObjectModel;
+using TourPlannerModels.TourObject;
+using TourPlannerBL.TourObjectHandling;
 using TourPlannerModels;
-using TourPlannerBL;
 using System.Windows.Media.Imaging;
 using System;
 using System.IO;
