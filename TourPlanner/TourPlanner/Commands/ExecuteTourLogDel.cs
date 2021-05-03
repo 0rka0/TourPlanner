@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Windows.Input;
 using TourPlanner.Viewmodels;
+using TourPlannerBL;
 
 namespace TourPlanner.Commands
 {
-    abstract class ExecuteSelectedItemsBase : ICommand
+    class ExecuteTourLogDel : ICommand
     {
-        protected readonly TourVM _viewModel;
+        private readonly TourVM _viewModel;
 
-        public ExecuteSelectedItemsBase(TourVM viewModel)
+        public ExecuteTourLogDel(TourVM viewModel)
         {
             _viewModel = viewModel;
 
             _viewModel.PropertyChanged += (sender, args) =>
             {
-                if (args.PropertyName == "CurTour")
+                if (args.PropertyName == "CurTour" || args.PropertyName == "CurTourLog")
                 {
                     CanExecuteChanged?.Invoke(this, EventArgs.Empty);
                 }
@@ -23,14 +24,19 @@ namespace TourPlanner.Commands
 
         public bool CanExecute(object parameter)
         {
-            if (_viewModel.CurTour != null)
+            if (_viewModel.CurTour != null && _viewModel.CurTourLog != null)
             {
                 return true;
             }
             return false;
         }
 
-        public abstract void Execute(object parameter);
+        public void Execute(object? parameter)
+        {
+            TourLogHandler.DelTourLog(_viewModel.CurTourLog.Id);
+
+            _viewModel.RefreshLogList();
+        }
 
         public event EventHandler? CanExecuteChanged;
     }

@@ -34,7 +34,7 @@ namespace TourPlannerDAL
             using (var reader = cmd.ExecuteReader())
                 while (reader.Read())
                 {
-                    tourLogList.Add(new TourLog((int)reader[0], (DateTime)reader[1], reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), (int)reader[5], reader[6].ToString(), reader[7].ToString(), (int)reader[8]));
+                    tourLogList.Add(new TourLog((int)reader[0], (DateTime)reader[1], reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), (int)reader[6], reader[7].ToString(), reader[8].ToString(), (int)reader[9]));
                 }
 
             return tourLogList;
@@ -45,19 +45,20 @@ namespace TourPlannerDAL
             CheckConn();
             TourLog tourLog = (TourLog)tourObj;
 
-            using (var cmd = new NpgsqlCommand("UPDATE tourlogs SET date = @date, report = @rep, distance = @dis, totaltime = @tt, rating = @rating, comm = @comment, avgspeed = @avgspeed, tid = @tid", conn))
+            using (var cmd = new NpgsqlCommand("UPDATE tourlogs SET date = @date, duration = @dur, distance = @dis, report = @rep, totaltime = @tt, rating = @rating, comm = @comment, avgspeed = @avgspeed WHERE id = @id", conn))
             {      //adding parameters
                 cmd.Parameters.Add("@date", NpgsqlTypes.NpgsqlDbType.Timestamp);
                 cmd.Parameters[0].Value = tourLog.Date;
-                cmd.Parameters.AddWithValue("@rep", tourLog.Report);
+                cmd.Parameters.AddWithValue("@dur", tourLog.Duration);
                 cmd.Parameters.AddWithValue("@dis", tourLog.Distance);
+                cmd.Parameters.AddWithValue("@rep", tourLog.Report);
                 cmd.Parameters.AddWithValue("@tt", tourLog.TotalTime);
                 cmd.Parameters.Add("@rating", NpgsqlTypes.NpgsqlDbType.Integer);
-                cmd.Parameters[4].Value = tourLog.Rating;
+                cmd.Parameters[5].Value = tourLog.Rating;
                 cmd.Parameters.AddWithValue("@comment", tourLog.Comment);
                 cmd.Parameters.AddWithValue("@avgspeed", tourLog.AvgSpeed);
-                cmd.Parameters.Add("@tid", NpgsqlTypes.NpgsqlDbType.Integer);
-                cmd.Parameters[7].Value = tourLog.TourId;
+                cmd.Parameters.Add("@id", NpgsqlTypes.NpgsqlDbType.Integer);
+                cmd.Parameters[8].Value = tourLog.Id;
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
             }
@@ -68,12 +69,13 @@ namespace TourPlannerDAL
             CheckConn();
             TourLog tourLog = (TourLog)tourObj;
 
-            using (var cmd = new NpgsqlCommand("INSERT INTO tourlogs VALUES (@id, @date, @rep, @dis, @tt, @rat, @comm, @avgspeed, @tid)", conn))
+            using (var cmd = new NpgsqlCommand("INSERT INTO tourlogs VALUES (@id, @date, @dur, @dis, @rep, @tt, @rat, @comm, @avgspeed, @tid)", conn))
             {      //adding parameters
                 cmd.Parameters.AddWithValue("@id", tourLog.Id);
                 cmd.Parameters.AddWithValue("@date", tourLog.Date);
-                cmd.Parameters.AddWithValue("@rep", tourLog.Report);
+                cmd.Parameters.AddWithValue("@dur", tourLog.Duration);
                 cmd.Parameters.AddWithValue("@dis", tourLog.Distance);
+                cmd.Parameters.AddWithValue("@rep", tourLog.Report);
                 cmd.Parameters.AddWithValue("@tt", tourLog.TotalTime);
                 cmd.Parameters.AddWithValue("@rat", tourLog.Rating);
                 cmd.Parameters.AddWithValue("@comm", tourLog.Comment);

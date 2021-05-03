@@ -3,7 +3,7 @@ using TourPlanner.Viewmodels;
 
 namespace TourPlanner.Commands
 {
-    class ExecuteTourDel : ExecuteSelectedItemsBase 
+    class ExecuteTourDel : ExecuteSelectedTourBase 
     {
         public ExecuteTourDel(TourVM viewModel) : base(viewModel)
         {

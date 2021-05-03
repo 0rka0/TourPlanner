@@ -9,6 +9,7 @@ using log4net;
 using System.Reflection;
 using System.Windows.Media;
 using TourPlanner.Commands;
+using System.Collections.Generic;
 
 //To be implemented: search function, reading from db
 
@@ -25,6 +26,7 @@ namespace TourPlanner.Viewmodels
         private string _description;
         private string _information;
         private Tour _curTour;
+        private TourLog _curTourLog;
 
         private ObservableCollection<Tour> _tourList = new ObservableCollection<Tour>();
 
@@ -76,6 +78,22 @@ namespace TourPlanner.Viewmodels
                     RefreshLogList();
                     OnPropertyChanged(nameof(CurTour));
                     OnPropertyChanged(nameof(CurTourImage));
+                }
+            }
+        }
+
+        public TourLog CurTourLog
+        {
+            get
+            {
+                return _curTourLog;
+            }
+            set
+            {
+                if (CurTourLog != value)
+                {
+                    _curTourLog = value;
+                    OnPropertyChanged(nameof(CurTourLog));
                 }
             }
         }
@@ -232,6 +250,10 @@ namespace TourPlanner.Viewmodels
         public ICommand ExecuteCreateReport { get; }
 
         public ICommand ExecuteTourLogAdd { get; }
+        
+        public ICommand ExecuteTourLogEdit { get; }
+
+        public ICommand ExecuteTourLogDel { get; }
 
         public TourVM()
         {
@@ -245,6 +267,8 @@ namespace TourPlanner.Viewmodels
             this.ExecuteImport = new ExecuteImport(this);
             this.ExecuteCreateReport = new ExecuteCreateReport(this);
             this.ExecuteTourLogAdd = new ExecuteTourLogAdd(this);
+            this.ExecuteTourLogEdit = new ExecuteTourLogEdit(this);
+            this.ExecuteTourLogDel = new ExecuteTourLogDel(this);
 
             _logger.Info("Application initialized");
 
@@ -271,6 +295,8 @@ namespace TourPlanner.Viewmodels
 
         public void FillLogList()
         {
+            _logger.Info("LogList updated");
+
             if (_curTour != null)
             {
                 foreach (TourLog log in _curTour.LogList)
@@ -288,8 +314,18 @@ namespace TourPlanner.Viewmodels
 
         public void RefreshLogList()
         {
+            RefreshCurTourLoglist();
             CurLogList.Clear();
             FillLogList();
+        }
+
+        public void RefreshCurTourLoglist()
+        {
+            if (_curTour != null)
+            {
+                _curTour.LogList.Clear();
+                _curTour.LogList.AddRange((List<TourLog>)TourSelector.SelectTourLogsById(_curTour.Id));
+            }
         }
     }
 }

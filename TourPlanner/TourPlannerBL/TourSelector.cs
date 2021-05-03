@@ -22,7 +22,7 @@ namespace TourPlannerBL
                 List<Tour> tourList = (List<Tour>)db.SelectEntries();
 
                 db = TourLogDatabaseHandler.GetInstance();
-                tourList = FillToursWithLogs(db, tourList);
+                tourList = FillToursWithLogs(tourList);
 
                 return tourList;
             }
@@ -33,19 +33,26 @@ namespace TourPlannerBL
             }
         }
 
-        private static List<Tour> FillToursWithLogs(IDatabase db, List<Tour> tourList)
+        private static List<Tour> FillToursWithLogs(List<Tour> tourList)
         {
             List<TourLog> logList = new List<TourLog>();
 
             foreach (Tour tour in tourList)
             {
                 logList.Clear();
-                logList = (List<TourLog>)db.SelectEntries(tour.Id);
+                logList = (List<TourLog>)SelectTourLogsById(tour.Id);
 
                 tour.LogList.AddRange(logList);
             }
 
             return tourList;
+        }
+
+        public static IEnumerable<ITourContent> SelectTourLogsById(int id)
+        {
+            IDatabase db = TourLogDatabaseHandler.GetInstance();
+
+            return db.SelectEntries(id);
         }
 
         static public IEnumerable<Tour> Search(string filter)

@@ -266,16 +266,25 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
                             <Button Grid.Column="0" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteTourLogAdd}">Add</Button>
+                            <Button Grid.Column="1" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteTourLogDel}">Del</Button>
+                            <Button Grid.Column="2" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteTourLogEdit}">Apply changes</Button>
                         </Grid>
                     </Grid>
-                    <DataGrid Grid.Row="1" Margin="5" ItemsSource="{Binding CurLogList}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray">
+                    <DataGrid Grid.Row="1" Margin="5" ItemsSource="{Binding CurLogList, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding CurTourLog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" 
+                              ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Date}" Header="Date" Width="75"/>
-                            <DataGridTextColumn Binding="{Binding Duration}" Header="Duration" Width="75"/>
-                            <DataGridTextColumn Binding="{Binding Distance}" Header="Distance" Width="75"/>
-                            <DataGridTextColumn Header="..." Width="1*"/>
+                            <DataGridTextColumn Binding="{Binding Date}" Header="Date" MaxWidth="125"/>
+                            <DataGridTextColumn Binding="{Binding Duration}" Header="Duration" MaxWidth="60"/>
+                            <DataGridTextColumn Binding="{Binding Distance}" Header="Distance" MaxWidth="60"/>
+                            <DataGridTextColumn Binding="{Binding Report}" Header="Report" MaxWidth="150"/>
+                            <DataGridTextColumn Binding="{Binding TotalTime}" Header="Total time" MaxWidth="65"/>
+                            <DataGridTextColumn Binding="{Binding Rating}" Header="Rating" MaxWidth="50"/>
+                            <DataGridTextColumn Binding="{Binding Comment}" Header="Comment" MaxWidth="150"/>
+                            <DataGridTextColumn Binding="{Binding AvgSpeed}" Header="Average speed" MaxWidth="90"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

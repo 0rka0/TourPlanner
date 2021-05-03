@@ -4,7 +4,7 @@ using TourPlanner.Viewmodels;
 
 namespace TourPlanner.Commands
 {
-    class EnableExecuteTourEdit : ExecuteSelectedItemsBase
+    class EnableExecuteTourEdit : ExecuteSelectedTourBase
     {
         public EnableExecuteTourEdit(TourVM viewModel) : base(viewModel)
         {
