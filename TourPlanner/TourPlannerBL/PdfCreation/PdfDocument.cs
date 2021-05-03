@@ -61,9 +61,14 @@ namespace TourPlannerBL.PDF
                     {
                         stack.Element().BorderBottom(1).BorderColor("000").Padding(5).Row(row =>
                         {
-                            row.RelativeColumn().Text($"ID: {tour.Id}");
-                            row.RelativeColumn().Text($"Tourname: {tour.Name}");
-                            row.RelativeColumn().Text($"Distance: {tour.Distance} km");
+                            row.RelativeColumn().PageableStack(stack =>
+                            {
+                                stack.Element().BorderBottom(1).BorderColor("CCC").Padding(5).Text($"ID: {tour.Id}");
+                                stack.Element().BorderBottom(1).BorderColor("CCC").Padding(5).Text($"Tourname: {tour.Name}");
+                                stack.Element().BorderBottom(1).BorderColor("CCC").Padding(5).Text($"Distance: {tour.Distance} km");
+                                stack.Element().Height(100).AlignBottom().Padding(5).Text($"Logs: ");
+                            });
+                            row.RelativeColumn().Image(System.IO.File.ReadAllBytes(Configuration.ImagePath + tour.Image));
                         });
 
                         if (tour.LogList.Count > 0)
