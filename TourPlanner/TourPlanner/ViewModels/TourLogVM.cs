@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace TourPlanner
+namespace TourPlanner.Viewmodels
 {
     class TourLogVM : ViewModelBase
     {

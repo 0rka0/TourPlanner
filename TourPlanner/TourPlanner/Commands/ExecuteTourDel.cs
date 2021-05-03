@@ -1,9 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows.Input;
-using TourPlannerBL;
+﻿using TourPlannerBL;
+using TourPlanner.Viewmodels;
 
-namespace TourPlanner
+namespace TourPlanner.Commands
 {
     class ExecuteTourDel : ExecuteSelectedItemsBase 
     {

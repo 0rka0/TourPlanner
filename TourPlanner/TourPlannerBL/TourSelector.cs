@@ -19,13 +19,33 @@ namespace TourPlannerBL
             try
             {
                 IDatabase db = TourDatabaseHandler.GetInstance();
-                return (IEnumerable<Tour>)db.SelectEntries();
+                List<Tour> tourList = (List<Tour>)db.SelectEntries();
+
+                db = TourLogDatabaseHandler.GetInstance();
+                tourList = FillToursWithLogs(db, tourList);
+
+                return tourList;
             }
             catch (Exception e)
             {
                 _logger.Error("Selecting process led to following error: " + e.Message);
                 return new List<Tour>();
             }
+        }
+
+        private static List<Tour> FillToursWithLogs(IDatabase db, List<Tour> tourList)
+        {
+            List<TourLog> logList = new List<TourLog>();
+
+            foreach (Tour tour in tourList)
+            {
+                logList.Clear();
+                logList = (List<TourLog>)db.SelectEntries(tour.Id);
+
+                tour.LogList.AddRange(logList);
+            }
+
+            return tourList;
         }
 
         static public IEnumerable<Tour> Search(string filter)

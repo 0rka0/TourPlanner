@@ -3,8 +3,9 @@ using System.Windows.Input;
 using System.Collections.Generic;
 using TourPlannerBL;
 using TourPlannerModels;
+using TourPlanner.Viewmodels;
 
-namespace TourPlanner
+namespace TourPlanner.Commands
 {
     class ExecuteSearch : ICommand
     {

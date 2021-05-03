@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
+using TourPlanner.Viewmodels;
 
-namespace TourPlanner
+namespace TourPlanner.Commands
 {
     abstract class ExecuteSelectedItemsBase : ICommand
     {

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
 using TourPlannerBL;
+using TourPlanner.Viewmodels;
 
-namespace TourPlanner
+namespace TourPlanner.Commands
 {
     class ExecuteCreateReport : ICommand
     {

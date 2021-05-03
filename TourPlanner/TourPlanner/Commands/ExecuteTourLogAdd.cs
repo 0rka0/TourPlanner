@@ -1,8 +1,7 @@
-﻿using System;
-using System.Windows.Input;
-using TourPlannerBL;
+﻿using TourPlannerBL;
+using TourPlanner.Viewmodels;
 
-namespace TourPlanner
+namespace TourPlanner.Commands
 {
     class ExecuteTourLogAdd : ExecuteSelectedItemsBase
     {
@@ -13,6 +12,8 @@ namespace TourPlanner
         public override void Execute(object? parameter)
         {
             TourLogHandler.AddTourLog(_viewModel.CurTour.Id);
+
+            _viewModel.RefreshLogList();
         }
     }
 }

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TourPlanner"
+        xmlns:local="clr-namespace:TourPlanner.Viewmodels"
         mc:Ignorable="d"
         Title="TourPlanner - UI" Height="600" Width="800">
     <Window.DataContext>
@@ -270,7 +270,7 @@
                             <Button Grid.Column="0" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteTourLogAdd}">Add</Button>
                         </Grid>
                     </Grid>
-                    <DataGrid Grid.Row="1" Margin="5" ItemsSource="{Binding LogData}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray">
+                    <DataGrid Grid.Row="1" Margin="5" ItemsSource="{Binding CurLogList}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Date}" Header="Date" Width="75"/>
                             <DataGridTextColumn Binding="{Binding Duration}" Header="Duration" Width="75"/>

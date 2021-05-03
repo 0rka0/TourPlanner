@@ -30,6 +30,13 @@ namespace TourPlannerModels
         public TourLog(int id, int tourId)
         {
             Id = id;
+            Date = DateTime.Now;
+            Report = "";
+            Distance = "";
+            TotalTime = "";
+            Rating = 0;
+            Comment = "";
+            AvgSpeed = "";
             TourId = tourId;
         }
     }

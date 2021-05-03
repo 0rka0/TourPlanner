@@ -30,7 +30,7 @@ namespace TourPlannerDAL
             CheckConn();
             List<TourLog> tourLogList = new List<TourLog>();
 
-            using (var cmd = new NpgsqlCommand("SELECT * FROM tourlogs", conn))
+            using (var cmd = new NpgsqlCommand($"SELECT * FROM tourlogs WHERE tid={id}", conn))
             using (var reader = cmd.ExecuteReader())
                 while (reader.Read())
                 {
@@ -68,9 +68,16 @@ namespace TourPlannerDAL
             CheckConn();
             TourLog tourLog = (TourLog)tourObj;
 
-            using (var cmd = new NpgsqlCommand("INSERT INTO tourlogs(id, tid) VALUES (@id, @tid)", conn))
+            using (var cmd = new NpgsqlCommand("INSERT INTO tourlogs VALUES (@id, @date, @rep, @dis, @tt, @rat, @comm, @avgspeed, @tid)", conn))
             {      //adding parameters
                 cmd.Parameters.AddWithValue("@id", tourLog.Id);
+                cmd.Parameters.AddWithValue("@date", tourLog.Date);
+                cmd.Parameters.AddWithValue("@rep", tourLog.Report);
+                cmd.Parameters.AddWithValue("@dis", tourLog.Distance);
+                cmd.Parameters.AddWithValue("@tt", tourLog.TotalTime);
+                cmd.Parameters.AddWithValue("@rat", tourLog.Rating);
+                cmd.Parameters.AddWithValue("@comm", tourLog.Comment);
+                cmd.Parameters.AddWithValue("@avgspeed", tourLog.AvgSpeed);
                 cmd.Parameters.AddWithValue("@tid", tourLog.TourId);
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();

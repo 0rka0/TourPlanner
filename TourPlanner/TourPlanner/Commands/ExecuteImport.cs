@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using TourPlanner.Viewmodels;
 
 
-namespace TourPlanner
+namespace TourPlanner.Commands
 {
     class ExecuteImport : ICommand
     {

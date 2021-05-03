@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using System.Collections.ObjectModel;
 using TourPlannerModels;
 using TourPlannerBL;
@@ -10,10 +8,11 @@ using System.IO;
 using log4net;
 using System.Reflection;
 using System.Windows.Media;
+using TourPlanner.Commands;
 
 //To be implemented: search function, reading from db
 
-namespace TourPlanner
+namespace TourPlanner.Viewmodels
 {
     class TourVM : ViewModelBase
     {
@@ -45,6 +44,24 @@ namespace TourPlanner
             }
         }
 
+        private ObservableCollection<TourLog> _curLogList = new ObservableCollection<TourLog>();
+
+        public ObservableCollection<TourLog> CurLogList
+        {
+            get
+            {
+                return _curLogList;
+            }
+            set
+            {
+                if (CurLogList != value)
+                {
+                    _curLogList = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public Tour CurTour
         {
             get
@@ -56,6 +73,7 @@ namespace TourPlanner
                 if (CurTour != value)
                 {
                     _curTour = value;
+                    RefreshLogList();
                     OnPropertyChanged(nameof(CurTour));
                     OnPropertyChanged(nameof(CurTourImage));
                 }
@@ -251,10 +269,27 @@ namespace TourPlanner
             }
         }
 
+        public void FillLogList()
+        {
+            if (_curTour != null)
+            {
+                foreach (TourLog log in _curTour.LogList)
+                {
+                    CurLogList.Add(log);
+                }
+            }
+        }
+
         public void RefreshTourList()
         {
             TourList.Clear();
             FillTourList();
+        }
+
+        public void RefreshLogList()
+        {
+            CurLogList.Clear();
+            FillLogList();
         }
     }
 }

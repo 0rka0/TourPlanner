@@ -54,11 +54,6 @@ namespace TourPlannerModels
                 RouteInformation = inf;
         }
 
-        public void AddLog(TourLog log)
-        {
-            LogList.Add(log);
-        }
-
         public Tour Clone()
         {
             return new Tour(this);
