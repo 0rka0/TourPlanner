@@ -280,12 +280,12 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Date}" Header="Date" MaxWidth="125"/>
                             <DataGridTextColumn Binding="{Binding Duration}" Header="Duration" MaxWidth="60"/>
-                            <DataGridTextColumn Binding="{Binding Distance}" Header="Distance" MaxWidth="60"/>
+                            <DataGridTextColumn Binding="{Binding Distance}" Header="Distance (km)" MaxWidth="90"/>
                             <DataGridTextColumn Binding="{Binding Report}" Header="Report" MaxWidth="150"/>
-                            <DataGridTextColumn Binding="{Binding TotalTime}" Header="Total time" MaxWidth="65"/>
+                            <DataGridTextColumn Binding="{Binding TotalTime}" Header="Total time (h)" MaxWidth="80"/>
                             <DataGridTextColumn Binding="{Binding Rating}" Header="Rating" MaxWidth="50"/>
                             <DataGridTextColumn Binding="{Binding Comment}" Header="Comment" MaxWidth="150"/>
-                            <DataGridTextColumn Binding="{Binding AvgSpeed}" Header="Average speed" MaxWidth="90"/>
+                            <DataGridTextColumn Binding="{Binding AvgSpeed}" Header="Average speed (km/h)" MaxWidth="130"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
