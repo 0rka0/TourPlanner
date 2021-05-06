@@ -54,7 +54,7 @@ namespace TourPlannerTest
             DateTime date = DateTime.Now;
 
             string desiredString = $"Report_{date.ToString("yyyy_MM_dd_HH_mm_ss")}.pdf";
-            string actualString = StringPreparer.BuildPdfName(date);
+            string actualString = StringPreparer.BuildReportName(date);
 
             Assert.AreEqual(desiredString, actualString);
         }

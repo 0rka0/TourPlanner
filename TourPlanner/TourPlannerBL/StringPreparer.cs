@@ -28,9 +28,14 @@ namespace TourPlannerBL.StringPrep
             return String.Format("{0}{1}.png", id, name);
         }
 
-        static public string BuildPdfName(DateTime name)
+        static public string BuildReportName(DateTime name)
         {
             return $"Report_{name.ToString("yyyy_MM_dd_HH_mm_ss")}.pdf";
+        }
+
+        static public string BuildSummaryName(DateTime name)
+        {
+            return $"Summary_{name.ToString("yyyy_MM_dd_HH_mm_ss")}.pdf";
         }
     }
 }

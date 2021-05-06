@@ -5,25 +5,15 @@ using TourPlanner.Viewmodels;
 
 namespace TourPlanner.Commands
 {
-    class ExecuteCreateReport : ICommand
+    class ExecuteCreateReport : ExecuteSelectedTourBase
     {
-        private readonly TourVM _viewModel;
-
-        public ExecuteCreateReport(TourVM viewModel)
+        public ExecuteCreateReport(TourVM viewModel) : base(viewModel)
         {
-            _viewModel = viewModel;
         }
 
-        public bool CanExecute(object parameter)
+        public override void Execute(object parameter)
         {
-            return true;
+            PdfCreator.CreateTourReport(_viewModel.CurTour);
         }
-
-        public void Execute(object parameter)
-        {
-            PdfCreator.CreatePdf();
-        }
-
-        public event EventHandler CanExecuteChanged;
     }
 }
