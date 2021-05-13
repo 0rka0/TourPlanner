@@ -4,11 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner.Viewmodels"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:models="clr-namespace:TourPlannerModels.Types;assembly=TourPlannerModels"
         mc:Ignorable="d"
         Title="TourPlanner - UI" Height="800" Width="800" MinHeight="400" MinWidth="400">
     <Window.DataContext>
         <local:TourVM />
     </Window.DataContext>
+    <Window.Resources>
+        <ObjectDataProvider x:Key="WeatherTypes" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:WeatherTypes" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="TrafficTypes" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:TrafficTypes" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="Ratings" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:Ratings" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -278,14 +297,16 @@
                               SelectedItem="{Binding CurTourLog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" 
                               ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Date}" Header="Date" MaxWidth="125"/>
-                            <DataGridTextColumn Binding="{Binding Duration}" Header="Duration" MaxWidth="60"/>
-                            <DataGridTextColumn Binding="{Binding Distance}" Header="Distance (km)" MaxWidth="90"/>
+                            <DataGridTextColumn Binding="{Binding Date}" Header="Date"/>
+                            <DataGridTextColumn Binding="{Binding Distance}" Header="Distance (km)"/>
                             <DataGridTextColumn Binding="{Binding Report}" Header="Report" MaxWidth="150"/>
-                            <DataGridTextColumn Binding="{Binding TotalTime}" Header="Total time (h)" MaxWidth="80"/>
-                            <DataGridTextColumn Binding="{Binding Rating}" Header="Rating" MaxWidth="50"/>
-                            <DataGridTextColumn Binding="{Binding Comment}" Header="Comment" MaxWidth="150"/>
-                            <DataGridTextColumn Binding="{Binding AvgSpeed}" Header="Average speed (km/h)" MaxWidth="130"/>
+                            <DataGridTextColumn Binding="{Binding TotalTime}" Header="Total time (h)"/>
+                            <DataGridComboBoxColumn SelectedItemBinding="{Binding Rating}" ItemsSource="{Binding Source={StaticResource Ratings}}" Header="Rating"/>
+                            <DataGridTextColumn Binding="{Binding AvgSpeed}" Header="Average speed (km/h)"/>
+                            <DataGridComboBoxColumn SelectedItemBinding="{Binding Weather}" ItemsSource="{Binding Source={StaticResource WeatherTypes}}" Header=" Weather"/>
+                            <DataGridComboBoxColumn SelectedItemBinding="{Binding Traffic}" ItemsSource="{Binding Source={StaticResource TrafficTypes}}"  Header="Traffic"/>
+                            <DataGridTextColumn Binding="{Binding Breaks}" Header="Breaks"/>
+                            <DataGridTextColumn Binding="{Binding GroupSize}" Header="GroupSize"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

@@ -75,24 +75,30 @@ namespace TourPlannerBL.PDF
                     {
                         stack.Element().BorderBottom(1).BorderColor("CCC").Padding(10).Row(row =>
                         {
-                            row.RelativeColumn().Text($"Date");
-                            row.RelativeColumn().Text($"Duration");
-                            row.RelativeColumn().Text($"Distance");
-                            row.RelativeColumn().Text($"Total Time");
-                            row.RelativeColumn().Text($"Rating");
-                            row.RelativeColumn().Text($"Average speed");
+                            row.RelativeColumn(1.5f).AlignCenter().Text($"Date");
+                            row.RelativeColumn(1).AlignCenter().Text($"Distance");
+                            row.RelativeColumn(1).AlignCenter().Text($"Total Time");
+                            row.RelativeColumn(1).AlignCenter().Text($"Rating");
+                            row.RelativeColumn(1).AlignCenter().Text($"Average speed");
+                            row.RelativeColumn(1).AlignCenter().Text($"Weather");
+                            row.RelativeColumn(1).AlignCenter().Text($"Traffic");
+                            row.RelativeColumn(1).AlignCenter().Text($"Breaks");
+                            row.RelativeColumn(1).AlignCenter().Text($"Group Size");
                         });
 
                         foreach (TourLog log in tour.LogList)
                         {
                             stack.Element().BorderBottom(1).BorderColor("CCC").Padding(10).Row(row =>
                             {
-                                row.RelativeColumn().Text(log.Date);
-                                row.RelativeColumn().Text(log.Duration);
-                                row.RelativeColumn().Text(log.Distance);
-                                row.RelativeColumn().Text(log.TotalTime);
-                                row.RelativeColumn().Text(log.Rating);
-                                row.RelativeColumn().Text(log.AvgSpeed);
+                                row.RelativeColumn(1.5f).AlignCenter().Text(log.Date);
+                                row.RelativeColumn(1).AlignCenter().Text(log.Distance);
+                                row.RelativeColumn(1).AlignCenter().Text(log.TotalTime);
+                                row.RelativeColumn(1).AlignCenter().Text(log.Rating);
+                                row.RelativeColumn(1).AlignCenter().Text(log.AvgSpeed);
+                                row.RelativeColumn(1).AlignCenter().Text(log.Weather);
+                                row.RelativeColumn(1).AlignCenter().Text(log.Traffic);
+                                row.RelativeColumn(1).AlignCenter().Text(log.Breaks);
+                                row.RelativeColumn(1).AlignCenter().Text(log.GroupSize);
                             });
                         }
 

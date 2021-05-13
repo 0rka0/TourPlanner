@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Windows.Media;
 using TourPlanner.Commands;
 using System.Collections.Generic;
+using System.Windows.Data;
 
 //To be implemented: search function, reading from db
 
@@ -62,6 +63,16 @@ namespace TourPlanner.Viewmodels
                     _curLogList = value;
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        private CollectionView _ratingList = new CollectionView(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+
+        public CollectionView RatingList
+        {
+            get
+            {
+                return _ratingList;
             }
         }
 

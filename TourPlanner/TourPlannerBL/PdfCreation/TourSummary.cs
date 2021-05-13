@@ -53,10 +53,10 @@ namespace TourPlannerBL.PDF
 
         void ComposeTable(IContainer container)
         {
-            int totalTime = 0;
-            int totalDistance = 0;
-            int timeByTour;
-            int distanceByTour;
+            float totalTime = 0;
+            float totalDistance = 0;
+            float timeByTour;
+            float distanceByTour;
 
             container.PaddingTop(10).Section(section =>
             {
@@ -75,12 +75,15 @@ namespace TourPlannerBL.PDF
 
                         foreach (TourLog log in tour.LogList)
                         {
-                            //timeByTour += log.TotalTime;
-                            //totalDistance += log.Distance;
+                            timeByTour += log.TotalTime;
+                            distanceByTour += log.Distance;
                         }
 
                         stack.Element().Padding(5).Text($"Time spent on this tour: {timeByTour} h");
                         stack.Element().Padding(5).Text($"Distance travelled on this tour: {distanceByTour} km");
+
+                        totalTime += timeByTour;
+                        totalDistance += distanceByTour;
 
                         stack.Element().BorderBottom(1).BorderColor("000").Padding(5);
                     }
