@@ -32,5 +32,15 @@ namespace TourPlannerDAL.Files
 
             File.Copy(Configuration.ImagePath + file1, Configuration.ImagePath + file2);
         }
+
+        public static void ExportToFile(string path, string content)
+        {
+            File.WriteAllText(path, content);
+        }
+
+        public static string ImportFromFile(string path)
+        {
+            return File.ReadAllText(path);
+        }
     }
 }

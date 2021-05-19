@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="BusinessLayer\**" />
+    <Compile Remove="DataAccessLayer\**" />
     <EmbeddedResource Remove="BusinessLayer\**" />
+    <EmbeddedResource Remove="DataAccessLayer\**" />
     <None Remove="BusinessLayer\**" />
+    <None Remove="DataAccessLayer\**" />
     <Page Remove="BusinessLayer\**" />
+    <Page Remove="DataAccessLayer\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataAccessLayer\" />
     <Folder Include="Reports\" />
   </ItemGroup>
 

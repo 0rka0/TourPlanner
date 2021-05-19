@@ -14,6 +14,9 @@ namespace TourPlannerModels.TourObject
 
         public List<TourLog> LogList = new List<TourLog>();
 
+        public Tour()
+        { }
+
         public Tour(string name, string desc, string inf, string dist)
         {
             TourDescription = "";

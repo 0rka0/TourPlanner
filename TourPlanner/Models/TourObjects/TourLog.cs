@@ -18,6 +18,9 @@ namespace TourPlannerModels.TourObject
         public int GroupSize { get; set; }
         public int TourId { get; set; }
 
+        public TourLog()
+        { }
+
         public TourLog(int id, DateTime date, float dis, string report, float totalTime, int rating, int avgSpeed, int weather, int traffic, int breaks, int groupSize, int tourId)
         {
             Id = id;

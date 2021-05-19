@@ -3,10 +3,12 @@ using TourPlannerDAL.Files;
 using TourPlannerDAL.Databases;
 using TourPlannerModels;
 using log4net;
+using Newtonsoft.Json;
 using System.Reflection;
 using System;
 using TourPlannerBL.StringPrep;
 using TourPlannerModels.TourObject;
+using System.Collections.Generic;
 
 namespace TourPlannerBL.TourObjectHandling
 {
@@ -108,6 +110,39 @@ namespace TourPlannerBL.TourObjectHandling
             tour.Id = db.GetMaxId();
             tour.Image = StringPreparer.BuildFilename(tour.Id, tour.Name);
             db.InsertEntry(tour);
+        }
+
+        public static void ImportTours(string path)
+        {
+            try
+            {
+                string jsonTourContent = FileHandler.ImportFromFile(path);
+
+                List<Tour> importedTours = JsonConvert.DeserializeObject<List<Tour>>(jsonTourContent);
+
+                //WIP Tours have to be updated in database
+                foreach (Tour tour in importedTours)
+                {
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.Error("Importing process led to following error: " + e.Message);
+            }
+        }
+
+        public static void ExportTours(string path)
+        {
+            try
+            {
+                string jsonTourContent = JsonConvert.SerializeObject(TourSelector.GetTours());
+
+                FileHandler.ExportToFile(path, jsonTourContent);
+            } 
+            catch (Exception e)
+            {
+                _logger.Error("Exporting process led to following error: " + e.Message);
+            }
         }
     }
 }

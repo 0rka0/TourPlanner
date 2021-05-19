@@ -1,24 +1,14 @@
-﻿using System;
-using System.Windows.Input;
-using TourPlanner.Viewmodels;
+﻿using TourPlanner.Viewmodels;
 
 namespace TourPlanner.Commands
 {
-    class ExecuteClear : ICommand
+    class ExecuteClear : ExecuteNoConditionBase
     {
-        private readonly TourVM _viewModel;
-
-        public ExecuteClear(TourVM viewModel)
+        public ExecuteClear(TourVM viewModel) : base(viewModel)
         {
-            _viewModel = viewModel;
         }
 
-        public bool CanExecute(object? parameter)
-        {
-            return true;
-        }
-
-        public void Execute(object? paramter)
+        public override void Execute(object? paramter)
         {
             _viewModel.FilterOutput = string.Empty;
             Clear();
@@ -28,7 +18,5 @@ namespace TourPlanner.Commands
         {
             _viewModel.RefreshTourList();
         }
-
-        public event EventHandler? CanExecuteChanged;
     }
 }

@@ -261,6 +261,8 @@ namespace TourPlanner.Viewmodels
 
         public ICommand ExecuteImport { get; }
 
+        public ICommand ExecuteExport { get; }
+
         public ICommand ExecuteCreateReport { get; }
 
         public ICommand ExecuteCreateSummary { get; }
@@ -281,6 +283,7 @@ namespace TourPlanner.Viewmodels
             this.EnableExecuteEdit = new EnableExecuteTourEdit(this);
             this.ExecuteCopy = new ExecuteTourCopy(this);
             this.ExecuteImport = new ExecuteImport(this);
+            this.ExecuteExport = new ExecuteExport(this);
             this.ExecuteCreateReport = new ExecuteCreateReport(this);
             this.ExecuteCreateSummary = new ExecuteCreateSummary(this);
             this.ExecuteTourLogAdd = new ExecuteTourLogAdd(this);

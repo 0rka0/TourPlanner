@@ -1,29 +1,23 @@
-﻿using System;
+﻿using Microsoft.Win32;
 using System.Windows;
-using System.Windows.Input;
 using TourPlanner.Viewmodels;
-
+using TourPlannerBL.TourObjectHandling;
 
 namespace TourPlanner.Commands
 {
-    class ExecuteImport : ICommand
+    class ExecuteImport : ExecuteNoConditionBase
     {
-        private readonly TourVM _viewModel;
-        public ExecuteImport(TourVM viewModel)
+        public ExecuteImport(TourVM viewModel) : base(viewModel)
         {
-            _viewModel = viewModel;
         }
 
-        public bool CanExecute(object? parameter)
+        public override void Execute(object? parameter)
         {
-            return true;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "json files (*.json)|*.json";
+            openFileDialog.FilterIndex = 1;
+            if (openFileDialog.ShowDialog() == true)
+                TourHandler.ImportTours(openFileDialog.FileName);
         }
-
-        public void Execute(object? parameter)
-        {
-            MessageBox.Show("Import something");
-        }
-
-        public event EventHandler? CanExecuteChanged;
     }
 }
