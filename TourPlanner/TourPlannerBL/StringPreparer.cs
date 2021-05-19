@@ -1,21 +1,18 @@
 ﻿using System;
+using TourPlannerModels;
 
 namespace TourPlannerBL.StringPrep
 {
     static public class StringPreparer
     {
-        static readonly string _urlDirections = "http://www.mapquestapi.com/directions/v2/route";
-        static readonly string _urlStaticMap = "http://www.mapquestapi.com/staticmap/v5/map";
-        static readonly string _key = "A1H6TsijwzAZ3cp7vu5cGAmVqEysE6gy"; //to be transfered into config file
-
         static public string BuildRequest(string start, string goal)
         {
-            return String.Format("{0}?key={1}&from={2}&to={3}", _urlDirections, _key, start, goal);
+            return String.Format("{0}?key={1}&from={2}&to={3}", Configuration.UrlDirectionsApi, Configuration.Key, start, goal);
         }
 
         static public string BuildRequest(string requestString)
         {
-            return String.Format("{0}?key={1}&{2}", _urlStaticMap, _key, requestString);
+            return String.Format("{0}?key={1}&{2}", Configuration.UrlStaticMapApi, Configuration.Key, requestString);
         }
 
         static public string BuildName(string start, string goal)

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using TourPlanner.Commands;
 using System.Collections.Generic;
 using System.Windows.Data;
+using System.Configuration;
+using System.Collections.Specialized;
 
 //To be implemented: search function, reading from db
 
@@ -122,7 +124,7 @@ namespace TourPlanner.Viewmodels
 
                     try
                     {
-                        string location = Path.GetFullPath(Configuration.ImagePath + CurTour.Image);
+                        string location = Path.GetFullPath(TourPlannerModels.Configuration.ImagePath + CurTour.Image);
                         if (File.Exists(location))
                         {
                             BitmapImage bitmap = new BitmapImage();
@@ -287,7 +289,13 @@ namespace TourPlanner.Viewmodels
 
             _logger.Info("Application initialized");
 
+            Configure();
             InitTourList();
+        }
+
+        private void Configure()
+        {
+            TourPlannerModels.Configuration.Configure(ConfigurationManager.AppSettings);
         }
 
         private void InitTourList()
