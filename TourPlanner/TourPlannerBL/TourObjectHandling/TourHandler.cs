@@ -9,6 +9,7 @@ using System;
 using TourPlannerBL.StringPrep;
 using TourPlannerModels.TourObject;
 using System.Collections.Generic;
+using System.IO;
 
 namespace TourPlannerBL.TourObjectHandling
 {
@@ -30,7 +31,7 @@ namespace TourPlannerBL.TourObjectHandling
                     throw new Exception("Request returned invalid error code");
                 }
 
-                InsertTour(tour);
+                InsertTour(tour, true);
 
                 MapQuestHandler.GetImage(information, tour.Image);
 
@@ -87,7 +88,7 @@ namespace TourPlannerBL.TourObjectHandling
             {
                 Tour copy = tour.Clone();
 
-                InsertTour(copy);
+                InsertTour(copy, true);
 
                 FileHandler.CopyImage(tour.Image, copy.Image);
 
@@ -104,12 +105,53 @@ namespace TourPlannerBL.TourObjectHandling
             return new Tour(name, desc, inf, information.route.distance.ToString());
         }
 
-        static void InsertTour(Tour tour)
+        static private void InsertTour(Tour tour, bool newTour)
         {
             IDatabase db = TourDatabaseHandler.GetInstance();
-            tour.Id = db.GetMaxId();
-            tour.Image = StringPreparer.BuildFilename(tour.Id, tour.Name);
+            if (newTour)
+            {
+                tour.Id = db.GetMaxId();
+                tour.Image = StringPreparer.BuildFilename(tour.Id, tour.Name);
+            }
             db.InsertEntry(tour);
+        }
+
+        private static void ClearData()
+        {
+            IDatabase db = TourDatabaseHandler.GetInstance();
+            db.ClearDb();
+            db = TourLogDatabaseHandler.GetInstance();
+            db.ClearDb();
+
+            DirectoryInfo di = new DirectoryInfo(Configuration.ImagePath);
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+        }
+
+        static private void RequestImportedTourImage(Tour tour)
+        {
+            _logger.Info("Attempting to request image");
+
+            try
+            {
+                Tuple<string, string> locationTuple = StringPreparer.ExtractLocationFromFilename(tour.Image);
+                TourInformationResponseObject information = MapQuestHandler.GetTourInformation(locationTuple.Item1, locationTuple.Item2);
+
+                if (information.route.routeError.errorCode >= 0)
+                {
+                    throw new Exception("Request returned invalid error code");
+                }
+
+                MapQuestHandler.GetImage(information, tour.Image);
+
+                _logger.Info("Image request success");
+            }
+            catch (Exception e)
+            {
+                _logger.Error("Requesting process led to following error: " + e.Message);
+            }
         }
 
         public static void ImportTours(string path)
@@ -117,12 +159,19 @@ namespace TourPlannerBL.TourObjectHandling
             try
             {
                 string jsonTourContent = FileHandler.ImportFromFile(path);
-
                 List<Tour> importedTours = JsonConvert.DeserializeObject<List<Tour>>(jsonTourContent);
 
-                //WIP Tours have to be updated in database
+                ClearData();
+
                 foreach (Tour tour in importedTours)
                 {
+                    RequestImportedTourImage(tour);
+                    InsertTour(tour, false);
+
+                    foreach (TourLog log in tour.LogList)
+                    {
+                        TourLogHandler.AddImportedTourLog(log);
+                    }
                 }
             }
             catch (Exception e)

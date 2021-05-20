@@ -11,7 +11,7 @@ namespace TourPlanner.Commands
 
         public override void Execute(object? parameter)
         {
-            TourLogHandler.AddTourLog(_viewModel.CurTour.Id);
+            TourLogHandler.AddNewTourLog(_viewModel.CurTour.Id);
 
             _viewModel.RefreshLogList();
         }

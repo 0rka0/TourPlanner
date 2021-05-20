@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using TourPlannerModels;
 
 namespace TourPlannerBL.StringPrep
@@ -33,6 +34,14 @@ namespace TourPlannerBL.StringPrep
         static public string BuildSummaryName(DateTime name)
         {
             return $"Summary_{name.ToString("yyyy_MM_dd_HH_mm_ss")}.pdf";
+        }
+
+        static public Tuple<string, string> ExtractLocationFromFilename(string filename)
+        {
+            string start = filename.Substring(1, filename.IndexOf("-") - 1);
+            string goal = filename.Substring(filename.IndexOf("-") + 1, filename.IndexOf(".") - filename.IndexOf("-") - 1);
+
+            return Tuple.Create(start, goal);
         }
     }
 }

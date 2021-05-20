@@ -11,7 +11,7 @@ namespace TourPlannerBL.TourObjectHandling
     {
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        static public void AddTourLog(int tourId)
+        static public void AddNewTourLog(int tourId)
         {
             _logger.Info("Attempting to add new TourLog");
             try
@@ -20,6 +20,22 @@ namespace TourPlannerBL.TourObjectHandling
                 int id = db.GetMaxId();
                 ITourObject tourLog = new TourLog(id, tourId);
                 db.InsertEntry(tourLog);
+
+                _logger.Info("Add success");
+            }
+            catch (Exception e)
+            {
+                _logger.Error("Adding process led to following error: " + e.Message);
+            }
+        }
+
+        static public void AddImportedTourLog(ITourObject log)
+        {
+            _logger.Info("Attempting to add TourLog");
+            try
+            {
+                IDatabase db = TourLogDatabaseHandler.GetInstance();
+                db.InsertEntry(log);
 
                 _logger.Info("Add success");
             }

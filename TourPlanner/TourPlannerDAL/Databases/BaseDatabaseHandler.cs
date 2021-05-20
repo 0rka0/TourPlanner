@@ -65,6 +65,17 @@ namespace TourPlannerDAL.Databases
             }
         }
 
+        public void ClearDb()
+        {
+            CheckConn();
+
+            using (var cmd = new NpgsqlCommand($"DELETE FROM {_table}", conn))
+            {
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         public abstract IEnumerable<ITourObject> SelectEntries(int id);
 
         public abstract void UpdateEntry(ITourObject tourObject);

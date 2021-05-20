@@ -6,9 +6,9 @@ namespace TourPlannerModels.TourObject
     public class Tour : ITourObject, ITourPrototype
     {
         public int Id { get; set; }
-        public string Name { get; private set; }
-        public string TourDescription { get; private set; }
-        public string RouteInformation { get; private set; }
+        public string Name { get; set; }
+        public string TourDescription { get; set; }
+        public string RouteInformation { get; set; }
         public string Distance { get; set; }
         public string Image { get; set; }
 

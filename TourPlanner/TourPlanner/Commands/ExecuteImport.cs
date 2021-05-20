@@ -18,6 +18,8 @@ namespace TourPlanner.Commands
             openFileDialog.FilterIndex = 1;
             if (openFileDialog.ShowDialog() == true)
                 TourHandler.ImportTours(openFileDialog.FileName);
+
+            _viewModel.RefreshTourList();
         }
     }
 }

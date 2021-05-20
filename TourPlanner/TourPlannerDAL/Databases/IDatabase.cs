@@ -9,6 +9,7 @@ namespace TourPlannerDAL.Databases
         public void UpdateEntry(ITourObject tourObject);
         public void InsertEntry(ITourObject tourObject);
         public void DeleteEntry(int id);
+        public void ClearDb();
         public int GetMaxId();
     }
 }
