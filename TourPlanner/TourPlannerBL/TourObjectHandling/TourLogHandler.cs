@@ -11,15 +11,21 @@ namespace TourPlannerBL.TourObjectHandling
     {
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        private static IDatabase _db;
+
+        static public void Init(IDatabase db)
+        {
+            _db = db;
+        }
+
         static public void AddNewTourLog(int tourId)
         {
             _logger.Info("Attempting to add new TourLog");
             try
             { 
-                IDatabase db = TourLogDatabaseHandler.GetInstance();
-                int id = db.GetMaxId();
+                int id = _db.GetMaxId();
                 ITourObject tourLog = new TourLog(id, tourId);
-                db.InsertEntry(tourLog);
+                _db.InsertEntry(tourLog);
 
                 _logger.Info("Add success");
             }
@@ -34,8 +40,7 @@ namespace TourPlannerBL.TourObjectHandling
             _logger.Info("Attempting to add TourLog");
             try
             {
-                IDatabase db = TourLogDatabaseHandler.GetInstance();
-                db.InsertEntry(log);
+                _db.InsertEntry(log);
 
                 _logger.Info("Add success");
             }
@@ -49,10 +54,9 @@ namespace TourPlannerBL.TourObjectHandling
         {
             try
             {
-                IDatabase db = TourLogDatabaseHandler.GetInstance();
                 foreach (TourLog log in tourLogs)
                 {
-                    db.UpdateEntry(log);
+                    _db.UpdateEntry(log);
                 }
 
                 _logger.Info("Edit success");
@@ -68,8 +72,7 @@ namespace TourPlannerBL.TourObjectHandling
             _logger.Info("Attempting to delete tourlog");
             try
             {
-                IDatabase db = TourLogDatabaseHandler.GetInstance();
-                db.DeleteEntry(id);
+                _db.DeleteEntry(id);
 
                 _logger.Info("Deletion success");
             }
@@ -77,6 +80,11 @@ namespace TourPlannerBL.TourObjectHandling
             {
                 _logger.Error("Deletion process led to following error: " + e.Message);
             }
+        }
+
+        static public void ClearData()
+        {
+            _db.ClearDb();
         }
     }
 }

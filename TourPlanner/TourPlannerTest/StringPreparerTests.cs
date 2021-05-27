@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System;
+using System.Configuration;
 using TourPlannerBL.StringPrep;
 
 namespace TourPlannerTest
@@ -9,6 +10,7 @@ namespace TourPlannerTest
         [SetUp]
         public void Setup()
         {
+            TourPlannerModels.Configuration.Configure(ConfigurationManager.AppSettings);
         }
 
         [Test]
@@ -49,7 +51,7 @@ namespace TourPlannerTest
         }
 
         [Test]
-        public void BuildName_BuildingPdfName_ReturnsStringAsValidFilename()
+        public void BuildName_BuildingReportName_ReturnsStringAsValidFilename()
         {
             DateTime date = DateTime.Now;
 
@@ -57,6 +59,26 @@ namespace TourPlannerTest
             string actualString = StringPreparer.BuildReportName(date);
 
             Assert.AreEqual(desiredString, actualString);
+        }
+
+        [Test]
+        public void BuildName_BuildingSummaryName_ReturnsStringAsValidFilename()
+        {
+            DateTime date = DateTime.Now;
+
+            string desiredString = $"Summary_{date.ToString("yyyy_MM_dd_HH_mm_ss")}.pdf";
+            string actualString = StringPreparer.BuildSummaryName(date);
+
+            Assert.AreEqual(desiredString, actualString);
+        }
+
+        [Test]
+        public void ExtractLocationFromFilename_ExtractsStartAndGoalFromFilename_ReturnsTupleOfTwoStrings()
+        {
+            Tuple<string, string> desiredTuple = Tuple.Create("Wien", "Graz");
+            Tuple<string, string> actualTuple = StringPreparer.ExtractLocationFromFilename("1Wien-Graz.png");
+
+            Assert.AreEqual(desiredTuple, actualTuple);
         }
     }
 }

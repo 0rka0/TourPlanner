@@ -17,6 +17,13 @@ namespace TourPlannerBL.TourObjectHandling
     {
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        private static IDatabase _db;
+
+        static public void Init(IDatabase db)
+        {
+            _db = db;
+        }
+
         static public void AddTour(string start, string goal, string desc, string inf)
         {
             _logger.Info("Attempting to add Tour");
@@ -49,8 +56,7 @@ namespace TourPlannerBL.TourObjectHandling
 
             try
             {
-                IDatabase db = TourDatabaseHandler.GetInstance();
-                db.DeleteEntry(tour.Id);
+                _db.DeleteEntry(tour.Id);
                 FileHandler.DeleteImage(Configuration.ImagePath + tour.Image);
 
                 _logger.Info("Deletion success");
@@ -69,8 +75,7 @@ namespace TourPlannerBL.TourObjectHandling
             {
                 tour.SetEditData(name, description, information);
 
-                IDatabase db = TourDatabaseHandler.GetInstance();
-                db.UpdateEntry(tour);
+                _db.UpdateEntry(tour);
 
                 _logger.Info("Editing success");
             }
@@ -100,28 +105,25 @@ namespace TourPlannerBL.TourObjectHandling
             }
         }
 
-        static Tour CreateTourObject(TourInformationResponseObject information, string name, string desc, string inf)
+        static public Tour CreateTourObject(TourInformationResponseObject information, string name, string desc, string inf)
         {
             return new Tour(name, desc, inf, information.route.distance.ToString());
         }
 
         static private void InsertTour(Tour tour, bool newTour)
         {
-            IDatabase db = TourDatabaseHandler.GetInstance();
             if (newTour)
             {
-                tour.Id = db.GetMaxId();
+                tour.Id = _db.GetMaxId();
                 tour.Image = StringPreparer.BuildFilename(tour.Id, tour.Name);
             }
-            db.InsertEntry(tour);
+            _db.InsertEntry(tour);
         }
 
         private static void ClearData()
         {
-            IDatabase db = TourDatabaseHandler.GetInstance();
-            db.ClearDb();
-            db = TourLogDatabaseHandler.GetInstance();
-            db.ClearDb();
+            _db.ClearDb();
+            TourLogHandler.ClearData();
 
             DirectoryInfo di = new DirectoryInfo(Configuration.ImagePath);
             foreach (FileInfo file in di.GetFiles())
