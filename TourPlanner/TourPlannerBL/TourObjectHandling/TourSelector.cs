@@ -11,6 +11,13 @@ namespace TourPlannerBL.TourObjectHandling
     static public class TourSelector
     {
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        
+        private static IDatabase _db;
+
+        static public void Init(IDatabase db)
+        {
+            _db = db;
+        }
 
         static public IEnumerable<Tour> GetTours()
         {
@@ -18,10 +25,8 @@ namespace TourPlannerBL.TourObjectHandling
 
             try
             {
-                IDatabase db = TourDatabaseHandler.GetInstance();
-                List<Tour> tourList = (List<Tour>)db.SelectEntries();
+                List<Tour> tourList = (List<Tour>)_db.SelectEntries();
 
-                db = TourLogDatabaseHandler.GetInstance();
                 tourList = FillToursWithLogs(tourList);
 
                 return tourList;
@@ -40,19 +45,12 @@ namespace TourPlannerBL.TourObjectHandling
             foreach (Tour tour in tourList)
             {
                 logList.Clear();
-                logList = (List<TourLog>)SelectTourLogsById(tour.Id);
+                logList = (List<TourLog>)TourLogSelector.SelectTourLogsById(tour.Id);
 
                 tour.LogList.AddRange(logList);
             }
 
             return tourList;
-        }
-
-        public static IEnumerable<ITourObject> SelectTourLogsById(int id)
-        {
-            IDatabase db = TourLogDatabaseHandler.GetInstance();
-
-            return db.SelectEntries(id);
         }
 
         static public IEnumerable<Tour> Search(string filter)

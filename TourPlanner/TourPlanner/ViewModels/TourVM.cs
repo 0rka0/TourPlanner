@@ -292,7 +292,7 @@ namespace TourPlanner.Viewmodels
             _logger.Info("Application initialized");
 
             Configure();
-            Initiator.Init();
+            DbInitiator.Init();
             InitTourList();
         }
 
@@ -350,7 +350,7 @@ namespace TourPlanner.Viewmodels
             if (_curTour != null)
             {
                 _curTour.LogList.Clear();
-                _curTour.LogList.AddRange((List<TourLog>)TourSelector.SelectTourLogsById(_curTour.Id));
+                _curTour.LogList.AddRange((List<TourLog>)TourLogSelector.SelectTourLogsById(_curTour.Id));
             }
         }
     }

@@ -7,6 +7,7 @@ using System.Reflection;
 using System;
 using TourPlannerBL.StringPrep;
 using TourPlannerModels.TourObject;
+using TourPlannerDAL.Databases;
 
 namespace TourPlannerBL.PDF
 {
@@ -19,7 +20,7 @@ namespace TourPlannerBL.PDF
 
             try
             {
-                PdfModel model = PdfDataSource.GetDetailsAllTours();
+                PdfModel model = PdfDataSource.GetDetailsAllTours(TourDatabaseHandler.GetInstance());
                 IDocument document = new TourSummary(model);
                 document.GeneratePdf($"{Configuration.ReportPath}{StringPreparer.BuildSummaryName(model.CreationDate)}");
             }
@@ -35,7 +36,7 @@ namespace TourPlannerBL.PDF
 
             try
             {
-                PdfModel model = PdfDataSource.GetDetailsSingleTour(tour);
+                PdfModel model = PdfDataSource.GetDetailsSingleTour(TourLogDatabaseHandler.GetInstance(), tour);
                 IDocument document = new TourReport(model);
                 document.GeneratePdf($"{Configuration.ReportPath}{StringPreparer.BuildReportName(model.CreationDate)}");
             }

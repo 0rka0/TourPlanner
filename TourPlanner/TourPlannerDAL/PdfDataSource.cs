@@ -7,9 +7,8 @@ namespace TourPlannerDAL.PDF
 {
     public static class PdfDataSource
     {
-        public static PdfModel GetDetailsAllTours()
+        public static PdfModel GetDetailsAllTours(IDatabase db)
         {
-            IDatabase db = TourDatabaseHandler.GetInstance();
             PdfModel pdfModel = new PdfModel();
             IEnumerable<ITourObject> tourList = db.SelectEntries();
             db = TourLogDatabaseHandler.GetInstance();
@@ -23,10 +22,9 @@ namespace TourPlannerDAL.PDF
             return pdfModel;
         }
 
-        public static PdfModel GetDetailsSingleTour(Tour curTour)
+        public static PdfModel GetDetailsSingleTour(IDatabase db, Tour curTour)
         {
             PdfModel pdfModel = new PdfModel();
-            IDatabase db = TourLogDatabaseHandler.GetInstance();
             curTour.LogList.Clear();
             curTour.LogList.AddRange((IEnumerable<TourLog>)db.SelectEntries(curTour.Id));
             pdfModel.Tours.Add(curTour);
