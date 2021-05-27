@@ -5,14 +5,14 @@ using TourPlannerModels.TourObject;
 
 namespace TourPlannerTest.TestDatabases
 {
-    public class TourDatabaseTest : BaseDatabaseHandler
+    public class TourDatabaseTest : IDatabase
     {
         private static TourDatabaseTest _db;
         public List<Tour> TourList = new List<Tour>();
 
-        TourDatabaseTest() : base(Configuration.TourTable)
+        TourDatabaseTest()
         {
-            Tour tour = new Tour(1, "1", "Desc", "Inf", "Dist", "1London-Paris.png");
+            Tour tour = new Tour(1, "1", "Desc", "Inf", "Dist", "0Moped-Banane.png");
             TourList.Add(tour);
 
             for(int i = 2; i < 5; i++)
@@ -26,27 +26,23 @@ namespace TourPlannerTest.TestDatabases
 
         public static IDatabase GetInstance()
         {
-            if (_db == null)
-            {
-                _db = new TourDatabaseTest();
-            }
-            return _db;
+            return new TourDatabaseTest();
         }
 
-        public override void InsertEntry(ITourObject tourObject)
+        public void InsertEntry(ITourObject tourObject)
         {
             TourList.Add((Tour)tourObject);
         }
 
-        public override IEnumerable<ITourObject> SelectEntries(int id)
+        public IEnumerable<ITourObject> SelectEntries(int id)
         {
             return TourList;
         }
 
-        public override void UpdateEntry(ITourObject tourObject)
+        public void UpdateEntry(ITourObject tourObject)
         {
             Tour tour = (Tour)tourObject;
-            for (int i = 1; i < TourList.Count; i++)
+            for (int i = 1; i < TourList.Count+1; i++)
             {
                 if (TourList[i].Id == tour.Id)
                 {
@@ -55,7 +51,7 @@ namespace TourPlannerTest.TestDatabases
             }
         }
 
-        public new int GetMaxId()
+        public int GetMaxId()
         {
             int maxId = int.MinValue;
 
@@ -68,9 +64,9 @@ namespace TourPlannerTest.TestDatabases
             return maxId + 1;
         }
 
-        public new void DeleteEntry(int id)
+        public void DeleteEntry(int id)
         {
-            for(int i = 1; i < TourList.Count; i++)
+            for(int i = 1; i < TourList.Count+1; i++)
             {
                 if(TourList[i].Id == id)
                 {
@@ -79,7 +75,7 @@ namespace TourPlannerTest.TestDatabases
             }
         }
 
-        public new void ClearDb()
+        public void ClearDb()
         {
             TourList.Clear();
         }

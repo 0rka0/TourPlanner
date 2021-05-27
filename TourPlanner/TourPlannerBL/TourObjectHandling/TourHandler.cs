@@ -110,7 +110,7 @@ namespace TourPlannerBL.TourObjectHandling
             return new Tour(name, desc, inf, information.route.distance.ToString());
         }
 
-        static private void InsertTour(Tour tour, bool newTour)
+        static public void InsertTour(Tour tour, bool newTour)
         {
             if (newTour)
             {
@@ -120,7 +120,7 @@ namespace TourPlannerBL.TourObjectHandling
             _db.InsertEntry(tour);
         }
 
-        private static void ClearData()
+        static public void ClearData()
         {
             _db.ClearDb();
             TourLogHandler.ClearData();

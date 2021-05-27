@@ -91,14 +91,18 @@ namespace TourPlannerBL.PDF
                             stack.Element().BorderBottom(1).BorderColor("CCC").Padding(10).Row(row =>
                             {
                                 row.RelativeColumn(1.5f).AlignCenter().Text(log.Date);
-                                row.RelativeColumn(1).AlignCenter().Text(log.Distance);
-                                row.RelativeColumn(1).AlignCenter().Text(log.TotalTime);
+                                row.RelativeColumn(1).AlignCenter().Text(log.Distance + " km");
+                                row.RelativeColumn(1).AlignCenter().Text(log.TotalTime + " h");
                                 row.RelativeColumn(1).AlignCenter().Text(log.Rating);
-                                row.RelativeColumn(1).AlignCenter().Text(log.AvgSpeed);
+                                row.RelativeColumn(1).AlignCenter().Text(log.AvgSpeed + " km/h");
                                 row.RelativeColumn(1).AlignCenter().Text(log.Weather);
                                 row.RelativeColumn(1).AlignCenter().Text(log.Traffic);
                                 row.RelativeColumn(1).AlignCenter().Text(log.Breaks);
                                 row.RelativeColumn(1).AlignCenter().Text(log.GroupSize);
+                            });
+                            stack.Element().BorderBottom(1).BorderColor("CCC").Padding(10).Row(row =>
+                            {
+                                row.RelativeColumn().AlignCenter().Text(log.Report);
                             });
                         }
 
