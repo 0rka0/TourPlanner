@@ -11,6 +11,7 @@ namespace TourPlanner.Commands
         public override void Execute(object? paramter)
         {
             _viewModel.FilterOutput = string.Empty;
+            _viewModel.FilterInput = string.Empty;
             Clear();
         }
 

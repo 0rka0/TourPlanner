@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="TourPlanner.Controls.TourLogDataGridView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:models="clr-namespace:TourPlannerModels.Types;assembly=TourPlannerModels" xmlns:controls="clr-namespace:TourPlanner.Controls"
+             xmlns:local="clr-namespace:TourPlanner.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="WeatherTypes" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:WeatherTypes" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="TrafficTypes" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:TrafficTypes" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="Ratings" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="models:Ratings" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Margin="5" FontSize="14" VerticalAlignment="Center">Logs:</Label>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteTourLogAdd}">Add</Button>
+                <Button Grid.Column="1" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteTourLogDel}">Del</Button>
+                <Button Grid.Column="2" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteTourLogEdit}">Apply changes</Button>
+            </Grid>
+        </Grid>
+        <DataGrid Grid.Row="1" Margin="5" ItemsSource="{Binding CurLogList, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding CurTourLog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" 
+                              ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Date}" Header="Date"/>
+                <DataGridTextColumn Binding="{Binding Distance}" Header="Distance (km)"/>
+                <DataGridTextColumn Binding="{Binding Report}" Header="Report" MaxWidth="150"/>
+                <DataGridTextColumn Binding="{Binding TotalTime}" Header="Total time (h)"/>
+                <DataGridComboBoxColumn SelectedItemBinding="{Binding Rating}" ItemsSource="{Binding Source={StaticResource Ratings}}" Header="Rating"/>
+                <DataGridTextColumn Binding="{Binding AvgSpeed}" Header="Average speed (km/h)"/>
+                <DataGridComboBoxColumn SelectedItemBinding="{Binding Weather}" ItemsSource="{Binding Source={StaticResource WeatherTypes}}" Header=" Weather"/>
+                <DataGridComboBoxColumn SelectedItemBinding="{Binding Traffic}" ItemsSource="{Binding Source={StaticResource TrafficTypes}}"  Header="Traffic"/>
+                <DataGridTextColumn Binding="{Binding Breaks}" Header="Breaks"/>
+                <DataGridTextColumn Binding="{Binding GroupSize}" Header="GroupSize"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

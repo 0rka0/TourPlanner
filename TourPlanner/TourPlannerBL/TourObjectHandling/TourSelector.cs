@@ -56,8 +56,29 @@ namespace TourPlannerBL.TourObjectHandling
         static public IEnumerable<Tour> Search(string filter)
         {
             IEnumerable<Tour> tours = GetTours();
+            tours = FillToursWithLogs((List<Tour>)tours);
 
-            return tours.Where(x => x.Name.ToLower().Contains(filter.ToLower()));
+            return tours.Where(x => (
+                x.Name.ToLower().Contains(filter.ToLower()) ||
+                x.TourDescription.ToLower().Contains(filter.ToLower()) ||
+                x.RouteInformation.ToLower().Contains(filter.ToLower()) ||
+                    ((IEnumerable<TourLog>)x.LogList).Where(y => (
+                        y.Date.Year.ToString().ToLower().Equals(filter.ToLower()) ||
+                        String.Format("{0}/{1}", y.Date.Year, y.Date.Month).ToLower().Equals(filter.ToLower()) ||
+                        String.Format("{1}/{0}", y.Date.Year, y.Date.Month).ToLower().Equals(filter.ToLower()) ||
+                        String.Format("{0}/{1}/{2}", y.Date.Year, y.Date.Month, y.Date.Day).ToLower().Equals(filter.ToLower()) ||
+                        String.Format("{2}/{1}/{0}", y.Date.Year, y.Date.Month, y.Date.Day).ToLower().Equals(filter.ToLower()) ||
+                        String.Format("{0}.{1}", y.Date.Year, y.Date.Month).ToLower().Equals(filter.ToLower()) ||
+                        String.Format("{1}.{0}", y.Date.Year, y.Date.Month).ToLower().Equals(filter.ToLower()) ||
+                        String.Format("{0}.{1}.{2}", y.Date.Year, y.Date.Month, y.Date.Day).ToLower().Equals(filter.ToLower()) ||
+                        String.Format("{2}.{1}.{0}", y.Date.Year, y.Date.Month, y.Date.Day).ToLower().Equals(filter.ToLower()) ||
+                        y.Report.ToLower().Contains(filter.ToLower()) ||
+                        y.Rating.ToString().ToLower().Contains(filter.ToLower()) ||
+                        ((int)y.Rating).ToString().Contains(filter.ToLower()) ||
+                        y.Weather.ToString().ToLower().Contains(filter.ToLower()) ||
+                        y.Traffic.ToString().ToLower().Contains(filter.ToLower())
+                    )).Any()
+                ));
         }
     }
 }

@@ -5,29 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner.Viewmodels"
         xmlns:System="clr-namespace:System;assembly=mscorlib"
-        xmlns:models="clr-namespace:TourPlannerModels.Types;assembly=TourPlannerModels"
+        xmlns:models="clr-namespace:TourPlannerModels.Types;assembly=TourPlannerModels" xmlns:controls="clr-namespace:TourPlanner.Controls"
         mc:Ignorable="d"
         Title="TourPlanner - UI" Height="800" Width="800" MinHeight="400" MinWidth="400">
     <Window.DataContext>
         <local:TourVM />
     </Window.DataContext>
-    <Window.Resources>
-        <ObjectDataProvider x:Key="WeatherTypes" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="models:WeatherTypes" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-        <ObjectDataProvider x:Key="TrafficTypes" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="models:TrafficTypes" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-        <ObjectDataProvider x:Key="Ratings" MethodName="GetValues" ObjectType="{x:Type System:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="models:Ratings" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </Window.Resources>
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -39,37 +22,11 @@
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0"/>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1"/>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2"/>
-        <Grid Grid.Row="0">
-            <DockPanel>
-                <Menu DockPanel.Dock="Top">
-                    <MenuItem Header="_File">
-                        <MenuItem Header="_Import" Command="{Binding ExecuteImport}" />
-                        <MenuItem Header="_Export" Command="{Binding ExecuteExport}" />
-                        <MenuItem Header="_Create Tour Report" Command="{Binding ExecuteCreateReport}" />
-                        <MenuItem Header="_Create Summarize Report" Command="{Binding ExecuteCreateSummary}" />
-                        <Separator />
-                        <MenuItem Header="_Exit" />
-                    </MenuItem>
-                    <MenuItem Header="_Edit" />
-                </Menu>
-                <TextBox AcceptsReturn="True" />
-            </DockPanel>
-        </Grid>
+        <controls:MenuDockPanel Grid.Row="0" />
         <Grid Grid.Row="1">
             <Label Margin="5" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center">Tour-Planner</Label>
         </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="4*" />
-            </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding FilterInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <Button Grid.Column="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteSearch}">Search!</Button>
-            <Button Grid.Column="2" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteClear}">Clear!</Button>
-            <Label Grid.Column="3" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding FilterOutput}"></Label>
-        </Grid>
+        <controls:FilterArea Grid.Row="2"/>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150" />
@@ -77,239 +34,14 @@
             </Grid.ColumnDefinitions>
             <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" />
             <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" />
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="1*" />
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Label Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">Tours</Label>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <ToggleButton Name="AddButton" Grid.Column="0" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Button_Click">Add</ToggleButton>
-                        <Popup Placement="Mouse" Width="400" Height="250" IsOpen="{Binding IsChecked, ElementName=AddButton}" StaysOpen="False">
-                            <Border BorderBrush="DarkGray" BorderThickness="2" Background="LightGray">
-                                <Grid Margin="5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="100"/>
-                                        <RowDefinition Height="25"/>
-                                        <RowDefinition Height="25"/>
-                                        <RowDefinition Height="25"/>
-                                        <RowDefinition Height="25"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
-
-                                    <Grid Grid.Row="0">
-                                        <Label FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Add a Tour</Label>
-                                    </Grid>
-                                    <Grid Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="3*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0">Start of Route:</Label>
-                                        <TextBox Margin="1" Grid.Column="1" Text="{Binding StartInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                                    </Grid>
-                                    <Grid Grid.Row="2">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="3*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0">End of Route:</Label>
-                                        <TextBox Margin="1" Grid.Column="1" Text="{Binding EndInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                                    </Grid>
-                                    <Grid Grid.Row="3">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="3*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0">Description</Label>
-                                        <TextBox Margin="1" Grid.Column="1" Text="{Binding DescriptionInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                                    </Grid>
-                                    <Grid Grid.Row="4">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="3*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0">Information</Label>
-                                        <TextBox Margin="1" Grid.Column="1" Text="{Binding InformationInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                                    </Grid>
-                                    <Button Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding ExecuteAdd}">Add</Button>
-                                </Grid>
-                            </Border>
-                        </Popup>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <ToggleButton Name="EditButton" Grid.Column="0" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Click="Button_Click" Command="{Binding EnableExecuteEdit}">Edit</ToggleButton>
-                        <Popup Placement="Mouse" Width="400" Height="250" IsOpen="{Binding IsChecked, ElementName=EditButton}" StaysOpen="False">
-                            <Border BorderBrush="DarkGray" BorderThickness="2" Background="LightGray">
-                                <Grid Margin="5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="100"/>
-                                        <RowDefinition Height="25"/>
-                                        <RowDefinition Height="25"/>
-                                        <RowDefinition Height="25"/>
-                                        <RowDefinition Height="1*"/>
-                                    </Grid.RowDefinitions>
-
-                                    <Grid Grid.Row="0">
-                                        <Label FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">Edit a Tour</Label>
-                                    </Grid>
-                                    <Grid Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="3*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0">Name of Route:</Label>
-                                        <TextBox Margin="1" Grid.Column="1" Text="{Binding StartInput, UpdateSourceTrigger=PropertyChanged}"></TextBox> <!-- StartInput is temporarily used as name and not Start location-->
-                                    </Grid>
-                                    <Grid Grid.Row="2">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="3*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0">Description</Label>
-                                        <TextBox Margin="1" Grid.Column="1" Text="{Binding DescriptionInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                                    </Grid>
-                                    <Grid Grid.Row="3">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*" />
-                                            <ColumnDefinition Width="3*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <Label Grid.Column="0">Information</Label>
-                                        <TextBox Margin="1" Grid.Column="1" Text="{Binding InformationInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                                    </Grid>
-                                    <Button Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding ExecuteEdit}">Edit</Button>
-                                </Grid>
-                            </Border>
-                        </Popup>
-                    </Grid>
-                    <Button Grid.Column="2" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteCopy}">Copy</Button>
-                    <Button Grid.Column="3" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteDel}">Del</Button>
-                </Grid>
-                <Grid Grid.Row="2">
-                    <ListBox x:Name="listTours" ItemsSource="{Binding TourList}"  SelectedValue="{Binding CurTour, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name" />
-                </Grid>
-            </Grid>
+            <controls:TourListView Grid.Column="0" />
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*" />
                     <RowDefinition Height="1*" MinHeight="100" />
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="1*" />
-                    </Grid.RowDefinitions>
-                    <Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" />
-                    <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1" />
-                    <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" />
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center">Title:</Label>
-                        <Label Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" Content="{Binding CurTour.Name}"/>
-                    </Grid>
-                    <Grid Grid.Row="1">
-                        <TabControl>
-                            <TabItem Header="Route">
-
-                                <Image VerticalAlignment="Stretch" HorizontalAlignment="Left" Source="{Binding CurTourImage}"></Image>
-                            </TabItem>
-                            <TabItem Header="Details">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid Grid.Row="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" FontSize="14" xml:space="preserve">Distance: </TextBlock>
-                                        <TextBlock Grid.Column="1" FontSize="14" Text="{Binding CurTour.Distance}" />
-                                        <TextBlock Grid.Column="2" FontSize="14"> km</TextBlock>
-                                    </Grid>
-                                    <Grid Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="1*" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" FontSize="14" xml:space="preserve">Description: </TextBlock>
-                                        <TextBlock Grid.Column="1" FontSize="14" Margin="0,0,5,0" TextWrapping="Wrap" Text="{Binding CurTour.TourDescription}" />
-                                    </Grid>
-                                    <Grid Grid.Row="2">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="1*" />
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" FontSize="14" xml:space="preserve">Information: </TextBlock>
-                                        <TextBlock Grid.Column="1" FontSize="14" Margin="0,0,5,0" TextWrapping="Wrap" Text="{Binding CurTour.RouteInformation}" />
-                                    </Grid>
-                                </Grid>
-                            </TabItem>
-                        </TabControl>
-                    </Grid>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="1*" />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5" FontSize="14" VerticalAlignment="Center">Logs:</Label>
-                        <Grid Grid.Column="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                            </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteTourLogAdd}">Add</Button>
-                            <Button Grid.Column="1" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteTourLogDel}">Del</Button>
-                            <Button Grid.Column="2" Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Command="{Binding ExecuteTourLogEdit}">Apply changes</Button>
-                        </Grid>
-                    </Grid>
-                    <DataGrid Grid.Row="1" Margin="5" ItemsSource="{Binding CurLogList, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedItem="{Binding CurTourLog, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" 
-                              ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Date}" Header="Date"/>
-                            <DataGridTextColumn Binding="{Binding Distance}" Header="Distance (km)"/>
-                            <DataGridTextColumn Binding="{Binding Report}" Header="Report" MaxWidth="150"/>
-                            <DataGridTextColumn Binding="{Binding TotalTime}" Header="Total time (h)"/>
-                            <DataGridComboBoxColumn SelectedItemBinding="{Binding Rating}" ItemsSource="{Binding Source={StaticResource Ratings}}" Header="Rating"/>
-                            <DataGridTextColumn Binding="{Binding AvgSpeed}" Header="Average speed (km/h)"/>
-                            <DataGridComboBoxColumn SelectedItemBinding="{Binding Weather}" ItemsSource="{Binding Source={StaticResource WeatherTypes}}" Header=" Weather"/>
-                            <DataGridComboBoxColumn SelectedItemBinding="{Binding Traffic}" ItemsSource="{Binding Source={StaticResource TrafficTypes}}"  Header="Traffic"/>
-                            <DataGridTextColumn Binding="{Binding Breaks}" Header="Breaks"/>
-                            <DataGridTextColumn Binding="{Binding GroupSize}" Header="GroupSize"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
+                <controls:TourDetailView Grid.Row="0" />
+                <controls:TourLogDataGridView Grid.Row="1" />
             </Grid>
         </Grid>
     </Grid>

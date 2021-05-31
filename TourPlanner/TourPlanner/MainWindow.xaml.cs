@@ -12,10 +12,5 @@ namespace TourPlanner
             log4net.Config.XmlConfigurator.Configure();
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

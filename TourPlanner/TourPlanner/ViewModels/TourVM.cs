@@ -272,6 +272,8 @@ namespace TourPlanner.Viewmodels
 
         public ICommand ExecuteTourLogDel { get; }
 
+        public ICommand ExecuteExit { get; }
+
         public TourVM()
         {
             this.ExecuteSearch = new ExecuteSearch(this);
@@ -288,6 +290,7 @@ namespace TourPlanner.Viewmodels
             this.ExecuteTourLogAdd = new ExecuteTourLogAdd(this);
             this.ExecuteTourLogEdit = new ExecuteTourLogEdit(this);
             this.ExecuteTourLogDel = new ExecuteTourLogDel(this);
+            this.ExecuteExit = new ExecuteExit(this);
 
             _logger.Info("Application initialized");
 
