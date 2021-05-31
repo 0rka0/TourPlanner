@@ -7,8 +7,8 @@ namespace TourPlanner.Commands
 {
     class ExecuteTourEdit : ICommand
     {
-        private readonly TourVM _viewModel;
-        public ExecuteTourEdit(TourVM viewModel)
+        private readonly MainViewModel _viewModel;
+        public ExecuteTourEdit(MainViewModel viewModel)
         {
             _viewModel = viewModel;
 

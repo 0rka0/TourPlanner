@@ -5,7 +5,7 @@ namespace TourPlanner.Commands
 {
     class ExecuteTourCopy : ExecuteSelectedTourBase
     {
-        public ExecuteTourCopy(TourVM viewModel) : base(viewModel)
+        public ExecuteTourCopy(MainViewModel viewModel) : base(viewModel)
         {
         }
 

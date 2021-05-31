@@ -6,9 +6,9 @@ namespace TourPlanner.Commands
 {
     abstract class ExecuteNoConditionBase : ICommand
     {
-        protected readonly TourVM _viewModel;
+        protected readonly MainViewModel _viewModel;
 
-        public ExecuteNoConditionBase(TourVM viewModel)
+        public ExecuteNoConditionBase(MainViewModel viewModel)
         {
             _viewModel = viewModel;
         }

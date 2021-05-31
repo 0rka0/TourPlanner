@@ -4,12 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner.Viewmodels"
-        xmlns:System="clr-namespace:System;assembly=mscorlib"
-        xmlns:models="clr-namespace:TourPlannerModels.Types;assembly=TourPlannerModels" xmlns:controls="clr-namespace:TourPlanner.Controls"
+        xmlns:controls="clr-namespace:TourPlanner.Controls"
         mc:Ignorable="d"
         Title="TourPlanner - UI" Height="800" Width="800" MinHeight="400" MinWidth="400">
     <Window.DataContext>
-        <local:TourVM />
+        <local:MainViewModel />
     </Window.DataContext>
     <Grid Margin="5">
         <Grid.RowDefinitions>

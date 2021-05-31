@@ -18,7 +18,7 @@ using System.Configuration;
 
 namespace TourPlanner.Viewmodels
 {
-    class TourVM : ViewModelBase
+    class MainViewModel : ViewModelBase
     {
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -274,7 +274,7 @@ namespace TourPlanner.Viewmodels
 
         public ICommand ExecuteExit { get; }
 
-        public TourVM()
+        public MainViewModel()
         {
             this.ExecuteSearch = new ExecuteSearch(this);
             this.ExecuteClear = new ExecuteClear(this);

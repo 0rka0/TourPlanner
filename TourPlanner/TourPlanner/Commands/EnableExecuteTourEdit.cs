@@ -6,7 +6,7 @@ namespace TourPlanner.Commands
 {
     class EnableExecuteTourEdit : ExecuteSelectedTourBase
     {
-        public EnableExecuteTourEdit(TourVM viewModel) : base(viewModel)
+        public EnableExecuteTourEdit(MainViewModel viewModel) : base(viewModel)
         {
         }
 

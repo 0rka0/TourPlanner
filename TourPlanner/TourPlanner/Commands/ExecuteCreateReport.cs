@@ -7,7 +7,7 @@ namespace TourPlanner.Commands
 {
     class ExecuteCreateReport : ExecuteSelectedTourBase
     {
-        public ExecuteCreateReport(TourVM viewModel) : base(viewModel)
+        public ExecuteCreateReport(MainViewModel viewModel) : base(viewModel)
         {
         }
 

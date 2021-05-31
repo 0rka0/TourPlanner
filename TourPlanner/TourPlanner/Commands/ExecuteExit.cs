@@ -6,7 +6,7 @@ namespace TourPlanner.Commands
 {
     class ExecuteExit : ExecuteNoConditionBase
     {
-        public ExecuteExit(TourVM viewModel) : base(viewModel)
+        public ExecuteExit(MainViewModel viewModel) : base(viewModel)
         { }
 
         public override void Execute(object parameter)

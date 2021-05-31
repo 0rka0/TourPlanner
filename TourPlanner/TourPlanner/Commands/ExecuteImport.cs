@@ -7,7 +7,7 @@ namespace TourPlanner.Commands
 {
     class ExecuteImport : ExecuteNoConditionBase
     {
-        public ExecuteImport(TourVM viewModel) : base(viewModel)
+        public ExecuteImport(MainViewModel viewModel) : base(viewModel)
         {
         }
 

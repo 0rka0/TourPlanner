@@ -7,7 +7,7 @@ namespace TourPlanner.Commands
 {
     class ExecuteCreateSummary : ExecuteNoConditionBase
     {
-        public ExecuteCreateSummary(TourVM viewModel) : base(viewModel)
+        public ExecuteCreateSummary(MainViewModel viewModel) : base(viewModel)
         {
         }
 

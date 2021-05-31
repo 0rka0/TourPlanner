@@ -4,7 +4,7 @@ namespace TourPlanner.Commands
 {
     class ExecuteClear : ExecuteNoConditionBase
     {
-        public ExecuteClear(TourVM viewModel) : base(viewModel)
+        public ExecuteClear(MainViewModel viewModel) : base(viewModel)
         {
         }
 
