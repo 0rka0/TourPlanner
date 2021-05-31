@@ -20,7 +20,7 @@ namespace TourPlannerBL.PDF
 
             try
             {
-                PdfModel model = PdfDataSource.GetDetailsAllTours(TourDatabaseHandler.GetInstance());
+                PdfModel model = PdfDataSource.GetDetailsAllTours(TourDatabaseHandler.GetInstance(), TourLogDatabaseHandler.GetInstance());
                 IDocument document = new TourSummary(model);
                 document.GeneratePdf($"{Configuration.ReportPath}{StringPreparer.BuildSummaryName(model.CreationDate)}");
             }

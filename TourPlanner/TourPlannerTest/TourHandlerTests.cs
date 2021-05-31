@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System.Collections.Generic;
 using TourPlannerBL.TourObjectHandling;
 using TourPlannerModels.TourObject;
 using TourPlannerTest.TestDatabases;
@@ -31,7 +30,7 @@ namespace TourPlannerTest
         [Test]
         public void DeleteTour_DeletingASingleTourFromDB_DeletedTourNoLongerInDb()
         {
-            bool stillInDb = true;
+            bool stillInDb = false;
 
             Tour tour = new Tour();
             tour.Id = 2;
@@ -41,11 +40,11 @@ namespace TourPlannerTest
             {
                 if(curTour.Id == tour.Id)
                 {
-                    stillInDb = false;
+                    stillInDb = true;
                 }
             }
 
-            Assert.IsTrue(stillInDb);
+            Assert.IsFalse(stillInDb);
         }
 
         [Test]
@@ -177,6 +176,15 @@ namespace TourPlannerTest
             Assert.AreEqual(tour.Id, db.TourList[db.TourList.Count - 1].Id);
         }
 
-        //ClearDataTest to be added after TourLog testing is included
+        [Test]
+        public void ClearData_DeletingAllEntriesFromDb_BothDbEmpty()
+        {
+            TourLogDatabaseTest db2 = (TourLogDatabaseTest)TourLogDatabaseTest.GetInstance();
+            TourLogHandler.Init(db2);
+            TourHandler.ClearData();
+
+            Assert.IsEmpty(db.TourList);
+            Assert.IsEmpty(db2.TourLogList);
+        }
     }
 }

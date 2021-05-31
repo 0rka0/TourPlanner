@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using TourPlannerDAL.Databases;
-using TourPlannerModels;
 using TourPlannerModels.TourObject;
 
 namespace TourPlannerTest.TestDatabases
 {
     public class TourDatabaseTest : IDatabase
     {
-        private static TourDatabaseTest _db;
         public List<Tour> TourList = new List<Tour>();
 
         TourDatabaseTest()

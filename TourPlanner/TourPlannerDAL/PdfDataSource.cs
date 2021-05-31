@@ -7,15 +7,14 @@ namespace TourPlannerDAL.PDF
 {
     public static class PdfDataSource
     {
-        public static PdfModel GetDetailsAllTours(IDatabase db)
+        public static PdfModel GetDetailsAllTours(IDatabase db, IDatabase db2)
         {
             PdfModel pdfModel = new PdfModel();
             IEnumerable<ITourObject> tourList = db.SelectEntries();
-            db = TourLogDatabaseHandler.GetInstance();
             foreach (Tour tour in tourList)
             {
                 tour.LogList.Clear();
-                tour.LogList.AddRange((IEnumerable<TourLog>)db.SelectEntries(tour.Id));
+                tour.LogList.AddRange((IEnumerable<TourLog>)db2.SelectEntries(tour.Id));
                 pdfModel.Tours.Add(tour);
             }
 
