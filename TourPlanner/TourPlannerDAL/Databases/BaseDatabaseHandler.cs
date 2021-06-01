@@ -18,8 +18,6 @@ namespace TourPlannerDAL.Databases
 
         public BaseDatabaseHandler(string table)
         {
-            _logger.Info("Database initialized");
-
             _table = table;
 
             connString = Configuration.ConnectionString;

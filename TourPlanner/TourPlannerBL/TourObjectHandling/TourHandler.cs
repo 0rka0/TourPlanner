@@ -112,23 +112,41 @@ namespace TourPlannerBL.TourObjectHandling
 
         static public void InsertTour(Tour tour, bool newTour)
         {
-            if (newTour)
+            _logger.Info("Attempting to insert Tour into Database");
+            try
             {
-                tour.Id = _db.GetMaxId();
-                tour.Image = StringPreparer.BuildFilename(tour.Id, tour.Name);
+                if (newTour)
+                {
+                    tour.Id = _db.GetMaxId();
+                    tour.Image = StringPreparer.BuildFilename(tour.Id, tour.Name);
+                }
+                _db.InsertEntry(tour);
+                _logger.Info("Insertion success");
             }
-            _db.InsertEntry(tour);
+            catch (Exception e)
+            {
+                throw new Exception("Inserting into Database failed");
+            }
         }
 
         static public void ClearData()
         {
-            _db.ClearDb();
-            TourLogHandler.ClearData();
-
-            DirectoryInfo di = new DirectoryInfo(Configuration.ImagePath);
-            foreach (FileInfo file in di.GetFiles())
+            _logger.Info("Attempting to clear all Data");
+            try
             {
-                file.Delete();
+                _db.ClearDb();
+                TourLogHandler.ClearData();
+
+                DirectoryInfo di = new DirectoryInfo(Configuration.ImagePath);
+                foreach (FileInfo file in di.GetFiles())
+                {
+                    file.Delete();
+                }
+                _logger.Info("Cleared Data successfully");
+            }
+            catch (Exception e)
+            {
+                _logger.Info("Clearing process led to following error: " + e.Message);
             }
         }
 
@@ -158,6 +176,8 @@ namespace TourPlannerBL.TourObjectHandling
 
         public static void ImportTours(string path)
         {
+            _logger.Info("Attempting to import Tour Data");
+
             try
             {
                 string jsonTourContent = FileHandler.ImportFromFile(path);
@@ -175,6 +195,8 @@ namespace TourPlannerBL.TourObjectHandling
                         TourLogHandler.AddImportedTourLog(log);
                     }
                 }
+
+                _logger.Info("Importing success");
             }
             catch (Exception e)
             {
@@ -184,11 +206,13 @@ namespace TourPlannerBL.TourObjectHandling
 
         public static void ExportTours(string path)
         {
+            _logger.Info("Attempting to export Tour Data");
             try
             {
                 string jsonTourContent = JsonConvert.SerializeObject(TourSelector.GetTours());
 
                 FileHandler.ExportToFile(path, jsonTourContent);
+                _logger.Info("Exporting success");
             } 
             catch (Exception e)
             {

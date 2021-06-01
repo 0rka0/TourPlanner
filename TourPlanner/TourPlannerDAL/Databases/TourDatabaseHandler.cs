@@ -11,11 +11,11 @@ namespace TourPlannerDAL.Databases
 
         TourDatabaseHandler() : base(Configuration.TourTable)
         {
+            _logger.Info("Tour Database initialized");
         }
 
         public static IDatabase GetInstance()
         {
-            _logger.Info("Database accessed");
 
             if (_db == null)
             {

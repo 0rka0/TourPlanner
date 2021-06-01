@@ -21,7 +21,7 @@ namespace TourPlannerBL.TourObjectHandling
 
         static public IEnumerable<Tour> GetTours()
         {
-            _logger.Info("Attempting to get Tour entries from database");
+            _logger.Info("Attempting to select Tour entries from database");
 
             try
             {
@@ -29,6 +29,7 @@ namespace TourPlannerBL.TourObjectHandling
 
                 tourList = FillToursWithLogs(tourList);
 
+                _logger.Info("Selecting success");
                 return tourList;
             }
             catch (Exception e)
@@ -42,12 +43,21 @@ namespace TourPlannerBL.TourObjectHandling
         {
             List<TourLog> logList = new List<TourLog>();
 
-            foreach (Tour tour in tourList)
+            _logger.Info("Attempting to add corresponding TourLogs to Tours");
+            try
             {
-                logList.Clear();
-                logList = (List<TourLog>)TourLogSelector.SelectTourLogsById(tour.Id);
+                foreach (Tour tour in tourList)
+                {
+                    logList.Clear();
+                    logList = (List<TourLog>)TourLogSelector.SelectTourLogsById(tour.Id);
 
-                tour.LogList.AddRange(logList);
+                    tour.LogList.AddRange(logList);
+                }
+                _logger.Info("Logs successfully added");
+            }
+            catch (Exception e)
+            {
+                _logger.Info("Adding process led to following error: " + e.Message);
             }
 
             return tourList;
@@ -55,6 +65,7 @@ namespace TourPlannerBL.TourObjectHandling
 
         static public IEnumerable<Tour> Search(string filter)
         {
+            _logger.Info("Attempting to filter Tours that contain " + filter);
             IEnumerable<Tour> tours = GetTours();
             tours = FillToursWithLogs((List<Tour>)tours);
 

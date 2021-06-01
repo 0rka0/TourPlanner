@@ -37,7 +37,7 @@ namespace TourPlannerBL.TourObjectHandling
 
         static public void AddImportedTourLog(ITourObject log)
         {
-            _logger.Info("Attempting to add TourLog");
+            _logger.Info("Attempting to add existing TourLog");
             try
             {
                 _db.InsertEntry(log);
@@ -52,6 +52,7 @@ namespace TourPlannerBL.TourObjectHandling
 
         static public void EditTourLogs(IEnumerable<TourLog> tourLogs)
         {
+            _logger.Info("Attempting to edit TourLogs");
             try
             {
                 foreach (TourLog log in tourLogs)
@@ -63,7 +64,7 @@ namespace TourPlannerBL.TourObjectHandling
             }
             catch (Exception e)
             {
-                _logger.Error("Updating process led to following error: " + e.Message);
+                _logger.Error("Editing process led to following error: " + e.Message);
             }
         }
 
