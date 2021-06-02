@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using TourPlannerBL.TourObjectHandling;
 using TourPlanner.Viewmodels;
+using System.Windows;
 
 namespace TourPlanner.Commands
 {
@@ -29,7 +30,12 @@ namespace TourPlanner.Commands
         public void Execute(object? parameter)
         {
             //Add a tour
-            TourHandler.AddTour(_viewModel.StartInput, _viewModel.EndInput, _viewModel.DescriptionInput, _viewModel.InformationInput);
+            string message = TourHandler.AddTour(_viewModel.StartInput, _viewModel.EndInput, _viewModel.DescriptionInput, _viewModel.InformationInput);
+
+            if (!String.IsNullOrEmpty(message))
+            {
+                _viewModel.ErrorOutput = "Error - Tour could not be added with message: " + message;
+            }                
 
             _viewModel.RefreshTourList();
 

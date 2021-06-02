@@ -24,7 +24,7 @@ namespace TourPlannerBL.TourObjectHandling
             _db = db;
         }
 
-        static public void AddTour(string start, string goal, string desc, string inf)
+        static public string AddTour(string start, string goal, string desc, string inf)
         {
             _logger.Info("Attempting to add Tour");
 
@@ -47,7 +47,10 @@ namespace TourPlannerBL.TourObjectHandling
             catch (Exception e)
             {
                 _logger.Error("Adding process led to following error: " + e.Message);
+                return e.Message;
             }
+
+            return string.Empty;
         }
 
         static public void DeleteTour(Tour tour)

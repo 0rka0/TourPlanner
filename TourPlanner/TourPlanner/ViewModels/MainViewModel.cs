@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using TourPlannerModels.TourObject;
 using TourPlannerBL.TourObjectHandling;
-using TourPlannerModels;
 using System.Windows.Media.Imaging;
 using System;
 using System.IO;
@@ -22,8 +21,9 @@ namespace TourPlanner.Viewmodels
     {
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        private string _output = "";
-        private string _filter;
+        private string _filterOutput = "";
+        private string _filterInput;
+        private string _error;
         private string _start;
         private string _end;
         private string _description;
@@ -152,13 +152,13 @@ namespace TourPlanner.Viewmodels
         {
             get
             {
-                return _filter;
+                return _filterInput;
             }
             set
             {
                 if (FilterInput != value)
                 {
-                    _filter = value;
+                    _filterInput = value;
                     OnPropertyChanged(nameof(FilterInput));
                 }
             }
@@ -232,13 +232,29 @@ namespace TourPlanner.Viewmodels
         {
             get
             {
-                return _output;
+                return _filterOutput;
             }
             set
             {
-                if(_output != value)
+                if(_filterOutput != value)
                 {
-                    _output = value;
+                    _filterOutput = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string ErrorOutput
+        {
+            get
+            {
+                return _error;
+            }
+            set
+            {
+                if(_error != value)
+                {
+                    _error = value;
                     OnPropertyChanged();
                 }
             }
