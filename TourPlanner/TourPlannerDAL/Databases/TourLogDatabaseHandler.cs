@@ -31,13 +31,18 @@ namespace TourPlannerDAL.Databases
             CheckConn();
             List<TourLog> tourLogList = new List<TourLog>();
 
-            using (var cmd = new NpgsqlCommand($"SELECT * FROM tourlogs WHERE tid={id}", conn))
-            using (var reader = cmd.ExecuteReader())
-                while (reader.Read())
-                {
-                    tourLogList.Add(new TourLog((int)reader[0], (DateTime)reader[1], (float)reader[2], reader[3].ToString(), (float)reader[4], (int)reader[5], 
-                        (int)reader[6], (int)reader[7], (int)reader[8], (int)reader[9], (int)reader[10], (int)reader[11]));
-                }
+            using (var cmd = new NpgsqlCommand($"SELECT * FROM tourlogs WHERE tid=@tid", conn))
+            {
+                cmd.Parameters.Add("@tid", NpgsqlTypes.NpgsqlDbType.Integer);
+                cmd.Parameters[0].Value = id;
+                cmd.Prepare();
+                using (var reader = cmd.ExecuteReader())
+                    while (reader.Read())
+                    {
+                        tourLogList.Add(new TourLog((int)reader[0], (DateTime)reader[1], (float)reader[2], reader[3].ToString(), (float)reader[4], (int)reader[5],
+                            (int)reader[6], (int)reader[7], (int)reader[8], (int)reader[9], (int)reader[10], (int)reader[11]));
+                    }
+            }
 
             return tourLogList;
         }

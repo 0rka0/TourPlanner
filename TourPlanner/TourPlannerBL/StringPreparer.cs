@@ -15,6 +15,11 @@ namespace TourPlannerBL.StringPrep
             return String.Format("{0}?key={1}&{2}", Configuration.UrlStaticMapApi, Configuration.Key, requestString);
         }
 
+        static public string BuildGoogleRequest(string goal)
+        {
+            return String.Format("{0}query={1}+point+of+interest&key={2}", Configuration.UrlGooglePlacesApi, goal, Configuration.GoogleKey);
+        }
+
         static public string BuildName(string start, string goal)
         {
             return String.Format("{0}-{1}", start, goal);

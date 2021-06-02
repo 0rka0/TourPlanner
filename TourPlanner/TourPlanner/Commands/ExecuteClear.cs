@@ -12,6 +12,7 @@ namespace TourPlanner.Commands
         {
             _viewModel.FilterOutput = string.Empty;
             _viewModel.FilterInput = string.Empty;
+            _viewModel.ErrorOutput = string.Empty;
             Clear();
         }
 

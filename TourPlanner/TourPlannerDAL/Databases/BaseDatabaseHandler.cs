@@ -41,9 +41,12 @@ namespace TourPlannerDAL.Databases
             try
             {
                 using (var cmd = new NpgsqlCommand($"SELECT max(id) FROM {_table}", conn))
-                using (var reader = cmd.ExecuteReader())
-                    while (reader.Read())
-                        maxId = (int)reader[0];
+                {
+                    cmd.Prepare();
+                    using (var reader = cmd.ExecuteReader())
+                        while (reader.Read())
+                            maxId = (int)reader[0];
+                }
             }
             catch (Exception e)
             {

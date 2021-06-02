@@ -35,7 +35,7 @@ namespace TourPlannerBL.TourObjectHandling
             }
         }
 
-        static public void AddImportedTourLog(ITourObject log)
+        static public void AddImportedTourLog(TourLog log)
         {
             _logger.Info("Attempting to add existing TourLog");
             try

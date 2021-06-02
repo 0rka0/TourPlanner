@@ -14,6 +14,8 @@ namespace TourPlannerModels.TourObject
 
         public List<TourLog> LogList = new List<TourLog>();
 
+        public List<Attraction> AttList = new List<Attraction>();
+
         public Tour()
         { }
 

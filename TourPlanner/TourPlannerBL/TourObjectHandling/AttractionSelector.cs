@@ -7,7 +7,7 @@ using TourPlannerModels.TourObject;
 
 namespace TourPlannerBL.TourObjectHandling
 {
-    public static class TourLogSelector
+    class AttractionSelector
     {
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -18,21 +18,21 @@ namespace TourPlannerBL.TourObjectHandling
             _db = db;
         }
 
-        public static List<Tour> FillToursWithLogs(List<Tour> tourList)
+        public static List<Tour> FillToursWithAttractions(List<Tour> tourList)
         {
-            List<TourLog> logList = new List<TourLog>();
+            List<Attraction> attList = new List<Attraction>();
 
-            _logger.Info("Attempting to add corresponding TourLogs to Tours");
+            _logger.Info("Attempting to add corresponding Attractions to Tours");
             try
             {
                 foreach (Tour tour in tourList)
                 {
-                    logList.Clear();
-                    logList = (List<TourLog>)SelectTourLogsById(tour.Id);
+                    attList.Clear();
+                    attList = (List<Attraction>)SelectAttractionsById(tour.Id);
 
-                    tour.LogList.AddRange(logList);
+                    tour.AttList.AddRange(attList);
                 }
-                _logger.Info("Logs successfully added");
+                _logger.Info("Attractions successfully added");
             }
             catch (Exception e)
             {
@@ -42,7 +42,7 @@ namespace TourPlannerBL.TourObjectHandling
             return tourList;
         }
 
-        public static IEnumerable<ITourObject> SelectTourLogsById(int id)
+        public static IEnumerable<ITourObject> SelectAttractionsById(int id)
         {
             return _db.SelectEntries(id);
         }

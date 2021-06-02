@@ -67,6 +67,24 @@ namespace TourPlanner.Viewmodels
             }
         }
 
+        private ObservableCollection<Attraction> _curAttractionList = new ObservableCollection<Attraction>();
+
+        public ObservableCollection<Attraction> CurAttractionList
+        {
+            get
+            {
+                return _curAttractionList;
+            }
+            set
+            {
+                if (CurAttractionList != value)
+                {
+                    _curAttractionList = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private CollectionView _ratingList = new CollectionView(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
 
         public CollectionView RatingList
@@ -89,6 +107,7 @@ namespace TourPlanner.Viewmodels
                 {
                     _curTour = value;
                     RefreshLogList();
+                    RefreshAttractionList();
                     OnPropertyChanged(nameof(CurTour));
                     OnPropertyChanged(nameof(CurTourImage));
                 }
@@ -351,6 +370,19 @@ namespace TourPlanner.Viewmodels
             }
         }
 
+        public void FillAttractionList()
+        {
+            _logger.Info("Attractions updated");
+
+            if (_curTour != null)
+            {
+                foreach (Attraction attraction in _curTour.AttList)
+                {
+                    CurAttractionList.Add(attraction);
+                }
+            }
+        }
+
         public void RefreshTourList()
         {
             TourList.Clear();
@@ -362,6 +394,12 @@ namespace TourPlanner.Viewmodels
             RefreshCurTourLoglist();
             CurLogList.Clear();
             FillLogList();
+        }
+
+        public void RefreshAttractionList()
+        {
+            CurAttractionList.Clear();
+            FillAttractionList();
         }
 
         public void RefreshCurTourLoglist()

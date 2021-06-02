@@ -1,4 +1,4 @@
-﻿using TourPlannerBL.Mapquest;
+﻿using TourPlannerBL.API.Mapquest;
 using TourPlannerDAL.Files;
 using TourPlannerDAL.Databases;
 using TourPlannerModels;
@@ -10,6 +10,7 @@ using TourPlannerBL.StringPrep;
 using TourPlannerModels.TourObject;
 using System.Collections.Generic;
 using System.IO;
+using TourPlannerBL.APIs.GooglePlaces;
 
 namespace TourPlannerBL.TourObjectHandling
 {
@@ -35,12 +36,15 @@ namespace TourPlannerBL.TourObjectHandling
 
                 if (information.route.routeError.errorCode >= 0)
                 {
-                    throw new Exception("Request returned invalid error code");
+                    throw new Exception("Request returned invalid error code - Route could not be found");
                 }
 
-                InsertTour(tour, true);
+                tour = InsertTour(tour, true);
 
                 MapQuestHandler.GetImage(information, tour.Image);
+                
+                AttractionResponseObject attractions = GooglePlacesHandler.RequestAttractions(goal);
+                AttractionHandler.NewAddAttractions(attractions, tour.Id);
 
                 _logger.Info("Add success");
             }
@@ -113,7 +117,7 @@ namespace TourPlannerBL.TourObjectHandling
             return new Tour(name, desc, inf, information.route.distance.ToString());
         }
 
-        static public void InsertTour(Tour tour, bool newTour)
+        static public Tour InsertTour(Tour tour, bool newTour)
         {
             _logger.Info("Attempting to insert Tour into Database");
             try
@@ -130,6 +134,7 @@ namespace TourPlannerBL.TourObjectHandling
             {
                 throw new Exception("Inserting into Database failed");
             }
+            return tour;
         }
 
         static public void ClearData()
@@ -197,6 +202,7 @@ namespace TourPlannerBL.TourObjectHandling
                     {
                         TourLogHandler.AddImportedTourLog(log);
                     }
+                    AttractionHandler.AddImportedAttractions(tour.AttList);
                 }
 
                 _logger.Info("Importing success");

@@ -8,7 +8,7 @@ using log4net;
 using System.Reflection;
 using TourPlannerBL.StringPrep;
 
-namespace TourPlannerBL.Mapquest
+namespace TourPlannerBL.API.Mapquest
 {
     //used to interact with the MapQuest API
     static public class MapQuestHandler

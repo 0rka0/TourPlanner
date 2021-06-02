@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace TourPlannerBL.Mapquest
+namespace TourPlannerBL.API.Mapquest
 {
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
     public class Lr

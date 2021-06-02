@@ -59,6 +59,18 @@
                         </Grid>
                     </Grid>
                 </TabItem>
+                <TabItem Header="Points of interest">
+                    <DataGrid Margin="5" ItemsSource="{Binding CurAttractionList, UpdateSourceTrigger=PropertyChanged}"
+                              AutoGenerateColumns="False" CanUserAddRows="False" AlternatingRowBackground="LightGray" IsReadOnly="True"
+                              ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+                            <DataGridTextColumn Binding="{Binding Rating}" Header="Rating"/>
+                            <DataGridTextColumn Binding="{Binding TotalRatings}" Header="Total Ratings"/>
+                            <DataGridTextColumn Binding="{Binding Address}" Header="Address"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
             </TabControl>
         </Grid>
     </Grid>

@@ -27,7 +27,8 @@ namespace TourPlannerBL.TourObjectHandling
             {
                 List<Tour> tourList = (List<Tour>)_db.SelectEntries();
 
-                tourList = FillToursWithLogs(tourList);
+                tourList = TourLogSelector.FillToursWithLogs(tourList);
+                tourList = AttractionSelector.FillToursWithAttractions(tourList);
 
                 _logger.Info("Selecting success");
                 return tourList;
@@ -39,35 +40,11 @@ namespace TourPlannerBL.TourObjectHandling
             }
         }
 
-        private static List<Tour> FillToursWithLogs(List<Tour> tourList)
-        {
-            List<TourLog> logList = new List<TourLog>();
-
-            _logger.Info("Attempting to add corresponding TourLogs to Tours");
-            try
-            {
-                foreach (Tour tour in tourList)
-                {
-                    logList.Clear();
-                    logList = (List<TourLog>)TourLogSelector.SelectTourLogsById(tour.Id);
-
-                    tour.LogList.AddRange(logList);
-                }
-                _logger.Info("Logs successfully added");
-            }
-            catch (Exception e)
-            {
-                _logger.Info("Adding process led to following error: " + e.Message);
-            }
-
-            return tourList;
-        }
-
         static public IEnumerable<Tour> Search(string filter)
         {
             _logger.Info("Attempting to filter Tours that contain " + filter);
             IEnumerable<Tour> tours = GetTours();
-            tours = FillToursWithLogs((List<Tour>)tours);
+            tours = TourLogSelector.FillToursWithLogs((List<Tour>)tours);
 
             return tours.Where(x => (
                 x.Name.ToLower().Contains(filter.ToLower()) ||
@@ -88,6 +65,10 @@ namespace TourPlannerBL.TourObjectHandling
                         ((int)y.Rating).ToString().Contains(filter.ToLower()) ||
                         y.Weather.ToString().ToLower().Contains(filter.ToLower()) ||
                         y.Traffic.ToString().ToLower().Contains(filter.ToLower())
+                    )).Any() ||
+                    ((IEnumerable<Attraction>)x.AttList).Where(z => (
+                        z.Name.ToLower().Contains(filter.ToLower()) ||
+                        z.Address.ToLower().Contains(filter.ToLower())
                     )).Any()
                 ));
         }

@@ -29,3 +29,19 @@ CONSTRAINT fk_tour
   REFERENCES tours(id)
   ON DELETE CASCADE
 );
+
+drop table attractions;
+
+create table attractions (
+id int primary key,
+pid varchar(50),
+name varchar(100),
+rating real,
+total_ratings int,
+address varchar(100),
+tid integer,
+CONSTRAINT fk_tour
+	FOREIGN KEY(tid)
+	REFERENCES tours(id)
+	ON DELETE CASCADE
+);
