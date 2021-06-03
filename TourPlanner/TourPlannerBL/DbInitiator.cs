@@ -1,4 +1,5 @@
 ﻿using TourPlannerDAL.Databases;
+using TourPlannerDAL.Files;
 
 namespace TourPlannerBL.TourObjectHandling
 {
@@ -15,6 +16,8 @@ namespace TourPlannerBL.TourObjectHandling
             TourLogSelector.Init(tourLogDb);
             AttractionHandler.Init(attractionDb);
             AttractionSelector.Init(attractionDb);
+
+            FileHandler.Init();
         }
     }
 }

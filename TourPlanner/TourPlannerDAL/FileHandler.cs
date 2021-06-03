@@ -34,6 +34,12 @@ namespace TourPlannerDAL.Files
             }
         }
 
+        public static void Init()
+        {
+            System.IO.Directory.CreateDirectory(Configuration.ImagePath);
+            System.IO.Directory.CreateDirectory(Configuration.ReportPath);
+        }
+
         public static void ClearImages()
         {
             _logger.Info("Clearing image folder");
