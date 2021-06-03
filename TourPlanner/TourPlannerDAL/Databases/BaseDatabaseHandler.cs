@@ -48,8 +48,9 @@ namespace TourPlannerDAL.Databases
                             maxId = (int)reader[0];
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
+                throw new Exception("Could not recevie max Id from Database");
             }
             return maxId + 1;
         }
@@ -58,11 +59,18 @@ namespace TourPlannerDAL.Databases
         {
             CheckConn();
 
-            using (var cmd = new NpgsqlCommand($"DELETE FROM {_table} WHERE (id = @id)", conn))
+            try
             {
-                cmd.Parameters.AddWithValue("@id", id);
-                cmd.Prepare();
-                cmd.ExecuteNonQuery();
+                using (var cmd = new NpgsqlCommand($"DELETE FROM {_table} WHERE (id = @id)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Prepare();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch(Exception)
+            {
+                throw new Exception("Could not delete Entry from Database");
             }
         }
 
@@ -70,10 +78,17 @@ namespace TourPlannerDAL.Databases
         {
             CheckConn();
 
-            using (var cmd = new NpgsqlCommand($"DELETE FROM {_table}", conn))
+            try
             {
-                cmd.Prepare();
-                cmd.ExecuteNonQuery();
+                using (var cmd = new NpgsqlCommand($"DELETE FROM {_table}", conn))
+                {
+                    cmd.Prepare();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Could not clear Database");
             }
         }
 

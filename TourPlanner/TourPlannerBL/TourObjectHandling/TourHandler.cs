@@ -10,7 +10,7 @@ using TourPlannerBL.StringPrep;
 using TourPlannerModels.TourObject;
 using System.Collections.Generic;
 using System.IO;
-using TourPlannerBL.APIs.GooglePlaces;
+using TourPlannerBL.API.GooglePlaces;
 
 namespace TourPlannerBL.TourObjectHandling
 {
@@ -46,7 +46,7 @@ namespace TourPlannerBL.TourObjectHandling
                 AttractionResponseObject attractions = GooglePlacesHandler.RequestAttractions(goal);
                 AttractionHandler.AddNewAttractions(attractions, tour.Id);
 
-                _logger.Info("Add success");
+                _logger.Info("Tour added succesfully");
             }
             catch (Exception e)
             {
@@ -120,20 +120,15 @@ namespace TourPlannerBL.TourObjectHandling
         static public Tour InsertTour(Tour tour, bool newTour)
         {
             _logger.Info("Attempting to insert Tour into Database");
-            try
+
+            if (newTour)
             {
-                if (newTour)
-                {
-                    tour.Id = _db.GetMaxId();
-                    tour.Image = StringPreparer.BuildFilename(tour.Id, tour.Name);
-                }
-                _db.InsertEntry(tour);
-                _logger.Info("Insertion success");
+                tour.Id = _db.GetMaxId();
+                tour.Image = StringPreparer.BuildFilename(tour.Id, tour.Name);
             }
-            catch (Exception e)
-            {
-                throw new Exception("Inserting into Database failed");
-            }
+            _db.InsertEntry(tour);
+            _logger.Info("Insertion success");
+
             return tour;
         }
 
@@ -144,12 +139,8 @@ namespace TourPlannerBL.TourObjectHandling
             {
                 _db.ClearDb();
                 TourLogHandler.ClearData();
+                FileHandler.ClearImages();
 
-                DirectoryInfo di = new DirectoryInfo(Configuration.ImagePath);
-                foreach (FileInfo file in di.GetFiles())
-                {
-                    file.Delete();
-                }
                 _logger.Info("Cleared Data successfully");
             }
             catch (Exception e)

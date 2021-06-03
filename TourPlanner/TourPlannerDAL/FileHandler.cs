@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using TourPlannerModels;
 using log4net;
 using System.Reflection;
+using System;
 
 namespace TourPlannerDAL.Files
 {
@@ -23,24 +24,70 @@ namespace TourPlannerDAL.Files
         {
             _logger.Info("Deleting image from defined path");
 
-            File.Delete(path);
+            try
+            {
+                File.Delete(path);
+            }
+            catch(Exception)
+            {
+                throw new Exception("File could not be deleted from defined path");
+            }
+        }
+
+        public static void ClearImages()
+        {
+            _logger.Info("Clearing image folder");
+
+            try
+            {
+                DirectoryInfo di = new DirectoryInfo(Configuration.ImagePath);
+                foreach (FileInfo file in di.GetFiles())
+                {
+                    file.Delete();
+                }
+            }
+            catch(Exception)
+            {
+                throw new Exception("Directory could not be cleared");
+            }
         }
 
         public static void CopyImage(string file1, string file2)
         {
             _logger.Info("Copying image");
 
-            File.Copy(Configuration.ImagePath + file1, Configuration.ImagePath + file2);
+            try
+            {
+                File.Copy(Configuration.ImagePath + file1, Configuration.ImagePath + file2);
+            }
+            catch(Exception)
+            {
+                throw new Exception("File could not be copied in defined path");
+            }
         }
 
         public static void ExportToFile(string path, string content)
         {
-            File.WriteAllText(path, content);
+            try
+            {
+                File.WriteAllText(path, content);
+            }
+            catch(Exception)
+            {
+                throw new Exception("Content could not be writte to file in defined path");
+            }
         }
 
         public static string ImportFromFile(string path)
         {
-            return File.ReadAllText(path);
+            try
+            {
+                return File.ReadAllText(path);
+            }
+            catch(Exception)
+            {
+                throw new Exception("Content of file could not be imported");
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using TourPlannerDAL.Databases;
 using TourPlannerModels.TourObject;
+using TourPlannerBL.API.GooglePlaces;
 
 namespace TourPlannerBL.TourObjectHandling
 {
@@ -27,7 +28,7 @@ namespace TourPlannerBL.TourObjectHandling
             }
             catch (Exception e)
             {
-                _logger.Error("Attractions could not be added");
+                _logger.Error("Adding process led to following error: " + e.Message);
             }
         }
 

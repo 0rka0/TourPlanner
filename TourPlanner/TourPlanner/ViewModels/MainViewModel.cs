@@ -138,8 +138,6 @@ namespace TourPlanner.Viewmodels
             {
                 if (CurTour?.Id != null)
                 {
-                    _logger.Info("Attempting to load image");
-
                     try
                     {
                         string location = Path.GetFullPath(TourPlannerModels.Configuration.ImagePath + CurTour.Image);
@@ -359,8 +357,6 @@ namespace TourPlanner.Viewmodels
 
         public void FillLogList()
         {
-            _logger.Info("LogList updated");
-
             if (_curTour != null)
             {
                 foreach (TourLog log in _curTour.LogList)
@@ -372,8 +368,6 @@ namespace TourPlanner.Viewmodels
 
         public void FillAttractionList()
         {
-            _logger.Info("Attractions updated");
-
             if (_curTour != null)
             {
                 foreach (Attraction attraction in _curTour.AttList)

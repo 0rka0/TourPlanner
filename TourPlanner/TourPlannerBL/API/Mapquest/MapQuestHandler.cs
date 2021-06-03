@@ -7,6 +7,7 @@ using TourPlannerDAL.Files;
 using log4net;
 using System.Reflection;
 using TourPlannerBL.StringPrep;
+using System;
 
 namespace TourPlannerBL.API.Mapquest
 {
@@ -20,8 +21,15 @@ namespace TourPlannerBL.API.Mapquest
         {
             _logger.Info("Requesting Tour Information from MapQuest");
 
-            TourInformationResponseObject response = GetTour(start, goal);
-            return response;
+            try
+            {
+                TourInformationResponseObject response = GetTour(start, goal);
+                return response;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Information could not be retrieved");
+            }
         }
 
         static TourInformationResponseObject GetTour(string start, string goal)
@@ -37,8 +45,15 @@ namespace TourPlannerBL.API.Mapquest
         {
             _logger.Info("Requesting Image from MapQuest");
 
-            string request = StringPreparer.BuildRequest(response.ReturnString());
-            Task task = Task.Run(async () => await DownloadAndSaveImage(request, filename));
+            try
+            {
+                string request = StringPreparer.BuildRequest(response.ReturnString());
+                Task task = Task.Run(async () => await DownloadAndSaveImage(request, filename));
+            }
+            catch (Exception)
+            {
+                throw new Exception("Image could not be received");
+            }
         }
 
         static TourInformationResponseObject ConvertResponse(string directionsString)

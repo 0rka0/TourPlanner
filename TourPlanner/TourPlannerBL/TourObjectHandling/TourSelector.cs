@@ -22,10 +22,11 @@ namespace TourPlannerBL.TourObjectHandling
         static public IEnumerable<Tour> GetTours()
         {
             _logger.Info("Attempting to select Tour entries from database");
+            List<Tour> tourList = new List<Tour>();
 
             try
             {
-                List<Tour> tourList = (List<Tour>)_db.SelectEntries();
+                tourList = (List<Tour>)_db.SelectEntries();
 
                 tourList = TourLogSelector.FillToursWithLogs(tourList);
                 tourList = AttractionSelector.FillToursWithAttractions(tourList);
@@ -36,8 +37,9 @@ namespace TourPlannerBL.TourObjectHandling
             catch (Exception e)
             {
                 _logger.Error("Selecting process led to following error: " + e.Message);
-                return new List<Tour>();
             }
+
+            return tourList;
         }
 
         static public IEnumerable<Tour> Search(string filter)

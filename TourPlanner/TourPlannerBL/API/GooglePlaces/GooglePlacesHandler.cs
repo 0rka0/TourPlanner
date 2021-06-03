@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using TourPlannerBL.StringPrep;
 
-namespace TourPlannerBL.APIs.GooglePlaces
+namespace TourPlannerBL.API.GooglePlaces
 {
     static public class GooglePlacesHandler
     {
@@ -24,7 +24,7 @@ namespace TourPlannerBL.APIs.GooglePlaces
             }
             catch (Exception e)
             {
-                _logger.Info("Requesting process led to the following error: " + e.Message);
+                _logger.Info("Information could not be received");
                 return null;
             }
         }
