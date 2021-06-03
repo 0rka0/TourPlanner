@@ -50,7 +50,6 @@ namespace TourPlannerDAL.Databases
             }
             catch (Exception)
             {
-                throw new Exception("Could not recevie max Id from Database");
             }
             return maxId + 1;
         }

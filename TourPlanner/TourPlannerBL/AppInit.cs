@@ -1,9 +1,10 @@
 ﻿using TourPlannerDAL.Databases;
 using TourPlannerDAL.Files;
+using TourPlannerBL.TourObjectHandling;
 
-namespace TourPlannerBL.TourObjectHandling
+namespace TourPlannerBL
 {
-    static public class DbInitiator
+    static public class AppInit
     {
         static public void Init()
         {
