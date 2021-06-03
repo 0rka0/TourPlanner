@@ -66,7 +66,7 @@ namespace TourPlannerDAL.Databases
 
         public override void UpdateEntry(ITourObject tourObject)
         {
-            throw new NotImplementedException();
+            throw new Exception("Data can not be updated");
         }
     }
 }

@@ -10,6 +10,7 @@ namespace TourPlannerTest
     {
         public TourDatabaseTest tourDb;
         public TourLogDatabaseTest tourLogDb;
+        public AttractionDatabaseTest attDb;
 
         [SetUp]
         public void Setup()
@@ -18,6 +19,8 @@ namespace TourPlannerTest
             TourSelector.Init(tourDb);
             tourLogDb = (TourLogDatabaseTest)TourLogDatabaseTest.GetInstance();
             TourLogSelector.Init(tourLogDb);
+            attDb = (AttractionDatabaseTest)AttractionDatabaseTest.GetInstance();
+            AttractionSelector.Init(attDb);
         }
 
         [Test]
@@ -86,6 +89,21 @@ namespace TourPlannerTest
 
             Assert.AreEqual(desiredAmount, list1.Count);
             Assert.IsEmpty(list2);
+        }
+
+        [Test]
+        public void SelectAttractionsById_SelectingAttractionsToDefinedTour_ReturnsListOfAttractions()
+        {
+            int id1 = 1;
+            int id2 = 2;
+            int desiredAmount1 = 3;
+            int desiredAmount2 = 2;
+
+            List<Attraction> list1 = (List<Attraction>)AttractionSelector.SelectAttractionsById(id1);
+            List<Attraction> list2 = (List<Attraction>)AttractionSelector.SelectAttractionsById(id2);
+
+            Assert.AreEqual(desiredAmount1, list1.Count);
+            Assert.AreEqual(desiredAmount2, list2.Count);
         }
     }
 }

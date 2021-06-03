@@ -1,0 +1,946 @@
+﻿{
+  "html_attributions": [],
+  "next_page_token": "ATtYBwINwOHfuM-Vj8W1BaHBHjndB7QErN1ZiD7CK2rSIecxScYB3VvMrIzdt1vXQjfI2UL0h4E-io3VBmUG9FA6uOYGUfZjXEA5t1kb6DfPusm2p5Doxbb7h5Md6c-6xH8RYgcNDlx365QzwNkz0eO6oAhtGKYZvIli9tXyut9v5UQT4zaQCv-jt7FVU7vn9hanFD-tTfEqPx3nqcYYZbA0vjwUl--FRxCvzxSy2qezAwkBsyQxJ_LVoQkRKmmTPxiQsHFHRzH_h5dj44Krt0gQfWoaevas01HOcKbLE1kWr0IdkZfLUC0LJ1NiyCr7MRT4hK_0LgDdXNATrC85RP-H-_PCacHX30AbJeNkk4-4tbbCVCQng0rLB79noaqrladz8RXzeOz3MvVyNBFTRDD4YzPn9A",
+  "results": [
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "1010 Vienna, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.2056578,
+          "lng": 16.3647803
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.20700762989271,
+            "lng": 16.36613012989272
+          },
+          "southwest": {
+            "lat": 48.20430797010727,
+            "lng": 16.36343047010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+      "name": "The Hofburg",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/108101882517557531890\">Krzysztof Szczerbakowski</a>"
+          ],
+          "photo_reference": "ATtYBwLEioIXFfK-A15EyZdiPZAXEtSbv5lwTOPf86OsgmO-XUaU3fIB1JbjADmftSFzurHNXZ-UEygPHbN1dG1GwQveyUdWzLX1f_WFi8LQv7hnrtnRdxX4FDSjEAw1OK6JwiW851ICuDi4DD6OSkPGU_rpkUYQmzEAv4Piz68y0eI2d2xi",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJ3wYgv5kHbUcRX0LEFIAWhYY",
+      "plus_code": {
+        "compound_code": "6947+7W Vienna",
+        "global_code": "8FWR6947+7W"
+      },
+      "rating": 4.6,
+      "reference": "ChIJ3wYgv5kHbUcRX0LEFIAWhYY",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 36047
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "1020 Vienna, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.2167398,
+          "lng": 16.3980327
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.2206663,
+            "lng": 16.40988825
+          },
+          "southwest": {
+            "lat": 48.20901710000001,
+            "lng": 16.38763565
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+      "name": "Prater",
+      "photos": [
+        {
+          "height": 3440,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/100349914490629847913\">Jakub Breuer</a>"
+          ],
+          "photo_reference": "ATtYBwL0s5w4B6lc9SP1MvJ6-XH66w5NT9H8UxEgZxg7aQRiqXm26FX99xdJaIlgJZfG4x2ObD9OoZG10iKsKkJVaB4ZURFSI6nSSJk7P8o-7upZ03o804e3o3ehyfmaNUTptnB2hzpOi5vr3Y1oKFANPvBgFv_o3-ax5IsVKUzMr8baTegV",
+          "width": 5177
+        }
+      ],
+      "place_id": "ChIJY6GrTT8HbUcR9LGo6Zxp5_w",
+      "plus_code": {
+        "compound_code": "698X+M6 Vienna",
+        "global_code": "8FWR698X+M6"
+      },
+      "rating": 4.5,
+      "reference": "ChIJY6GrTT8HbUcR9LGo6Zxp5_w",
+      "types": [
+        "amusement_park",
+        "tourist_attraction",
+        "park",
+        "restaurant",
+        "food",
+        "point_of_interest",
+        "store",
+        "establishment"
+      ],
+      "user_ratings_total": 72015
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Museumsplatz 1, 1070 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.2033369,
+          "lng": 16.3586166
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.20595144999999,
+            "lng": 16.36234684999999
+          },
+          "southwest": {
+            "lat": 48.20031844999999,
+            "lng": 16.35482305000001
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+      "name": "MuseumsQuartier",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 1200,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117290264136811457757\">zoran lazic</a>"
+          ],
+          "photo_reference": "ATtYBwL7U79bJxiFOaiwxotrShQ3pptJTK1QeTwUWHs4L7g76DlGpNAJUxHFtKfpQUdchNcnQNrPBmaKe1LuLjryrwPsIKYXghVaNWGgcYR0F9X5nGz9-8BmoFdLlh7Dyz9kuwhtl0CtP8wwWjd109-_rfu8j1pJGkY0Njw-5CTwJjeSA2sW",
+          "width": 1600
+        }
+      ],
+      "place_id": "ChIJ30_rPpAHbUcR_-tB67Mp1JQ",
+      "plus_code": {
+        "compound_code": "6935+8C Vienna",
+        "global_code": "8FWR6935+8C"
+      },
+      "rating": 4.6,
+      "reference": "ChIJ30_rPpAHbUcR_-tB67Mp1JQ",
+      "types": [
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 22456
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Schönbrunner Schloßstraße 47, 1130 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.1858124,
+          "lng": 16.312764
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.18779914999999,
+            "lng": 16.31423547989272
+          },
+          "southwest": {
+            "lat": 48.18447815,
+            "lng": 16.31153582010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+      "name": "Schönbrunn Palace",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 2998,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/103187104771291493718\">Hong RC</a>"
+          ],
+          "photo_reference": "ATtYBwJXwAoaIbAGktO_K2vA0QLAHqrcECY4cqzwf5vBJBlunD5zSpebpeNAdnAxQDXzoc53PrXg7wH8KacXG8cCPcaSTu-2xaw9L4VZNccActFW_qV3AG0ninuQAdFTt7_e9aKD9cl7X0299QYHAt2MBWoR2FN7f9IFsjZcRU3U1D-58JeN",
+          "width": 3998
+        }
+      ],
+      "place_id": "ChIJv3zAHAmobUcRyYvq5F26aU4",
+      "plus_code": {
+        "compound_code": "58P7+84 Vienna",
+        "global_code": "8FWR58P7+84"
+      },
+      "rating": 4.7,
+      "reference": "ChIJv3zAHAmobUcRyYvq5F26aU4",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 96690
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Stephansplatz 3, 1010 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.2084114,
+          "lng": 16.3734707
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.20994212989272,
+            "lng": 16.3751512
+          },
+          "southwest": {
+            "lat": 48.20724247010727,
+            "lng": 16.3715884
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/worship_general-71.png",
+      "name": "St. Stephen's Cathedral",
+      "photos": [
+        {
+          "height": 4032,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/106930333719755965436\">Глеб Бередников</a>"
+          ],
+          "photo_reference": "ATtYBwKLvkM9aWOoHzM5g8r526bnE3G9cQ-ZZDYJXWtdNc3DvWtO3BmqTf40hbE-FEKp8-8W_jXHlS2v0mcxAQcYFx8Gsbm-7x-HTKmag0cdCqvRyBI2-8rPXvwhO-U0woL18U44w-D_71wYjEfOl2ES8TOqlOTzj_3Q2Wh4WbAVvwBc3ROc",
+          "width": 3024
+        }
+      ],
+      "place_id": "ChIJz-w_Ip8HbUcRWTHc-vNXlxc",
+      "plus_code": {
+        "compound_code": "695F+99 Vienna",
+        "global_code": "8FWR695F+99"
+      },
+      "rating": 4.7,
+      "reference": "ChIJz-w_Ip8HbUcRWTHc-vNXlxc",
+      "types": [
+        "tourist_attraction",
+        "church",
+        "place_of_worship",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 77189
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Prinz Eugen-Straße 27, 1030 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.19147510000001,
+          "lng": 16.3809322
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.19289912989272,
+            "lng": 16.3816211
+          },
+          "southwest": {
+            "lat": 48.19019947010727,
+            "lng": 16.3788655
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png",
+      "name": "Belvedere Palace",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 867,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/116275882205455698823\">Luiz Paulo</a>"
+          ],
+          "photo_reference": "ATtYBwLboH3sSSN5Nk68KuyhY3vcR3zoqHuaBXwR_t1F2WuL7muIz_5TaCZCQMN1Q05VJu8_jMV8iY1lQUR2m0GP8fZeuFrLDECKzPgjv8XVxXDFkZt0JJfUBB6N8WvVfymcxInxsoN8IbM2PTleDMteR4UPzFIsKtcAOsaOuAq48VtHkGS3",
+          "width": 867
+        }
+      ],
+      "place_id": "ChIJpZ4LAn0HbUcRB3aToFL8ZUo",
+      "plus_code": {
+        "compound_code": "59RJ+H9 Vienna",
+        "global_code": "8FWR59RJ+H9"
+      },
+      "rating": 4.7,
+      "reference": "ChIJpZ4LAn0HbUcRB3aToFL8ZUo",
+      "types": [
+        "museum",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 40212
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Graben 28, 1010 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.2087183,
+          "lng": 16.3697947
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.21003817989272,
+            "lng": 16.37109262989273
+          },
+          "southwest": {
+            "lat": 48.20733852010728,
+            "lng": 16.36839297010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+      "name": "Column of Pest (Column of The Trinity)",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 7296,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102317671086950415834\">Marcin S</a>"
+          ],
+          "photo_reference": "ATtYBwLO5A8qMpFvyJuuNdi1LRL3BwyXL1BNoDtYyH3DcUwNFR2tAUZVDF09eRbxe3WJ_uXZ_eKZsJ2qb00vT0fgvoxOpzoXJ5xDgHFsTN4HPICrz4yu0icsCA6fZkvpvOmpQfByDBNKS0yX91IhBdxhErJEC1WCJk4IpqhEGiUFKdgILjt4",
+          "width": 5472
+        }
+      ],
+      "place_id": "ChIJK-3S6ZgHbUcRiFS6mC6Lyhk",
+      "plus_code": {
+        "compound_code": "6959+FW Vienna",
+        "global_code": "8FWR6959+FW"
+      },
+      "rating": 4.6,
+      "reference": "ChIJK-3S6ZgHbUcRiFS6mC6Lyhk",
+      "types": [
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 7362
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Parkring 1, 1010 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.2047335,
+          "lng": 16.3796601
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.20968275,
+            "lng": 16.38611025
+          },
+          "southwest": {
+            "lat": 48.19947455,
+            "lng": 16.37405205
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "name": "Stadtpark",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3000,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/111340304058873394154\">Полина Никишина</a>"
+          ],
+          "photo_reference": "ATtYBwLoPeBYY2DDS1U6nJ3yjoXfIOD7yFAm_hcrj3eSW_XnK1NCgzfVbmc0UEk3Q_LyUK9Ex6cMjuK4fR4d0Nemz2jfb-YUvp9tmr343upI4LKL9DND-7VcsjPO0S5hxfAiK8eDhauOs6kPwNmb2gq8xYdJOt0dg2C9eBkL2tpEOumuH6ny",
+          "width": 4000
+        }
+      ],
+      "place_id": "ChIJQ0Ey03UHbUcRRcGuE0WeIL8",
+      "plus_code": {
+        "compound_code": "693H+VV Vienna",
+        "global_code": "8FWR693H+VV"
+      },
+      "rating": 4.6,
+      "reference": "ChIJQ0Ey03UHbUcRRcGuE0WeIL8",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 21082
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "1010 Vienna, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.2081133,
+          "lng": 16.3614554
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.2102209,
+            "lng": 16.36400015000001
+          },
+          "southwest": {
+            "lat": 48.20540209999999,
+            "lng": 16.35881195
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "name": "Volksgarten",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 9000,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/111733629217697752014\">Seb Harding</a>"
+          ],
+          "photo_reference": "ATtYBwJ-qjLldOWLg2P0iyrtADXRZaUAnkqEEb6ACgPBKwlt4kdg_BCKkW6RYn0FA7ER-0LTyCCN86ojyIFXocZFstZ857skOGG0avvwcyGUKI-K1C4en53t-DePkqQVRZWdcMyvK9F4IK9OKyvhoVXboZ4lnG_Zc936Dz9wBKAhFJbjgHgB",
+          "width": 12000
+        }
+      ],
+      "place_id": "ChIJr8X4FZcHbUcRJ66c8VeFbcU",
+      "plus_code": {
+        "compound_code": "6956+6H Vienna",
+        "global_code": "8FWR6956+6H"
+      },
+      "rating": 4.7,
+      "reference": "ChIJr8X4FZcHbUcRJ66c8VeFbcU",
+      "types": [
+        "park",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 11509
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Riesenradplatz 1, 1020 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.2166205,
+          "lng": 16.3958889
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.21861902989272,
+            "lng": 16.3975784
+          },
+          "southwest": {
+            "lat": 48.21591937010728,
+            "lng": 16.3942152
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+      "name": "Viennese Giant Ferris Wheel",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102705411915383717741\">Jianying Treutlein</a>"
+          ],
+          "photo_reference": "ATtYBwJLFpcmM0MmNd3SddK3k3uGQvJFJBOcNTT5AGI9IH2aoKfZGgr_VSEaYXOfuEAnhdj6m7c5lQDO7TFzcJ8vjTRZHj2mJxDs4-guMti1BjJqVfNkbEINFTLIC7MNG3gPGpP8QeWFluOIsC0Ldg79Y2YemKAbYmdfSFFuU1nTS-tPuEo_",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJJYWNjA8HbUcRBlfleWeh1qw",
+      "plus_code": {
+        "compound_code": "698W+J9 Vienna",
+        "global_code": "8FWR698W+J9"
+      },
+      "rating": 4.5,
+      "reference": "ChIJJYWNjA8HbUcRBlfleWeh1qw",
+      "types": [
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 20742
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Opernring 2, 1010 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.2031949,
+          "lng": 16.369709
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.20422192989273,
+            "lng": 16.37101067989272
+          },
+          "southwest": {
+            "lat": 48.20152227010728,
+            "lng": 16.36831102010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+      "name": "Vienna State Opera",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 4016,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/104092179584958748266\">Oscar Vignone</a>"
+          ],
+          "photo_reference": "ATtYBwLmPKAZXmjCLEbB-gbYkJopK_gT_EvHHnvznzF16XJN41iowLGWLQsqN3rlqnVa9kXuW9ih3vnHuCiBsLIR4fUfqR2Ulctdi4mqtcR2O55_WHXJ_Smg8I6nFL21Kx8enCKohhycP4elCu4hdUK_4MKNPkEN4D1VoxgxuqxwI1dlKb_2",
+          "width": 6016
+        }
+      ],
+      "place_id": "ChIJ1b8dhpwHbUcRVn03JY0mWf0",
+      "plus_code": {
+        "compound_code": "6939+7V Vienna",
+        "global_code": "8FWR6939+7V"
+      },
+      "rating": 4.7,
+      "reference": "ChIJ1b8dhpwHbUcRVn03JY0mWf0",
+      "types": [
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 33473
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Fritz-Grünbaum-Platz 1, 1060 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.1976502,
+          "lng": 16.3528868
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.19895037989272,
+            "lng": 16.35482602989272
+          },
+          "southwest": {
+            "lat": 48.19625072010728,
+            "lng": 16.35212637010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+      "name": "Haus des Meeres",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 1653,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/114729251153519297023\">Haus des Meeres-Aqua Terra Zoo</a>"
+          ],
+          "photo_reference": "ATtYBwLcCyfYUjmwX0_KEV1wje8Lla7hUu9RxcvmWyOYdXHPnGWXH4rhqvqJMBi9NMNbxC59unhha5PC9LgY0gNPSuSBBr_U8P8LzxJ0wc1OlsdjZPE0_ttj1drsvcPYzKxNfbkOOu6ZbwBLsYLsV84ELZnok5Jl8eqetICav3hKY529dcZk",
+          "width": 2480
+        }
+      ],
+      "place_id": "ChIJ76FSlYkHbUcRMqbpRfg1Hhk",
+      "plus_code": {
+        "compound_code": "59X3+35 Vienna",
+        "global_code": "8FWR59X3+35"
+      },
+      "rating": 4.6,
+      "reference": "ChIJ76FSlYkHbUcRMqbpRfg1Hhk",
+      "types": [
+        "zoo",
+        "aquarium",
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 12784
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Maria-Theresien-Platz, 1010 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.2038016,
+          "lng": 16.3617874
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.20545202989272,
+            "lng": 16.3633592
+          },
+          "southwest": {
+            "lat": 48.20275237010728,
+            "lng": 16.3592772
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png",
+      "name": "Kunsthistorisches Museum Wien",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/109746750648360177488\">A Google User</a>"
+          ],
+          "photo_reference": "ATtYBwKCZap2eJzAdNboeaeboZV5S85-0e-aqOiD-NXIEYExllyNmDjDh65IExbArCrTBPz3334W4D1SuSdSgTOV_jLWc_9uGKa8vLMf2d38Behjq9kmpWHTca9NJXSeP_rCYF14_QUokZgWrZA067frpzgF0-FNQXCll5wnRMHWCTetBLaL",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJ8XfPY5oHbUcRQbimbLVSYG8",
+      "plus_code": {
+        "compound_code": "6936+GP Vienna",
+        "global_code": "8FWR6936+GP"
+      },
+      "rating": 4.8,
+      "reference": "ChIJ8XfPY5oHbUcRQbimbLVSYG8",
+      "types": [
+        "museum",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 15875
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Burgring 7, 1010 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.205212,
+          "lng": 16.3598451
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.20623637989272,
+            "lng": 16.36239455
+          },
+          "southwest": {
+            "lat": 48.20353672010728,
+            "lng": 16.35817235
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png",
+      "name": "Museum of Natural History Vienna",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 3024,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/116039664195631717647\">Jasmin H</a>"
+          ],
+          "photo_reference": "ATtYBwJkfyhj7AVOimuNkUcIrrVz6E-UEdtCbukpiMc1Q9CP6N6vs2NAoAYY8KiQnZE_w_FlR4UQW-5Mud7GdSrNETNObsftCGQwdf6gV2wX67Z08yAez1coY7dcDr1uf74tr55zl2jYIg1JZbNIxUdtMO7gaFInxJeM6f--dogNQeL5T1Nh",
+          "width": 4032
+        }
+      ],
+      "place_id": "ChIJnQAHwZAHbUcRycXUTr8uocQ",
+      "plus_code": {
+        "compound_code": "6945+3W Vienna",
+        "global_code": "8FWR6945+3W"
+      },
+      "rating": 4.7,
+      "reference": "ChIJnQAHwZAHbUcRycXUTr8uocQ",
+      "types": [
+        "museum",
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 20359
+    },
+    {
+      "business_status": "CLOSED_TEMPORARILY",
+      "formatted_address": "Habsburgergasse 10A, 1010 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.20825920000001,
+          "lng": 16.3682589
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.20960022989272,
+            "lng": 16.36968077989272
+          },
+          "southwest": {
+            "lat": 48.20690057010728,
+            "lng": 16.36698112010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png",
+      "name": "Time Travel Vienna",
+      "permanently_closed": true,
+      "photos": [
+        {
+          "height": 2448,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/109692612233276083236\">andreas klinger</a>"
+          ],
+          "photo_reference": "ATtYBwJi8k8IBEG2f3qIng_e9JkU27VLqsb06Zvi-2lTDsH-DfbHvoh9Whb8FUD3m7NEiJKZltgfMqYIG41D11Rm-Fae-CGS0ch_FmIM_0R7okjVDNwQi7gCxm5QLDq3roGeBcjtZumdJ4LkBrGdVW2k0LfYuqzaiw8Lwl2EQVFIs3X57i5M",
+          "width": 3264
+        }
+      ],
+      "place_id": "ChIJbac0_JgHbUcRXkPUJudXIpA",
+      "plus_code": {
+        "compound_code": "6959+88 Vienna",
+        "global_code": "8FWR6959+88"
+      },
+      "rating": 4.5,
+      "reference": "ChIJbac0_JgHbUcRXkPUJudXIpA",
+      "types": [
+        "tourist_attraction",
+        "museum",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 5329
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Seilergasse 3/13-14, 1010 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.2075179,
+          "lng": 16.3711765
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.20888692989272,
+            "lng": 16.37245572989272
+          },
+          "southwest": {
+            "lat": 48.20618727010728,
+            "lng": 16.36975607010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+      "name": "Vienna Court",
+      "place_id": "ChIJAQCM054HbUcRofYoq1Tqmps",
+      "plus_code": {
+        "compound_code": "695C+2F Vienna",
+        "global_code": "8FWR695C+2F"
+      },
+      "rating": 0,
+      "reference": "ChIJAQCM054HbUcRofYoq1Tqmps",
+      "types": [
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 0
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Kegelgasse 36-38, 1030 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.207337,
+          "lng": 16.3942941
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.20884292989272,
+            "lng": 16.39558437989272
+          },
+          "southwest": {
+            "lat": 48.20614327010727,
+            "lng": 16.39288472010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+      "name": "Hundertwasser House",
+      "photos": [
+        {
+          "height": 1365,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102039865497732683085\">Ирина Бенцлер</a>"
+          ],
+          "photo_reference": "ATtYBwIDpBr6AjGvnhOxOqDTpX6GUq5zKR6gkU3EBXmXj8aFF2G_-bSoup9wcFdNEbksEbwcG98gJSyYTVgZjr58oRZ2injYReERdK08yTZuQr3_iobJhzXkvyB2AnMY5lJAmVDBvRtffB6G8ye7a9IffyYgsUYwY8f0Yh-wltT5x7f4ioDF",
+          "width": 2048
+        }
+      ],
+      "place_id": "ChIJd7QUtBIHbUcRnIE5N35NVIQ",
+      "plus_code": {
+        "compound_code": "694V+WP Vienna",
+        "global_code": "8FWR694V+WP"
+      },
+      "rating": 4.4,
+      "reference": "ChIJd7QUtBIHbUcRnIE5N35NVIQ",
+      "types": [
+        "tourist_attraction",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 10038
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Rennweg 14, 1030 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.1916711,
+          "lng": 16.3839679
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.19302092989272,
+            "lng": 16.38531772989272
+          },
+          "southwest": {
+            "lat": 48.19032127010727,
+            "lng": 16.38261807010727
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "name": "University of Vienna Botanical Garden",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 2988,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/113475153719266122245\">A Google User</a>"
+          ],
+          "photo_reference": "ATtYBwJPmP3YP5feLwET1dpoZ2CnxBRVZZKWoQQmMSJMqEeqd4m5hXmevw7Rw4lo57Khuf1HqU7wVaPynM006fvQOOe3SkNmFTpU1oKtQu2CzVvkNhQYsuZR1R1XMK5IMcq8xab8FpJWqEVxtU1-sE6lju1IZ3aRdAdCKajfrdL9czi_t-oj",
+          "width": 5312
+        }
+      ],
+      "place_id": "ChIJQ5U7zWIHbUcRGl-RtIIbjn4",
+      "plus_code": {
+        "compound_code": "59RM+MH Vienna",
+        "global_code": "8FWR59RM+MH"
+      },
+      "rating": 4.6,
+      "reference": "ChIJQ5U7zWIHbUcRGl-RtIIbjn4",
+      "types": [
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 3248
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Quadenstraße 15, 1220 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.2388505,
+          "lng": 16.4742268
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.24007952989272,
+            "lng": 16.47546982989272
+          },
+          "southwest": {
+            "lat": 48.23737987010727,
+            "lng": 16.47277017010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png",
+      "name": "Blumengärten Hirschstetten",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 1215,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/110282986551685543951\">A Google User</a>"
+          ],
+          "photo_reference": "ATtYBwKAYE6ZrjvqtXfBi3gqATpQAffAr1--qW1ij0cSrVn9N8PEqoTiRoJQsbOmMQcl4LbQ2K0Jg19qVheOWDVJOpezin5K0hMD9u2wc14S-GHLZzKTbB12900AeqNleM2bIiZkwFJHouFN2mf5Nx5lND8IhDJKk_YGChJ6-dl8DGSBVyn-",
+          "width": 2587
+        }
+      ],
+      "place_id": "ChIJKepYnzgBbUcReUU8kGwy69U",
+      "plus_code": {
+        "compound_code": "6FQF+GM Vienna",
+        "global_code": "8FWR6FQF+GM"
+      },
+      "rating": 4.7,
+      "reference": "ChIJKepYnzgBbUcReUU8kGwy69U",
+      "types": [
+        "zoo",
+        "tourist_attraction",
+        "park",
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 5082
+    },
+    {
+      "business_status": "OPERATIONAL",
+      "formatted_address": "Perfektastraße 23, 1230 Wien, Austria",
+      "geometry": {
+        "location": {
+          "lat": 48.1372855,
+          "lng": 16.3219292
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 48.13884452989272,
+            "lng": 16.32330677989272
+          },
+          "southwest": {
+            "lat": 48.13614487010728,
+            "lng": 16.32060712010728
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+      "name": "MoPoint",
+      "place_id": "ChIJ2W_DdOiobUcRZpiNTGgrG9k",
+      "plus_code": {
+        "compound_code": "48PC+WQ Vienna",
+        "global_code": "8FWR48PC+WQ"
+      },
+      "rating": 0,
+      "reference": "ChIJ2W_DdOiobUcRZpiNTGgrG9k",
+      "types": [
+        "point_of_interest",
+        "establishment"
+      ],
+      "user_ratings_total": 0
+    }
+  ],
+  "status": "OK"
+}

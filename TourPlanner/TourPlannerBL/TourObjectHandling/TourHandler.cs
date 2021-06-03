@@ -44,7 +44,7 @@ namespace TourPlannerBL.TourObjectHandling
                 MapQuestHandler.GetImage(information, tour.Image);
                 
                 AttractionResponseObject attractions = GooglePlacesHandler.RequestAttractions(goal);
-                AttractionHandler.NewAddAttractions(attractions, tour.Id);
+                AttractionHandler.AddNewAttractions(attractions, tour.Id);
 
                 _logger.Info("Add success");
             }

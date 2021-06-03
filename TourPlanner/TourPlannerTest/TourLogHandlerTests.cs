@@ -94,6 +94,7 @@ namespace TourPlannerTest
             int maxIdNew = db.TourLogList[db.TourLogList.Count - 1].Id;
 
             Assert.AreNotEqual(maxIdOld, maxIdNew);
+            Assert.AreEqual(maxIdOld + 1, maxIdNew);
         }
 
         [Test]

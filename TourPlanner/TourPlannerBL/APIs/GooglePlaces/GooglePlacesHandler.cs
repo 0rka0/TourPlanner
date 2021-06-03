@@ -47,7 +47,7 @@ namespace TourPlannerBL.APIs.GooglePlaces
             return responseBody;
         }
 
-        static AttractionResponseObject ConvertResponse(string responseString)
+        static public AttractionResponseObject ConvertResponse(string responseString)
         {
             AttractionResponseObject response = JsonConvert.DeserializeObject<AttractionResponseObject>(responseString);
             return response;

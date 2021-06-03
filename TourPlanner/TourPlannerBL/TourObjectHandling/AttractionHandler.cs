@@ -7,7 +7,7 @@ using TourPlannerModels.TourObject;
 
 namespace TourPlannerBL.TourObjectHandling
 {
-    class AttractionHandler
+    public class AttractionHandler
     {
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
@@ -18,7 +18,7 @@ namespace TourPlannerBL.TourObjectHandling
             _db = db;
         }
 
-        static public void NewAddAttractions(AttractionResponseObject attractions, int tid)
+        static public void AddNewAttractions(AttractionResponseObject attractions, int tid)
         {
             _logger.Info("Attempting to add new Attractions");
             try
@@ -27,7 +27,7 @@ namespace TourPlannerBL.TourObjectHandling
             }
             catch (Exception e)
             {
-
+                _logger.Error("Attractions could not be added");
             }
         }
 

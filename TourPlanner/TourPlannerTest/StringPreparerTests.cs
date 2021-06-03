@@ -19,7 +19,7 @@ namespace TourPlannerTest
             string loc1 = "Wien";
             string loc2 = "Graz";
 
-            string desiredString = $"http://www.mapquestapi.com/directions/v2/route?key=A1H6TsijwzAZ3cp7vu5cGAmVqEysE6gy&from={loc1}&to={loc2}";
+            string desiredString = $"http://www.mapquestapi.com/directions/v2/route?key={TourPlannerModels.Configuration.Key}&from={loc1}&to={loc2}";
             string actualString = StringPreparer.BuildRequest(loc1, loc2);
 
             Assert.AreEqual(desiredString, actualString);
@@ -77,8 +77,19 @@ namespace TourPlannerTest
         {
             Tuple<string, string> desiredTuple = Tuple.Create("Wien", "Graz");
             Tuple<string, string> actualTuple = StringPreparer.ExtractLocationFromFilename("1Wien-Graz.png");
-
+            
             Assert.AreEqual(desiredTuple, actualTuple);
         }
+
+        [Test]
+        public void BuildGoogleRequest_BuildingGoogleRequest_ReturnsStringWithGoal()
+        {
+            string goal = "Wien";
+            string desiredString = $"https://maps.googleapis.com/maps/api/place/textsearch/json?query={goal}+point+of+interest&key={TourPlannerModels.Configuration.GoogleKey}";
+            string actualString = StringPreparer.BuildGoogleRequest(goal);
+
+            Assert.AreEqual(desiredString, actualString);
+        }
+
     }
 }

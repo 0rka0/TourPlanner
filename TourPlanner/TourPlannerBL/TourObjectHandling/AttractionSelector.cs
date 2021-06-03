@@ -7,7 +7,7 @@ using TourPlannerModels.TourObject;
 
 namespace TourPlannerBL.TourObjectHandling
 {
-    class AttractionSelector
+    public class AttractionSelector
     {
         private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
