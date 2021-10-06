@@ -29,7 +29,7 @@ namespace TourPlannerBL.TourObjectHandling
                 tourList = (List<Tour>)_db.SelectEntries();
 
                 tourList = TourLogSelector.FillToursWithLogs(tourList);
-                tourList = AttractionSelector.FillToursWithAttractions(tourList);
+                //tourList = AttractionSelector.FillToursWithAttractions(tourList);
 
                 _logger.Info("Selecting success");
                 return tourList;

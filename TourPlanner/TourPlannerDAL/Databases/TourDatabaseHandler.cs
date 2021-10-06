@@ -42,8 +42,9 @@ namespace TourPlannerDAL.Databases
                         }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                throw e;
                 throw new Exception("Tour entries could not be selected from Database");
             }
 

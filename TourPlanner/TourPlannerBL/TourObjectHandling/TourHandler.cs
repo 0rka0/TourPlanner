@@ -43,8 +43,8 @@ namespace TourPlannerBL.TourObjectHandling
 
                 MapQuestHandler.GetImage(information, tour.Image);
                 
-                AttractionResponseObject attractions = GooglePlacesHandler.RequestAttractions(goal);
-                AttractionHandler.AddNewAttractions(attractions, tour.Id);
+                //AttractionResponseObject attractions = GooglePlacesHandler.RequestAttractions(goal);
+                //AttractionHandler.AddNewAttractions(attractions, tour.Id);
 
                 _logger.Info("Tour added succesfully");
             }
@@ -193,7 +193,7 @@ namespace TourPlannerBL.TourObjectHandling
                     {
                         TourLogHandler.AddImportedTourLog(log);
                     }
-                    AttractionHandler.AddImportedAttractions(tour.AttList);
+                    //AttractionHandler.AddImportedAttractions(tour.AttList);
                 }
 
                 _logger.Info("Importing success");

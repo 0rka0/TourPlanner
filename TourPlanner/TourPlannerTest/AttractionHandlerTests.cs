@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 using System.IO;
-using TourPlannerBL.APIs.GooglePlaces;
+using TourPlannerBL.API.GooglePlaces;
 using TourPlannerBL.TourObjectHandling;
 using TourPlannerModels.TourObject;
 using TourPlannerTest.TestDatabases;
